@@ -80,8 +80,7 @@ REFGUID       :: GUID;
 SIZE_T        :: u32;
 WCHAR         :: i32;
 DWORD         :: i32;
-_LUID         :: LUID;
-
+// _LUID         :: LUID;
 HRESULT :: win32.Hresult;
 HMODULE :: win32.Hmodule;
 HMONITOR :: win32.Hmonitor;
@@ -91,26 +90,22 @@ HANDLE :: win32.Handle;
 HDC :: win32.Handle;
 LPVOID :: rawptr;
 Point :: win32.Point;
-
 D3D11_SRV_DIMENSION :: D3D_SRV_DIMENSION;
 D3D11_PRIMITIVE_TOPOLOGY :: D3D_PRIMITIVE_TOPOLOGY;
 D3D11_RECT :: RECT;
-
 DXGI_RGBA :: D3DCOLORVALUE;
 DXGI_DEBUG_ID :: GUID;
 
 PFN_DESTRUCTION_CALLBACK :: proc(pData: rawptr);
 DXGI_INFO_QUEUE_MESSAGE_ID :: i32;
 D3D11_AUTHENTICATED_PROTECTION_FLAGS :: u32;
+APP_DEPRECATED_HRESULT :: HRESULT;
 
 SECURITY_ATTRIBUTES :: struct {
   nLength: u32,
   lpSecurityDescriptor: rawptr,
   bInheritHandle: bool,
 }
-
-APP_DEPRECATED_HRESULT :: HRESULT;
-
 
 DXGI_USAGE :: enum i32 {
 	DXGI_USAGE_SHADER_INPUT         = 0x00000010,
@@ -134,7 +129,7 @@ get_guid :: proc(tid: typeid) -> GUID {
 }
 
 
-Create_Device_Response :: enum int {
+Create_Device_Response :: enum u32 {
 	D3D11_ERROR_FILE_NOT_FOUND                               = 0x887C002,
 	D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS                = 0x887C0001,
 	D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS                 = 0x887C0003,
