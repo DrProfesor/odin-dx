@@ -72,7 +72,7 @@ SIZE :: struct {
 
 LPCSTR        :: cstring;
 LPSTR         :: cstring;
-LPCWSTR       :: cstring;
+LPCWSTR       :: ^u16;
 POINT         :: Point;
 INT           :: i32;
 UINT          :: u32;
