@@ -85,7 +85,7 @@ IDXGISwapChain4Vtbl :: struct {
     GetCurrentBackBufferIndex : proc(This: ^IDXGISwapChain4) -> UINT,
     CheckColorSpaceSupport : proc(This: ^IDXGISwapChain4, ColorSpace: DXGI_COLOR_SPACE_TYPE, pColorSpaceSupport: ^UINT) -> HRESULT,
     SetColorSpace1 : proc(This: ^IDXGISwapChain4, ColorSpace: DXGI_COLOR_SPACE_TYPE) -> HRESULT,
-    ResizeBuffers1 : proc(This: ^IDXGISwapChain4, BufferCount: UINT, Width: UINT, Height: UINT, Format: DXGI_FORMAT, SwapChainFlags: UINT, pCreationNodeMask: ^UINT, ppPresentQueue: ^IUnknown) -> HRESULT,
+    ResizeBuffers1 : proc(This: ^IDXGISwapChain4, BufferCount: UINT, Width: UINT, Height: UINT, Format: DXGI_FORMAT, SwapChainFlags: UINT, pCreationNodeMask: ^UINT, ppPresentQueue: ^^IUnknown) -> HRESULT,
     SetHDRMetaData : proc(This: ^IDXGISwapChain4, Type: DXGI_HDR_METADATA_TYPE, Size: UINT, pMetaData: rawptr) -> HRESULT,
 }
 IDXGIDevice4 :: struct {
@@ -101,17 +101,17 @@ IDXGIDevice4Vtbl :: struct {
     GetParent : proc(This: ^IDXGIDevice4, riid: REFIID, ppParent: ^rawptr) -> HRESULT,
     GetAdapter : proc(This: ^IDXGIDevice4, pAdapter: ^^IDXGIAdapter) -> HRESULT,
     CreateSurface : proc(This: ^IDXGIDevice4, pDesc: ^DXGI_SURFACE_DESC, NumSurfaces: UINT, Usage: DXGI_USAGE, pSharedResource: ^DXGI_SHARED_RESOURCE, ppSurface: ^^IDXGISurface) -> HRESULT,
-    QueryResourceResidency : proc(This: ^IDXGIDevice4, ppResources: ^IUnknown, pResidencyStatus: ^DXGI_RESIDENCY, NumResources: UINT) -> HRESULT,
+    QueryResourceResidency : proc(This: ^IDXGIDevice4, ppResources: ^^IUnknown, pResidencyStatus: ^DXGI_RESIDENCY, NumResources: UINT) -> HRESULT,
     SetGPUThreadPriority : proc(This: ^IDXGIDevice4, Priority: INT) -> HRESULT,
     GetGPUThreadPriority : proc(This: ^IDXGIDevice4, pPriority: ^INT) -> HRESULT,
     SetMaximumFrameLatency : proc(This: ^IDXGIDevice4, MaxLatency: UINT) -> HRESULT,
     GetMaximumFrameLatency : proc(This: ^IDXGIDevice4, pMaxLatency: ^UINT) -> HRESULT,
-    OfferResources : proc(This: ^IDXGIDevice4, NumResources: UINT, ppResources: ^IDXGIResource, Priority: DXGI_OFFER_RESOURCE_PRIORITY) -> HRESULT,
-    ReclaimResources : proc(This: ^IDXGIDevice4, NumResources: UINT, ppResources: ^IDXGIResource, pDiscarded: ^BOOL) -> HRESULT,
+    OfferResources : proc(This: ^IDXGIDevice4, NumResources: UINT, ppResources: ^^IDXGIResource, Priority: DXGI_OFFER_RESOURCE_PRIORITY) -> HRESULT,
+    ReclaimResources : proc(This: ^IDXGIDevice4, NumResources: UINT, ppResources: ^^IDXGIResource, pDiscarded: ^BOOL) -> HRESULT,
     EnqueueSetEvent : proc(This: ^IDXGIDevice4, hEvent: HANDLE) -> HRESULT,
     Trim : proc(This: ^IDXGIDevice4),
-    OfferResources1 : proc(This: ^IDXGIDevice4, NumResources: UINT, ppResources: ^IDXGIResource, Priority: DXGI_OFFER_RESOURCE_PRIORITY, Flags: UINT) -> HRESULT,
-    ReclaimResources1 : proc(This: ^IDXGIDevice4, NumResources: UINT, ppResources: ^IDXGIResource, pResults: ^DXGI_RECLAIM_RESOURCE_RESULTS) -> HRESULT,
+    OfferResources1 : proc(This: ^IDXGIDevice4, NumResources: UINT, ppResources: ^^IDXGIResource, Priority: DXGI_OFFER_RESOURCE_PRIORITY, Flags: UINT) -> HRESULT,
+    ReclaimResources1 : proc(This: ^IDXGIDevice4, NumResources: UINT, ppResources: ^^IDXGIResource, pResults: ^DXGI_RECLAIM_RESOURCE_RESULTS) -> HRESULT,
 }
 IDXGIFactory5 :: struct {
     using vtbl: ^IDXGIFactory5Vtbl

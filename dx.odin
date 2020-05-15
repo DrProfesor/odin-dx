@@ -33,6 +33,20 @@ foreign d3d11 {
 						  pFeatureLevel      : ^D3D_FEATURE_LEVEL, 
 						  ppImmediateContext : ^^ID3D11DeviceContext) -> HRESULT ---;
 }
+foreign import "system:d3dcompiler.lib"
+foreign d3dcompiler {
+	@(link_name="D3DCompileFromFile")
+	compile_from_file :: proc "std" (
+	             pFileName: win32.Wstring,
+				 pDefines: rawptr,//^D3D_SHADER_MACRO,
+				 pInclude: rawptr,//^ID3DInclude,
+				 pEntrypoint: cstring,
+				 pTarget: cstring,
+				 Flags1: UINT,
+				 Flags2: UINT,
+				 ppCode: ^^ID3D10Blob,
+				 ppErrorMsgs: ^^ID3D10Blob) -> HRESULT ---;
+}
 
 IUnknown             :: struct {
 	using vtbl: ^IUnknown_vtbl(IUnknown),
@@ -45,10 +59,10 @@ IUnknown_vtbl :: struct(T: typeid) {
 }
 
 GUID :: struct {
-	data1: i32,
-	data2: i16,
-	data3: i16,
-	data4: [8]byte,
+	data1: u32,
+	data2: u16,
+	data3: u16,
+	data4: [8]u8,
 }
 
 SIZE :: struct {
@@ -129,7 +143,7 @@ get_guid :: proc(tid: typeid) -> GUID {
 }
 
 
-Create_Device_Response :: enum u32 {
+Create_Device_Response :: enum {
 	D3D11_ERROR_FILE_NOT_FOUND                               = 0x887C002,
 	D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS                = 0x887C0001,
 	D3D11_ERROR_TOO_MANY_UNIQUE_VIEW_OBJECTS                 = 0x887C0003,
@@ -142,4 +156,29 @@ Create_Device_Response :: enum u32 {
 	E_NOTIMPL                                                = 0x80004001,
 	S_FALSE                                                  = 1,
 	S_OK                                                     = 0,
+
+	// DXGI_ERROR_ACCESS_DENIED                = 0x887A002B,
+	// DXGI_ERROR_ACCESS_LOST                  = 0x887A0026,
+	// DXGI_ERROR_ALREADY_EXISTS               = 0x887A0036,
+	// DXGI_ERROR_CANNOT_PROTECT_CONTENT       = 0x887A002A,
+	// DXGI_ERROR_DEVICE_HUNG                  = 0x887A0006,
+	// DXGI_ERROR_DEVICE_REMOVED               = 0x887A0005,
+	// DXGI_ERROR_DEVICE_RESET                 = 0x887A0007,
+	// DXGI_ERROR_DRIVER_INTERNAL_ERROR        = 0x887A0020,
+	// DXGI_ERROR_FRAME_STATISTICS_DISJOINT    = 0x887A000B,
+	// DXGI_ERROR_GRAPHICS_VIDPN_SOURCE_IN_USE = 0x887A000C,
+	// DXGI_ERROR_INVALID_CALL                 = 0x887A0001,
+	// DXGI_ERROR_MORE_DATA                    = 0x887A0003,
+	// DXGI_ERROR_NAME_ALREADY_EXISTS          = 0x887A002C,
+	// DXGI_ERROR_NONEXCLUSIVE                 = 0x887A0021,
+	// DXGI_ERROR_NOT_CURRENTLY_AVAILABLE      = 0x887A0022,
+	// DXGI_ERROR_NOT_FOUND                    = 0x887A0002,
+	// DXGI_ERROR_REMOTE_CLIENT_DISCONNECTED   = 0x887A0023,
+	// DXGI_ERROR_REMOTE_OUTOFMEMORY           = 0x887A0024,
+	// DXGI_ERROR_RESTRICT_TO_OUTPUT_STALE     = 0x887A0029,
+	// DXGI_ERROR_SDK_COMPONENT_MISSING        = 0x887A002D,
+	// DXGI_ERROR_SESSION_DISCONNECTED         = 0x887A0028,
+	// DXGI_ERROR_UNSUPPORTED                  = 0x887A0004,
+	// DXGI_ERROR_WAIT_TIMEOUT                 = 0x887A0027,
+	// DXGI_ERROR_WAS_STILL_DRAWING            = 0x887A000A,
 }

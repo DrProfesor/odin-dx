@@ -43,7 +43,7 @@ IDXGISwapChain3Vtbl :: struct {
     GetCurrentBackBufferIndex : proc(This: ^IDXGISwapChain3) -> UINT,
     CheckColorSpaceSupport : proc(This: ^IDXGISwapChain3, ColorSpace: DXGI_COLOR_SPACE_TYPE, pColorSpaceSupport: ^UINT) -> HRESULT,
     SetColorSpace1 : proc(This: ^IDXGISwapChain3, ColorSpace: DXGI_COLOR_SPACE_TYPE) -> HRESULT,
-    ResizeBuffers1 : proc(This: ^IDXGISwapChain3, BufferCount: UINT, Width: UINT, Height: UINT, Format: DXGI_FORMAT, SwapChainFlags: UINT, pCreationNodeMask: ^UINT, ppPresentQueue: ^IUnknown) -> HRESULT,
+    ResizeBuffers1 : proc(This: ^IDXGISwapChain3, BufferCount: UINT, Width: UINT, Height: UINT, Format: DXGI_FORMAT, SwapChainFlags: UINT, pCreationNodeMask: ^UINT, ppPresentQueue: ^^IUnknown) -> HRESULT,
 }
 IDXGIOutput4 :: struct {
     using vtbl: ^IDXGIOutput4Vtbl

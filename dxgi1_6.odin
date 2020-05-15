@@ -88,7 +88,7 @@ IDXGIOutput6Vtbl :: struct {
     GetDesc1 : proc(This: ^IDXGIOutput6, pDesc: ^DXGI_OUTPUT_DESC1) -> HRESULT,
     CheckHardwareCompositionSupport : proc(This: ^IDXGIOutput6, pFlags: ^UINT) -> HRESULT,
 }
-DXGI_ADAPTER_FLAG3 :: enum u64{
+DXGI_ADAPTER_FLAG3 :: enum u32{
     DXGI_ADAPTER_FLAG3_NONE =  0,
     DXGI_ADAPTER_FLAG3_REMOTE =  1,
     DXGI_ADAPTER_FLAG3_SOFTWARE =  2,

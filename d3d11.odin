@@ -168,7 +168,7 @@ ID3D11ResourceVtbl :: struct {
 D3D11_BUFFER_DESC :: struct {
     ByteWidth: UINT,
     Usage: D3D11_USAGE,
-    BindFlags: UINT,
+    BindFlags: D3D11_BIND_FLAG,
     CPUAccessFlags: UINT,
     MiscFlags: UINT,
     StructureByteStride: UINT,
@@ -289,8 +289,8 @@ D3D11_BUFFER_SRV :: struct {
         // UINT, //ElementOffset
     },
     _1: union {
-        UINT, //NumElements
-        // UINT, //ElementWidth
+        // UINT, //NumElements
+        UINT, //ElementWidth
     },
 }
 D3D11_BUFFEREX_SRV :: struct {
@@ -372,8 +372,8 @@ ID3D11ShaderResourceViewVtbl :: struct {
 }
 D3D11_BUFFER_RTV :: struct {
     _0: union {
-        UINT, //FirstElement
-        // UINT, //ElementOffset
+        // UINT, //FirstElement
+        UINT, //ElementOffset
     },
     _1: union {
         // UINT, //NumElements
@@ -888,37 +888,37 @@ ID3D11DeviceContextVtbl :: struct {
     GetPrivateData : proc(This: ^ID3D11DeviceContext, guid: REFGUID, pDataSize: ^UINT, pData: rawptr) -> HRESULT,
     SetPrivateData : proc(This: ^ID3D11DeviceContext, guid: REFGUID, DataSize: UINT, pData: rawptr) -> HRESULT,
     SetPrivateDataInterface : proc(This: ^ID3D11DeviceContext, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
-    VSSetConstantBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppConstantBuffers: ^ID3D11Buffer),
-    PSSetShaderResources : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumViews: UINT, ppShaderResourceViews: ^ID3D11ShaderResourceView),
-    PSSetShader : proc(This: ^ID3D11DeviceContext, pPixelShader: ^ID3D11PixelShader, ppClassInstances: ^ID3D11ClassInstance, NumClassInstances: UINT),
-    PSSetSamplers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumSamplers: UINT, ppSamplers: ^ID3D11SamplerState),
-    VSSetShader : proc(This: ^ID3D11DeviceContext, pVertexShader: ^ID3D11VertexShader, ppClassInstances: ^ID3D11ClassInstance, NumClassInstances: UINT),
+    VSSetConstantBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppConstantBuffers: ^^ID3D11Buffer),
+    PSSetShaderResources : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumViews: UINT, ppShaderResourceViews: ^^ID3D11ShaderResourceView),
+    PSSetShader : proc(This: ^ID3D11DeviceContext, pPixelShader: ^ID3D11PixelShader, ppClassInstances: ^^ID3D11ClassInstance, NumClassInstances: UINT),
+    PSSetSamplers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumSamplers: UINT, ppSamplers: ^^ID3D11SamplerState),
+    VSSetShader : proc(This: ^ID3D11DeviceContext, pVertexShader: ^ID3D11VertexShader, ppClassInstances: ^^ID3D11ClassInstance, NumClassInstances: UINT),
     DrawIndexed : proc(This: ^ID3D11DeviceContext, IndexCount: UINT, StartIndexLocation: UINT, BaseVertexLocation: INT),
     Draw : proc(This: ^ID3D11DeviceContext, VertexCount: UINT, StartVertexLocation: UINT),
     Map : proc(This: ^ID3D11DeviceContext, pResource: ^ID3D11Resource, Subresource: UINT, MapType: D3D11_MAP, MapFlags: UINT, pMappedResource: ^D3D11_MAPPED_SUBRESOURCE) -> HRESULT,
     Unmap : proc(This: ^ID3D11DeviceContext, pResource: ^ID3D11Resource, Subresource: UINT),
-    PSSetConstantBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppConstantBuffers: ^ID3D11Buffer),
+    PSSetConstantBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppConstantBuffers: ^^ID3D11Buffer),
     IASetInputLayout : proc(This: ^ID3D11DeviceContext, pInputLayout: ^ID3D11InputLayout),
-    IASetVertexBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppVertexBuffers: ^ID3D11Buffer, pStrides: ^UINT, pOffsets: ^UINT),
+    IASetVertexBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppVertexBuffers: ^^ID3D11Buffer, pStrides: ^UINT, pOffsets: ^UINT),
     IASetIndexBuffer : proc(This: ^ID3D11DeviceContext, pIndexBuffer: ^ID3D11Buffer, Format: DXGI_FORMAT, Offset: UINT),
     DrawIndexedInstanced : proc(This: ^ID3D11DeviceContext, IndexCountPerInstance: UINT, InstanceCount: UINT, StartIndexLocation: UINT, BaseVertexLocation: INT, StartInstanceLocation: UINT),
     DrawInstanced : proc(This: ^ID3D11DeviceContext, VertexCountPerInstance: UINT, InstanceCount: UINT, StartVertexLocation: UINT, StartInstanceLocation: UINT),
-    GSSetConstantBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppConstantBuffers: ^ID3D11Buffer),
-    GSSetShader : proc(This: ^ID3D11DeviceContext, pShader: ^ID3D11GeometryShader, ppClassInstances: ^ID3D11ClassInstance, NumClassInstances: UINT),
+    GSSetConstantBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppConstantBuffers: ^^ID3D11Buffer),
+    GSSetShader : proc(This: ^ID3D11DeviceContext, pShader: ^ID3D11GeometryShader, ppClassInstances: ^^ID3D11ClassInstance, NumClassInstances: UINT),
     IASetPrimitiveTopology : proc(This: ^ID3D11DeviceContext, Topology: D3D11_PRIMITIVE_TOPOLOGY),
-    VSSetShaderResources : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumViews: UINT, ppShaderResourceViews: ^ID3D11ShaderResourceView),
-    VSSetSamplers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumSamplers: UINT, ppSamplers: ^ID3D11SamplerState),
+    VSSetShaderResources : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumViews: UINT, ppShaderResourceViews: ^^ID3D11ShaderResourceView),
+    VSSetSamplers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumSamplers: UINT, ppSamplers: ^^ID3D11SamplerState),
     Begin : proc(This: ^ID3D11DeviceContext, pAsync: ^ID3D11Asynchronous),
     End : proc(This: ^ID3D11DeviceContext, pAsync: ^ID3D11Asynchronous),
     GetData : proc(This: ^ID3D11DeviceContext, pAsync: ^ID3D11Asynchronous, pData: rawptr, DataSize: UINT, GetDataFlags: UINT) -> HRESULT,
     SetPredication : proc(This: ^ID3D11DeviceContext, pPredicate: ^ID3D11Predicate, PredicateValue: BOOL),
-    GSSetShaderResources : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumViews: UINT, ppShaderResourceViews: ^ID3D11ShaderResourceView),
-    GSSetSamplers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumSamplers: UINT, ppSamplers: ^ID3D11SamplerState),
-    OMSetRenderTargets : proc(This: ^ID3D11DeviceContext, NumViews: UINT, ppRenderTargetViews: ^ID3D11RenderTargetView, pDepthStencilView: ^ID3D11DepthStencilView),
-    OMSetRenderTargetsAndUnorderedAccessViews : proc(This: ^ID3D11DeviceContext, NumRTVs: UINT, ppRenderTargetViews: ^ID3D11RenderTargetView, pDepthStencilView: ^ID3D11DepthStencilView, UAVStartSlot: UINT, NumUAVs: UINT, ppUnorderedAccessViews: ^ID3D11UnorderedAccessView, pUAVInitialCounts: ^UINT),
+    GSSetShaderResources : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumViews: UINT, ppShaderResourceViews: ^^ID3D11ShaderResourceView),
+    GSSetSamplers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumSamplers: UINT, ppSamplers: ^^ID3D11SamplerState),
+    OMSetRenderTargets : proc(This: ^ID3D11DeviceContext, NumViews: UINT, ppRenderTargetViews: ^^ID3D11RenderTargetView, pDepthStencilView: ^ID3D11DepthStencilView),
+    OMSetRenderTargetsAndUnorderedAccessViews : proc(This: ^ID3D11DeviceContext, NumRTVs: UINT, ppRenderTargetViews: ^^ID3D11RenderTargetView, pDepthStencilView: ^ID3D11DepthStencilView, UAVStartSlot: UINT, NumUAVs: UINT, ppUnorderedAccessViews: ^^ID3D11UnorderedAccessView, pUAVInitialCounts: ^UINT),
     OMSetBlendState : proc(This: ^ID3D11DeviceContext, pBlendState: ^ID3D11BlendState, BlendFactor: [4]FLOAT, SampleMask: UINT),
     OMSetDepthStencilState : proc(This: ^ID3D11DeviceContext, pDepthStencilState: ^ID3D11DepthStencilState, StencilRef: UINT),
-    SOSetTargets : proc(This: ^ID3D11DeviceContext, NumBuffers: UINT, ppSOTargets: ^ID3D11Buffer, pOffsets: ^UINT),
+    SOSetTargets : proc(This: ^ID3D11DeviceContext, NumBuffers: UINT, ppSOTargets: ^^ID3D11Buffer, pOffsets: ^UINT),
     DrawAuto : proc(This: ^ID3D11DeviceContext),
     DrawIndexedInstancedIndirect : proc(This: ^ID3D11DeviceContext, pBufferForArgs: ^ID3D11Buffer, AlignedByteOffsetForArgs: UINT),
     DrawInstancedIndirect : proc(This: ^ID3D11DeviceContext, pBufferForArgs: ^ID3D11Buffer, AlignedByteOffsetForArgs: UINT),
@@ -940,19 +940,19 @@ ID3D11DeviceContextVtbl :: struct {
     GetResourceMinLOD : proc(This: ^ID3D11DeviceContext, pResource: ^ID3D11Resource) -> FLOAT,
     ResolveSubresource : proc(This: ^ID3D11DeviceContext, pDstResource: ^ID3D11Resource, DstSubresource: UINT, pSrcResource: ^ID3D11Resource, SrcSubresource: UINT, Format: DXGI_FORMAT),
     ExecuteCommandList : proc(This: ^ID3D11DeviceContext, pCommandList: ^ID3D11CommandList, RestoreContextState: BOOL),
-    HSSetShaderResources : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumViews: UINT, ppShaderResourceViews: ^ID3D11ShaderResourceView),
-    HSSetShader : proc(This: ^ID3D11DeviceContext, pHullShader: ^ID3D11HullShader, ppClassInstances: ^ID3D11ClassInstance, NumClassInstances: UINT),
-    HSSetSamplers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumSamplers: UINT, ppSamplers: ^ID3D11SamplerState),
-    HSSetConstantBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppConstantBuffers: ^ID3D11Buffer),
-    DSSetShaderResources : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumViews: UINT, ppShaderResourceViews: ^ID3D11ShaderResourceView),
-    DSSetShader : proc(This: ^ID3D11DeviceContext, pDomainShader: ^ID3D11DomainShader, ppClassInstances: ^ID3D11ClassInstance, NumClassInstances: UINT),
-    DSSetSamplers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumSamplers: UINT, ppSamplers: ^ID3D11SamplerState),
-    DSSetConstantBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppConstantBuffers: ^ID3D11Buffer),
-    CSSetShaderResources : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumViews: UINT, ppShaderResourceViews: ^ID3D11ShaderResourceView),
-    CSSetUnorderedAccessViews : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumUAVs: UINT, ppUnorderedAccessViews: ^ID3D11UnorderedAccessView, pUAVInitialCounts: ^UINT),
-    CSSetShader : proc(This: ^ID3D11DeviceContext, pComputeShader: ^ID3D11ComputeShader, ppClassInstances: ^ID3D11ClassInstance, NumClassInstances: UINT),
-    CSSetSamplers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumSamplers: UINT, ppSamplers: ^ID3D11SamplerState),
-    CSSetConstantBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppConstantBuffers: ^ID3D11Buffer),
+    HSSetShaderResources : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumViews: UINT, ppShaderResourceViews: ^^ID3D11ShaderResourceView),
+    HSSetShader : proc(This: ^ID3D11DeviceContext, pHullShader: ^ID3D11HullShader, ppClassInstances: ^^ID3D11ClassInstance, NumClassInstances: UINT),
+    HSSetSamplers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumSamplers: UINT, ppSamplers: ^^ID3D11SamplerState),
+    HSSetConstantBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppConstantBuffers: ^^ID3D11Buffer),
+    DSSetShaderResources : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumViews: UINT, ppShaderResourceViews: ^^ID3D11ShaderResourceView),
+    DSSetShader : proc(This: ^ID3D11DeviceContext, pDomainShader: ^ID3D11DomainShader, ppClassInstances: ^^ID3D11ClassInstance, NumClassInstances: UINT),
+    DSSetSamplers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumSamplers: UINT, ppSamplers: ^^ID3D11SamplerState),
+    DSSetConstantBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppConstantBuffers: ^^ID3D11Buffer),
+    CSSetShaderResources : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumViews: UINT, ppShaderResourceViews: ^^ID3D11ShaderResourceView),
+    CSSetUnorderedAccessViews : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumUAVs: UINT, ppUnorderedAccessViews: ^^ID3D11UnorderedAccessView, pUAVInitialCounts: ^UINT),
+    CSSetShader : proc(This: ^ID3D11DeviceContext, pComputeShader: ^ID3D11ComputeShader, ppClassInstances: ^^ID3D11ClassInstance, NumClassInstances: UINT),
+    CSSetSamplers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumSamplers: UINT, ppSamplers: ^^ID3D11SamplerState),
+    CSSetConstantBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppConstantBuffers: ^^ID3D11Buffer),
     VSGetConstantBuffers : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumBuffers: UINT, ppConstantBuffers: ^^ID3D11Buffer),
     PSGetShaderResources : proc(This: ^ID3D11DeviceContext, StartSlot: UINT, NumViews: UINT, ppShaderResourceViews: ^^ID3D11ShaderResourceView),
     PSGetShader : proc(This: ^ID3D11DeviceContext, ppPixelShader: ^^ID3D11PixelShader, ppClassInstances: ^^ID3D11ClassInstance, pNumClassInstances: ^UINT),
@@ -1935,7 +1935,7 @@ D3D11_COUNTER_TYPE :: enum u32{
     D3D11_COUNTER_TYPE_UINT64 =  ( D3D11_COUNTER_TYPE_UINT32 + 1 )
     ,
 }
-D3D11_STANDARD_MULTISAMPLE_QUALITY_LEVELS :: enum u64{
+D3D11_STANDARD_MULTISAMPLE_QUALITY_LEVELS :: enum u32{
     D3D11_STANDARD_MULTISAMPLE_PATTERN =  0xffffffff,
     D3D11_CENTER_MULTISAMPLE_PATTERN =  0xfffffffe
     ,

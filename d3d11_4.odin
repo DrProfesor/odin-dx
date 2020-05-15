@@ -381,7 +381,7 @@ ID3D11VideoContext3Vtbl :: struct {
     VideoProcessorGetOutputHDRMetaData : proc(This: ^ID3D11VideoContext3, pVideoProcessor: ^ID3D11VideoProcessor, pType: ^DXGI_HDR_METADATA_TYPE, Size: UINT, pMetaData: rawptr),
     VideoProcessorSetStreamHDRMetaData : proc(This: ^ID3D11VideoContext3, pVideoProcessor: ^ID3D11VideoProcessor, StreamIndex: UINT, Type: DXGI_HDR_METADATA_TYPE, Size: UINT, pHDRMetaData: rawptr),
     VideoProcessorGetStreamHDRMetaData : proc(This: ^ID3D11VideoContext3, pVideoProcessor: ^ID3D11VideoProcessor, StreamIndex: UINT, pType: ^DXGI_HDR_METADATA_TYPE, Size: UINT, pMetaData: rawptr),
-    DecoderBeginFrame1 : proc(This: ^ID3D11VideoContext3, pDecoder: ^ID3D11VideoDecoder, pView: ^ID3D11VideoDecoderOutputView, ContentKeySize: UINT, pContentKey: rawptr, NumComponentHistograms: UINT, pHistogramOffsets: ^UINT, ppHistogramBuffers: ^ID3D11Buffer) -> HRESULT,
+    DecoderBeginFrame1 : proc(This: ^ID3D11VideoContext3, pDecoder: ^ID3D11VideoDecoder, pView: ^ID3D11VideoDecoderOutputView, ContentKeySize: UINT, pContentKey: rawptr, NumComponentHistograms: UINT, pHistogramOffsets: ^UINT, ppHistogramBuffers: ^^ID3D11Buffer) -> HRESULT,
     SubmitDecoderBuffers2 : proc(This: ^ID3D11VideoContext3, pDecoder: ^ID3D11VideoDecoder, NumBuffers: UINT, pBufferDesc: ^D3D11_VIDEO_DECODER_BUFFER_DESC2) -> HRESULT,
 }
 D3D11_FEATURE_DATA_D3D11_OPTIONS4 :: struct {

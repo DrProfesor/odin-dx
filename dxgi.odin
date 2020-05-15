@@ -235,7 +235,7 @@ IDXGIDeviceVtbl :: struct {
     GetParent : proc(This: ^IDXGIDevice, riid: REFIID, ppParent: ^rawptr) -> HRESULT,
     GetAdapter : proc(This: ^IDXGIDevice, pAdapter: ^^IDXGIAdapter) -> HRESULT,
     CreateSurface : proc(This: ^IDXGIDevice, pDesc: ^DXGI_SURFACE_DESC, NumSurfaces: UINT, Usage: DXGI_USAGE, pSharedResource: ^DXGI_SHARED_RESOURCE, ppSurface: ^^IDXGISurface) -> HRESULT,
-    QueryResourceResidency : proc(This: ^IDXGIDevice, ppResources: ^IUnknown, pResidencyStatus: ^DXGI_RESIDENCY, NumResources: UINT) -> HRESULT,
+    QueryResourceResidency : proc(This: ^IDXGIDevice, ppResources: ^^IUnknown, pResidencyStatus: ^DXGI_RESIDENCY, NumResources: UINT) -> HRESULT,
     SetGPUThreadPriority : proc(This: ^IDXGIDevice, Priority: INT) -> HRESULT,
     GetGPUThreadPriority : proc(This: ^IDXGIDevice, pPriority: ^INT) -> HRESULT,
 }
@@ -303,7 +303,7 @@ IDXGIDevice1Vtbl :: struct {
     GetParent : proc(This: ^IDXGIDevice1, riid: REFIID, ppParent: ^rawptr) -> HRESULT,
     GetAdapter : proc(This: ^IDXGIDevice1, pAdapter: ^^IDXGIAdapter) -> HRESULT,
     CreateSurface : proc(This: ^IDXGIDevice1, pDesc: ^DXGI_SURFACE_DESC, NumSurfaces: UINT, Usage: DXGI_USAGE, pSharedResource: ^DXGI_SHARED_RESOURCE, ppSurface: ^^IDXGISurface) -> HRESULT,
-    QueryResourceResidency : proc(This: ^IDXGIDevice1, ppResources: ^IUnknown, pResidencyStatus: ^DXGI_RESIDENCY, NumResources: UINT) -> HRESULT,
+    QueryResourceResidency : proc(This: ^IDXGIDevice1, ppResources: ^^IUnknown, pResidencyStatus: ^DXGI_RESIDENCY, NumResources: UINT) -> HRESULT,
     SetGPUThreadPriority : proc(This: ^IDXGIDevice1, Priority: INT) -> HRESULT,
     GetGPUThreadPriority : proc(This: ^IDXGIDevice1, pPriority: ^INT) -> HRESULT,
     SetMaximumFrameLatency : proc(This: ^IDXGIDevice1, MaxLatency: UINT) -> HRESULT,
@@ -338,7 +338,7 @@ DXGI_SWAP_CHAIN_FLAG :: enum u32{
     DXGI_SWAP_CHAIN_FLAG_RESTRICTED_TO_ALL_HOLOGRAPHIC_DISPLAYS =  4096
     ,
 }
-DXGI_ADAPTER_FLAG :: enum u64{
+DXGI_ADAPTER_FLAG :: enum u32{
     DXGI_ADAPTER_FLAG_NONE =  0,
     DXGI_ADAPTER_FLAG_REMOTE =  1,
     DXGI_ADAPTER_FLAG_SOFTWARE =  2,
