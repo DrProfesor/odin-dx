@@ -86,7 +86,7 @@ IDXGISwapChain4Vtbl :: struct {
     CheckColorSpaceSupport : proc(This: ^IDXGISwapChain4, ColorSpace: DXGI_COLOR_SPACE_TYPE, pColorSpaceSupport: ^UINT) -> HRESULT,
     SetColorSpace1 : proc(This: ^IDXGISwapChain4, ColorSpace: DXGI_COLOR_SPACE_TYPE) -> HRESULT,
     ResizeBuffers1 : proc(This: ^IDXGISwapChain4, BufferCount: UINT, Width: UINT, Height: UINT, Format: DXGI_FORMAT, SwapChainFlags: UINT, pCreationNodeMask: ^UINT, ppPresentQueue: ^^IUnknown) -> HRESULT,
-    SetHDRMetaData : proc(This: ^IDXGISwapChain4, Type: DXGI_HDR_METADATA_TYPE, Size: UINT, pMetaData: rawptr) -> HRESULT,
+    SetHDRMetaData : proc(This: ^IDXGISwapChain4, Type: UINT, Size: UINT, pMetaData: rawptr) -> HRESULT,
 }
 IDXGIDevice4 :: struct {
     using vtbl: ^IDXGIDevice4Vtbl
@@ -145,28 +145,23 @@ IDXGIFactory5Vtbl :: struct {
     GetCreationFlags : proc(This: ^IDXGIFactory5) -> UINT,
     EnumAdapterByLuid : proc(This: ^IDXGIFactory5, AdapterLuid: LUID, riid: REFIID, ppvAdapter: ^rawptr) -> HRESULT,
     EnumWarpAdapter : proc(This: ^IDXGIFactory5, riid: REFIID, ppvAdapter: ^rawptr) -> HRESULT,
-    CheckFeatureSupport : proc(This: ^IDXGIFactory5, Feature: DXGI_FEATURE, pFeatureSupportData: rawptr, FeatureSupportDataSize: UINT) -> HRESULT,
+    CheckFeatureSupport : proc(This: ^IDXGIFactory5, Feature: UINT, pFeatureSupportData: rawptr, FeatureSupportDataSize: UINT) -> HRESULT,
 }
-DXGI_OUTDUPL_FLAG :: enum u32{
-    DXGI_OUTDUPL_COMPOSITED_UI_CAPTURE_ONLY =  1
-    ,
-}
-DXGI_HDR_METADATA_TYPE :: enum u32{
-    DXGI_HDR_METADATA_TYPE_NONE =  0,
-    DXGI_HDR_METADATA_TYPE_HDR10 =  1
-    ,
-}
-DXGI_OFFER_RESOURCE_FLAGS :: enum u32{
-    DXGI_OFFER_RESOURCE_FLAG_ALLOW_DECOMMIT =  0x1
-    ,
-}
-DXGI_RECLAIM_RESOURCE_RESULTS :: enum u32{
-    DXGI_RECLAIM_RESOURCE_RESULT_OK =  0,
-    DXGI_RECLAIM_RESOURCE_RESULT_DISCARDED =  1,
-    DXGI_RECLAIM_RESOURCE_RESULT_NOT_COMMITTED =  2
-    ,
-}
-DXGI_FEATURE :: enum u32{
-    DXGI_FEATURE_PRESENT_ALLOW_TEARING =  0
-    ,
-}
+//DXGI_OUTDUPL_FLAG
+DXGI_OUTDUPL_COMPOSITED_UI_CAPTURE_ONLY : u32 =  1
+    ;
+//DXGI_HDR_METADATA_TYPE
+DXGI_HDR_METADATA_TYPE_NONE : u32 =  0;
+DXGI_HDR_METADATA_TYPE_HDR10 : u32 =  1
+    ;
+//_DXGI_OFFER_RESOURCE_FLAGS
+DXGI_OFFER_RESOURCE_FLAG_ALLOW_DECOMMIT : u32 =  0x1
+    ;
+//_DXGI_RECLAIM_RESOURCE_RESULTS
+DXGI_RECLAIM_RESOURCE_RESULT_OK : u32 =  0;
+DXGI_RECLAIM_RESOURCE_RESULT_DISCARDED : u32 =  1;
+DXGI_RECLAIM_RESOURCE_RESULT_NOT_COMMITTED : u32 =  2
+    ;
+//DXGI_FEATURE
+DXGI_FEATURE_PRESENT_ALLOW_TEARING : u32 =  0
+    ;

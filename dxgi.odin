@@ -11,7 +11,7 @@ DXGI_MAPPED_RECT :: struct {
     Pitch: INT,
     pBits: ^BYTE,
 }
-LUID :: struct {
+_LUID :: struct {
     LowPart: DWORD,
     HighPart: LONG,
 }
@@ -49,8 +49,8 @@ DXGI_SWAP_CHAIN_DESC :: struct {
     BufferCount: UINT,
     OutputWindow: HWND,
     Windowed: BOOL,
-    SwapEffect: DXGI_SWAP_EFFECT,
-    Flags: DXGI_SWAP_CHAIN_FLAG,
+    SwapEffect: UINT,
+    Flags: UINT,
 }
 IDXGIObject :: struct {
     using vtbl: ^IDXGIObjectVtbl
@@ -235,7 +235,7 @@ IDXGIDeviceVtbl :: struct {
     GetParent : proc(This: ^IDXGIDevice, riid: REFIID, ppParent: ^rawptr) -> HRESULT,
     GetAdapter : proc(This: ^IDXGIDevice, pAdapter: ^^IDXGIAdapter) -> HRESULT,
     CreateSurface : proc(This: ^IDXGIDevice, pDesc: ^DXGI_SURFACE_DESC, NumSurfaces: UINT, Usage: DXGI_USAGE, pSharedResource: ^DXGI_SHARED_RESOURCE, ppSurface: ^^IDXGISurface) -> HRESULT,
-    QueryResourceResidency : proc(This: ^IDXGIDevice, ppResources: ^^IUnknown, pResidencyStatus: ^DXGI_RESIDENCY, NumResources: UINT) -> HRESULT,
+    QueryResourceResidency : proc(This: ^IDXGIDevice, ppResources: ^^IUnknown, pResidencyStatus: ^UINT, NumResources: UINT) -> HRESULT,
     SetGPUThreadPriority : proc(This: ^IDXGIDevice, Priority: INT) -> HRESULT,
     GetGPUThreadPriority : proc(This: ^IDXGIDevice, pPriority: ^INT) -> HRESULT,
 }
@@ -303,45 +303,41 @@ IDXGIDevice1Vtbl :: struct {
     GetParent : proc(This: ^IDXGIDevice1, riid: REFIID, ppParent: ^rawptr) -> HRESULT,
     GetAdapter : proc(This: ^IDXGIDevice1, pAdapter: ^^IDXGIAdapter) -> HRESULT,
     CreateSurface : proc(This: ^IDXGIDevice1, pDesc: ^DXGI_SURFACE_DESC, NumSurfaces: UINT, Usage: DXGI_USAGE, pSharedResource: ^DXGI_SHARED_RESOURCE, ppSurface: ^^IDXGISurface) -> HRESULT,
-    QueryResourceResidency : proc(This: ^IDXGIDevice1, ppResources: ^^IUnknown, pResidencyStatus: ^DXGI_RESIDENCY, NumResources: UINT) -> HRESULT,
+    QueryResourceResidency : proc(This: ^IDXGIDevice1, ppResources: ^^IUnknown, pResidencyStatus: ^UINT, NumResources: UINT) -> HRESULT,
     SetGPUThreadPriority : proc(This: ^IDXGIDevice1, Priority: INT) -> HRESULT,
     GetGPUThreadPriority : proc(This: ^IDXGIDevice1, pPriority: ^INT) -> HRESULT,
     SetMaximumFrameLatency : proc(This: ^IDXGIDevice1, MaxLatency: UINT) -> HRESULT,
     GetMaximumFrameLatency : proc(This: ^IDXGIDevice1, pMaxLatency: ^UINT) -> HRESULT,
 }
-DXGI_RESIDENCY :: enum u32{
-    DXGI_RESIDENCY_FULLY_RESIDENT =  1,
-    DXGI_RESIDENCY_RESIDENT_IN_SHARED_MEMORY =  2,
-    DXGI_RESIDENCY_EVICTED_TO_DISK =  3
-    ,
-}
-DXGI_SWAP_EFFECT :: enum u32{
-    DXGI_SWAP_EFFECT_DISCARD =  0,
-    DXGI_SWAP_EFFECT_SEQUENTIAL =  1,
-    DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL =  3,
-    DXGI_SWAP_EFFECT_FLIP_DISCARD =  4
-    ,
-}
-DXGI_SWAP_CHAIN_FLAG :: enum u32{
-    DXGI_SWAP_CHAIN_FLAG_NONPREROTATED =  1,
-    DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH =  2,
-    DXGI_SWAP_CHAIN_FLAG_GDI_COMPATIBLE =  4,
-    DXGI_SWAP_CHAIN_FLAG_RESTRICTED_CONTENT =  8,
-    DXGI_SWAP_CHAIN_FLAG_RESTRICT_SHARED_RESOURCE_DRIVER =  16,
-    DXGI_SWAP_CHAIN_FLAG_DISPLAY_ONLY =  32,
-    DXGI_SWAP_CHAIN_FLAG_FRAME_LATENCY_WAITABLE_OBJECT =  64,
-    DXGI_SWAP_CHAIN_FLAG_FOREGROUND_LAYER =  128,
-    DXGI_SWAP_CHAIN_FLAG_FULLSCREEN_VIDEO =  256,
-    DXGI_SWAP_CHAIN_FLAG_YUV_VIDEO =  512,
-    DXGI_SWAP_CHAIN_FLAG_HW_PROTECTED =  1024,
-    DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING =  2048,
-    DXGI_SWAP_CHAIN_FLAG_RESTRICTED_TO_ALL_HOLOGRAPHIC_DISPLAYS =  4096
-    ,
-}
-DXGI_ADAPTER_FLAG :: enum u32{
-    DXGI_ADAPTER_FLAG_NONE =  0,
-    DXGI_ADAPTER_FLAG_REMOTE =  1,
-    DXGI_ADAPTER_FLAG_SOFTWARE =  2,
-    DXGI_ADAPTER_FLAG_FORCE_DWORD =  0xffffffff
-    ,
-}
+//DXGI_RESIDENCY
+DXGI_RESIDENCY_FULLY_RESIDENT : u32 =  1;
+DXGI_RESIDENCY_RESIDENT_IN_SHARED_MEMORY : u32 =  2;
+DXGI_RESIDENCY_EVICTED_TO_DISK : u32 =  3
+    ;
+//DXGI_SWAP_EFFECT
+DXGI_SWAP_EFFECT_DISCARD : u32 =  0;
+DXGI_SWAP_EFFECT_SEQUENTIAL : u32 =  1;
+DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL : u32 =  3;
+DXGI_SWAP_EFFECT_FLIP_DISCARD : u32 =  4
+    ;
+//DXGI_SWAP_CHAIN_FLAG
+DXGI_SWAP_CHAIN_FLAG_NONPREROTATED : u32 =  1;
+DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH : u32 =  2;
+DXGI_SWAP_CHAIN_FLAG_GDI_COMPATIBLE : u32 =  4;
+DXGI_SWAP_CHAIN_FLAG_RESTRICTED_CONTENT : u32 =  8;
+DXGI_SWAP_CHAIN_FLAG_RESTRICT_SHARED_RESOURCE_DRIVER : u32 =  16;
+DXGI_SWAP_CHAIN_FLAG_DISPLAY_ONLY : u32 =  32;
+DXGI_SWAP_CHAIN_FLAG_FRAME_LATENCY_WAITABLE_OBJECT : u32 =  64;
+DXGI_SWAP_CHAIN_FLAG_FOREGROUND_LAYER : u32 =  128;
+DXGI_SWAP_CHAIN_FLAG_FULLSCREEN_VIDEO : u32 =  256;
+DXGI_SWAP_CHAIN_FLAG_YUV_VIDEO : u32 =  512;
+DXGI_SWAP_CHAIN_FLAG_HW_PROTECTED : u32 =  1024;
+DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING : u32 =  2048;
+DXGI_SWAP_CHAIN_FLAG_RESTRICTED_TO_ALL_HOLOGRAPHIC_DISPLAYS : u32 =  4096
+    ;
+//DXGI_ADAPTER_FLAG
+DXGI_ADAPTER_FLAG_NONE : u32 =  0;
+DXGI_ADAPTER_FLAG_REMOTE : u32 =  1;
+DXGI_ADAPTER_FLAG_SOFTWARE : u32 =  2;
+DXGI_ADAPTER_FLAG_FORCE_DWORD : u32 =  0xffffffff
+    ;

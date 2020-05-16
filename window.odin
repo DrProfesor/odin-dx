@@ -5,6 +5,7 @@ import "core:sort"
 import "core:strings"
 import "core:mem"
 import "core:os"
+import "core:runtime"
 import "core:sys/win32"
 
 foreign import "system:kernel32.lib"
@@ -84,7 +85,11 @@ create_window :: proc(name: string, width, height: int) -> (Window, bool) {
     return window, true;
 }
 
-wnd_proc :: proc "c" (window_handle: win32.Hwnd, message: u32, wparam: win32.Wparam, lparam: win32.Lparam) -> win32.Lresult {
+g_context: runtime.Context;
+
+wnd_proc :: proc "std" (window_handle: win32.Hwnd, message: u32, wparam: win32.Wparam, lparam: win32.Lparam) -> win32.Lresult {
+    context = g_context;
+
     assert(currently_updating_window != nil);
 
     result: win32.Lresult;

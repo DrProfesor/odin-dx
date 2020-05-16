@@ -133,22 +133,19 @@ IDXGIAdapter3Vtbl :: struct {
     GetDesc2 : proc(This: ^IDXGIAdapter3, pDesc: ^DXGI_ADAPTER_DESC2) -> HRESULT,
     RegisterHardwareContentProtectionTeardownStatusEvent : proc(This: ^IDXGIAdapter3, hEvent: HANDLE, pdwCookie: ^DWORD) -> HRESULT,
     UnregisterHardwareContentProtectionTeardownStatus : proc(This: ^IDXGIAdapter3, dwCookie: DWORD),
-    QueryVideoMemoryInfo : proc(This: ^IDXGIAdapter3, NodeIndex: UINT, MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP, pVideoMemoryInfo: ^DXGI_QUERY_VIDEO_MEMORY_INFO) -> HRESULT,
-    SetVideoMemoryReservation : proc(This: ^IDXGIAdapter3, NodeIndex: UINT, MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP, Reservation: UINT64) -> HRESULT,
+    QueryVideoMemoryInfo : proc(This: ^IDXGIAdapter3, NodeIndex: UINT, MemorySegmentGroup: UINT, pVideoMemoryInfo: ^DXGI_QUERY_VIDEO_MEMORY_INFO) -> HRESULT,
+    SetVideoMemoryReservation : proc(This: ^IDXGIAdapter3, NodeIndex: UINT, MemorySegmentGroup: UINT, Reservation: UINT64) -> HRESULT,
     RegisterVideoMemoryBudgetChangeNotificationEvent : proc(This: ^IDXGIAdapter3, hEvent: HANDLE, pdwCookie: ^DWORD) -> HRESULT,
     UnregisterVideoMemoryBudgetChangeNotification : proc(This: ^IDXGIAdapter3, dwCookie: DWORD),
 }
-DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG :: enum u32{
-    DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_PRESENT =  0x1,
-    DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_OVERLAY_PRESENT =  0x2
-    ,
-}
-DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG :: enum u32{
-    DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG_PRESENT =  0x1
-    ,
-}
-DXGI_MEMORY_SEGMENT_GROUP :: enum u32{
-    DXGI_MEMORY_SEGMENT_GROUP_LOCAL =  0,
-    DXGI_MEMORY_SEGMENT_GROUP_NON_LOCAL =  1
-    ,
-}
+//DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG
+DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_PRESENT : u32 =  0x1;
+DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_OVERLAY_PRESENT : u32 =  0x2
+    ;
+//DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG
+DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG_PRESENT : u32 =  0x1
+    ;
+//DXGI_MEMORY_SEGMENT_GROUP
+DXGI_MEMORY_SEGMENT_GROUP_LOCAL : u32 =  0;
+DXGI_MEMORY_SEGMENT_GROUP_NON_LOCAL : u32 =  1
+    ;

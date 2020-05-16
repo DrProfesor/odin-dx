@@ -149,7 +149,7 @@ IDXGIDecodeSwapChainVtbl :: struct {
     GetSourceRect : proc(This: ^IDXGIDecodeSwapChain, pRect: ^RECT) -> HRESULT,
     GetTargetRect : proc(This: ^IDXGIDecodeSwapChain, pRect: ^RECT) -> HRESULT,
     GetDestSize : proc(This: ^IDXGIDecodeSwapChain, pWidth: ^UINT, pHeight: ^UINT) -> HRESULT,
-    SetColorSpace : proc(This: ^IDXGIDecodeSwapChain, ColorSpace: DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS) -> HRESULT,
+    SetColorSpace : proc(This: ^IDXGIDecodeSwapChain, ColorSpace: UINT) -> HRESULT,
     GetColorSpace : proc(This: ^IDXGIDecodeSwapChain) -> DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS,
 }
 IDXGIFactoryMedia :: struct {
@@ -168,7 +168,7 @@ DXGI_FRAME_STATISTICS_MEDIA :: struct {
     SyncRefreshCount: UINT,
     SyncQPCTime: LARGE_INTEGER,
     SyncGPUTime: LARGE_INTEGER,
-    CompositionMode: DXGI_FRAME_PRESENTATION_MODE,
+    CompositionMode: UINT,
     ApprovedPresentDuration: UINT,
 }
 IDXGISwapChainMedia :: struct {
@@ -212,21 +212,18 @@ IDXGIOutput3Vtbl :: struct {
     SupportsOverlays : proc(This: ^IDXGIOutput3) -> BOOL,
     CheckOverlaySupport : proc(This: ^IDXGIOutput3, EnumFormat: DXGI_FORMAT, pConcernedDevice: ^IUnknown, pFlags: ^UINT) -> HRESULT,
 }
-DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS :: enum u32{
-    DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_NOMINAL_RANGE =  0x1,
-    DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_BT709 =  0x2,
-    DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_xvYCC =  0x4
-    ,
-}
-DXGI_FRAME_PRESENTATION_MODE :: enum u32{
-    DXGI_FRAME_PRESENTATION_MODE_COMPOSED =  0,
-    DXGI_FRAME_PRESENTATION_MODE_OVERLAY =  1,
-    DXGI_FRAME_PRESENTATION_MODE_NONE =  2,
-    DXGI_FRAME_PRESENTATION_MODE_COMPOSITION_FAILURE =  3
-    ,
-}
-DXGI_OVERLAY_SUPPORT_FLAG :: enum u32{
-    DXGI_OVERLAY_SUPPORT_FLAG_DIRECT =  0x1,
-    DXGI_OVERLAY_SUPPORT_FLAG_SCALING =  0x2
-    ,
-}
+//DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS
+DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_NOMINAL_RANGE : u32 =  0x1;
+DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_BT709 : u32 =  0x2;
+DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_xvYCC : u32 =  0x4
+    ;
+//DXGI_FRAME_PRESENTATION_MODE
+DXGI_FRAME_PRESENTATION_MODE_COMPOSED : u32 =  0;
+DXGI_FRAME_PRESENTATION_MODE_OVERLAY : u32 =  1;
+DXGI_FRAME_PRESENTATION_MODE_NONE : u32 =  2;
+DXGI_FRAME_PRESENTATION_MODE_COMPOSITION_FAILURE : u32 =  3
+    ;
+//DXGI_OVERLAY_SUPPORT_FLAG
+DXGI_OVERLAY_SUPPORT_FLAG_DIRECT : u32 =  0x1;
+DXGI_OVERLAY_SUPPORT_FLAG_SCALING : u32 =  0x2
+    ;

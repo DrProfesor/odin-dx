@@ -11,7 +11,7 @@ D3D11_TEXTURE2D_DESC1 :: struct {
     BindFlags: UINT,
     CPUAccessFlags: UINT,
     MiscFlags: UINT,
-    TextureLayout: D3D11_TEXTURE_LAYOUT,
+    TextureLayout: UINT,
 }
 ID3D11Texture2D1 :: struct {
     using vtbl: ^ID3D11Texture2D1Vtbl
@@ -40,7 +40,7 @@ D3D11_TEXTURE3D_DESC1 :: struct {
     BindFlags: UINT,
     CPUAccessFlags: UINT,
     MiscFlags: UINT,
-    TextureLayout: D3D11_TEXTURE_LAYOUT,
+    TextureLayout: UINT,
 }
 ID3D11Texture3D1 :: struct {
     using vtbl: ^ID3D11Texture3D1Vtbl
@@ -71,7 +71,7 @@ D3D11_RASTERIZER_DESC2 :: struct {
     MultisampleEnable: BOOL,
     AntialiasedLineEnable: BOOL,
     ForcedSampleCount: UINT,
-    ConservativeRaster: D3D11_CONSERVATIVE_RASTERIZATION_MODE,
+    ConservativeRaster: UINT,
 }
 ID3D11RasterizerState2 :: struct {
     using vtbl: ^ID3D11RasterizerState2Vtbl
@@ -103,7 +103,7 @@ D3D11_TEX2D_ARRAY_SRV1 :: struct {
 D3D11_SHADER_RESOURCE_VIEW_DESC1 :: struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_SRV_DIMENSION,
-    _2: union {
+    _2: struct #raw_union {
         D3D11_BUFFER_SRV, //Buffer
         D3D11_TEX1D_SRV, //Texture1D
         D3D11_TEX1D_ARRAY_SRV, //Texture1DArray
@@ -145,7 +145,7 @@ D3D11_TEX2D_ARRAY_RTV1 :: struct {
 D3D11_RENDER_TARGET_VIEW_DESC1 :: struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_RTV_DIMENSION,
-    _2: union {
+    _2: struct #raw_union {
         D3D11_BUFFER_RTV, //Buffer
         D3D11_TEX1D_RTV, //Texture1D
         D3D11_TEX1D_ARRAY_RTV, //Texture1DArray
@@ -184,7 +184,7 @@ D3D11_TEX2D_ARRAY_UAV1 :: struct {
 D3D11_UNORDERED_ACCESS_VIEW_DESC1 :: struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_UAV_DIMENSION,
-    _2: union {
+    _2: struct #raw_union {
         D3D11_BUFFER_UAV, //Buffer
         D3D11_TEX1D_UAV, //Texture1D
         D3D11_TEX1D_ARRAY_UAV, //Texture1DArray
@@ -211,7 +211,7 @@ ID3D11UnorderedAccessView1Vtbl :: struct {
 D3D11_QUERY_DESC1 :: struct {
     Query: D3D11_QUERY,
     MiscFlags: UINT,
-    ContextType: D3D11_CONTEXT_TYPE,
+    ContextType: UINT,
 }
 ID3D11Query1 :: struct {
     using vtbl: ^ID3D11Query1Vtbl
@@ -376,7 +376,7 @@ ID3D11DeviceContext3Vtbl :: struct {
     SetMarkerInt : proc(This: ^ID3D11DeviceContext3, pLabel: LPCWSTR, Data: INT),
     BeginEventInt : proc(This: ^ID3D11DeviceContext3, pLabel: LPCWSTR, Data: INT),
     EndEvent : proc(This: ^ID3D11DeviceContext3),
-    Flush1 : proc(This: ^ID3D11DeviceContext3, ContextType: D3D11_CONTEXT_TYPE, hEvent: HANDLE),
+    Flush1 : proc(This: ^ID3D11DeviceContext3, ContextType: UINT, hEvent: HANDLE),
     SetHardwareProtectionState : proc(This: ^ID3D11DeviceContext3, HwProtectionEnable: BOOL),
     GetHardwareProtectionState : proc(This: ^ID3D11DeviceContext3, pHwProtectionEnable: ^BOOL),
 }
@@ -543,7 +543,7 @@ ID3D11DeviceContext4Vtbl :: struct {
     SetMarkerInt : proc(This: ^ID3D11DeviceContext4, pLabel: LPCWSTR, Data: INT),
     BeginEventInt : proc(This: ^ID3D11DeviceContext4, pLabel: LPCWSTR, Data: INT),
     EndEvent : proc(This: ^ID3D11DeviceContext4),
-    Flush1 : proc(This: ^ID3D11DeviceContext4, ContextType: D3D11_CONTEXT_TYPE, hEvent: HANDLE),
+    Flush1 : proc(This: ^ID3D11DeviceContext4, ContextType: UINT, hEvent: HANDLE),
     SetHardwareProtectionState : proc(This: ^ID3D11DeviceContext4, HwProtectionEnable: BOOL),
     GetHardwareProtectionState : proc(This: ^ID3D11DeviceContext4, pHwProtectionEnable: ^BOOL),
     Signal : proc(This: ^ID3D11DeviceContext4, pFence: ^ID3D11Fence, Value: UINT64) -> HRESULT,
@@ -619,29 +619,25 @@ ID3D11Device3Vtbl :: struct {
     WriteToSubresource : proc(This: ^ID3D11Device3, pDstResource: ^ID3D11Resource, DstSubresource: UINT, pDstBox: ^D3D11_BOX, pSrcData: rawptr, SrcRowPitch: UINT, SrcDepthPitch: UINT),
     ReadFromSubresource : proc(This: ^ID3D11Device3, pDstData: rawptr, DstRowPitch: UINT, DstDepthPitch: UINT, pSrcResource: ^ID3D11Resource, SrcSubresource: UINT, pSrcBox: ^D3D11_BOX),
 }
-D3D11_CONTEXT_TYPE :: enum u32{
-    D3D11_CONTEXT_TYPE_ALL =  0,
-    D3D11_CONTEXT_TYPE_3D =  1,
-    D3D11_CONTEXT_TYPE_COMPUTE =  2,
-    D3D11_CONTEXT_TYPE_COPY =  3,
-    D3D11_CONTEXT_TYPE_VIDEO =  4
-    ,
-}
-D3D11_TEXTURE_LAYOUT :: enum u32{
-    D3D11_TEXTURE_LAYOUT_UNDEFINED =  0,
-    D3D11_TEXTURE_LAYOUT_ROW_MAJOR =  1,
-    D3D11_TEXTURE_LAYOUT_64K_STANDARD_SWIZZLE =  2
-    ,
-}
-D3D11_CONSERVATIVE_RASTERIZATION_MODE :: enum u32{
-    D3D11_CONSERVATIVE_RASTERIZATION_MODE_OFF =  0,
-    D3D11_CONSERVATIVE_RASTERIZATION_MODE_ON =  1
-    ,
-}
-D3D11_FENCE_FLAG :: enum u32{
-    D3D11_FENCE_FLAG_NONE =  0,
-    D3D11_FENCE_FLAG_SHARED =  0x2,
-    D3D11_FENCE_FLAG_SHARED_CROSS_ADAPTER =  0x4,
-    D3D11_FENCE_FLAG_NON_MONITORED =  0x8
-    ,
-}
+//D3D11_CONTEXT_TYPE
+D3D11_CONTEXT_TYPE_ALL : u32 =  0;
+D3D11_CONTEXT_TYPE_3D : u32 =  1;
+D3D11_CONTEXT_TYPE_COMPUTE : u32 =  2;
+D3D11_CONTEXT_TYPE_COPY : u32 =  3;
+D3D11_CONTEXT_TYPE_VIDEO : u32 =  4
+    ;
+//D3D11_TEXTURE_LAYOUT
+D3D11_TEXTURE_LAYOUT_UNDEFINED : u32 =  0;
+D3D11_TEXTURE_LAYOUT_ROW_MAJOR : u32 =  1;
+D3D11_TEXTURE_LAYOUT_64K_STANDARD_SWIZZLE : u32 =  2
+    ;
+//D3D11_CONSERVATIVE_RASTERIZATION_MODE
+D3D11_CONSERVATIVE_RASTERIZATION_MODE_OFF : u32 =  0;
+D3D11_CONSERVATIVE_RASTERIZATION_MODE_ON : u32 =  1
+    ;
+//D3D11_FENCE_FLAG
+D3D11_FENCE_FLAG_NONE : u32 =  0;
+D3D11_FENCE_FLAG_SHARED : u32 =  0x2;
+D3D11_FENCE_FLAG_SHARED_CROSS_ADAPTER : u32 =  0x4;
+D3D11_FENCE_FLAG_NON_MONITORED : u32 =  0x8
+    ;
