@@ -85,7 +85,7 @@ FLOAT         :: f32;
 float         :: f32;
 BYTE          :: byte;
 char          :: u8;
-BOOL          :: bool;
+BOOL          :: b32;
 REFIID        :: GUID;
 REFGUID       :: GUID;
 SIZE_T        :: u32;
