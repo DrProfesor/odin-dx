@@ -103,18 +103,18 @@ D3D11_TEX2D_ARRAY_SRV1 :: struct {
 D3D11_SHADER_RESOURCE_VIEW_DESC1 :: struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_SRV_DIMENSION,
-    _2: struct #raw_union {
-        D3D11_BUFFER_SRV, //Buffer
-        D3D11_TEX1D_SRV, //Texture1D
-        D3D11_TEX1D_ARRAY_SRV, //Texture1DArray
-        D3D11_TEX2D_SRV1, //Texture2D
-        D3D11_TEX2D_ARRAY_SRV1, //Texture2DArray
-        D3D11_TEX2DMS_SRV, //Texture2DMS
-        D3D11_TEX2DMS_ARRAY_SRV, //Texture2DMSArray
-        D3D11_TEX3D_SRV, //Texture3D
-        D3D11_TEXCUBE_SRV, //TextureCube
-        D3D11_TEXCUBE_ARRAY_SRV, //TextureCubeArray
-        D3D11_BUFFEREX_SRV, //BufferEx
+    using _2: struct #raw_union {
+        Buffer: D3D11_BUFFER_SRV,
+        Texture1D: D3D11_TEX1D_SRV,
+        Texture1DArray: D3D11_TEX1D_ARRAY_SRV,
+        Texture2D: D3D11_TEX2D_SRV1,
+        Texture2DArray: D3D11_TEX2D_ARRAY_SRV1,
+        Texture2DMS: D3D11_TEX2DMS_SRV,
+        Texture2DMSArray: D3D11_TEX2DMS_ARRAY_SRV,
+        Texture3D: D3D11_TEX3D_SRV,
+        TextureCube: D3D11_TEXCUBE_SRV,
+        TextureCubeArray: D3D11_TEXCUBE_ARRAY_SRV,
+        BufferEx: D3D11_BUFFEREX_SRV,
     },
 }
 ID3D11ShaderResourceView1 :: struct {
@@ -145,15 +145,15 @@ D3D11_TEX2D_ARRAY_RTV1 :: struct {
 D3D11_RENDER_TARGET_VIEW_DESC1 :: struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_RTV_DIMENSION,
-    _2: struct #raw_union {
-        D3D11_BUFFER_RTV, //Buffer
-        D3D11_TEX1D_RTV, //Texture1D
-        D3D11_TEX1D_ARRAY_RTV, //Texture1DArray
-        D3D11_TEX2D_RTV1, //Texture2D
-        D3D11_TEX2D_ARRAY_RTV1, //Texture2DArray
-        D3D11_TEX2DMS_RTV, //Texture2DMS
-        D3D11_TEX2DMS_ARRAY_RTV, //Texture2DMSArray
-        D3D11_TEX3D_RTV, //Texture3D
+    using _2: struct #raw_union {
+        Buffer: D3D11_BUFFER_RTV,
+        Texture1D: D3D11_TEX1D_RTV,
+        Texture1DArray: D3D11_TEX1D_ARRAY_RTV,
+        Texture2D: D3D11_TEX2D_RTV1,
+        Texture2DArray: D3D11_TEX2D_ARRAY_RTV1,
+        Texture2DMS: D3D11_TEX2DMS_RTV,
+        Texture2DMSArray: D3D11_TEX2DMS_ARRAY_RTV,
+        Texture3D: D3D11_TEX3D_RTV,
     },
 }
 ID3D11RenderTargetView1 :: struct {
@@ -184,13 +184,13 @@ D3D11_TEX2D_ARRAY_UAV1 :: struct {
 D3D11_UNORDERED_ACCESS_VIEW_DESC1 :: struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_UAV_DIMENSION,
-    _2: struct #raw_union {
-        D3D11_BUFFER_UAV, //Buffer
-        D3D11_TEX1D_UAV, //Texture1D
-        D3D11_TEX1D_ARRAY_UAV, //Texture1DArray
-        D3D11_TEX2D_UAV1, //Texture2D
-        D3D11_TEX2D_ARRAY_UAV1, //Texture2DArray
-        D3D11_TEX3D_UAV, //Texture3D
+    using _2: struct #raw_union {
+        Buffer: D3D11_BUFFER_UAV,
+        Texture1D: D3D11_TEX1D_UAV,
+        Texture1DArray: D3D11_TEX1D_ARRAY_UAV,
+        Texture2D: D3D11_TEX2D_UAV1,
+        Texture2DArray: D3D11_TEX2D_ARRAY_UAV1,
+        Texture3D: D3D11_TEX3D_UAV,
     },
 }
 ID3D11UnorderedAccessView1 :: struct {
