@@ -180,6 +180,8 @@ get_guid :: proc(tid: typeid) -> GUID {
 	return {};
 }
 
+S_FALSE :: 1;
+S_OK :: 0;
 
 Create_Device_Response :: enum {
 	D3D11_ERROR_FILE_NOT_FOUND                               = 0x887C002,
@@ -192,8 +194,6 @@ Create_Device_Response :: enum {
 	E_INVALIDARG                                             = 0x80070057,
 	E_OUTOFMEMORY                                            = 0x8007000E,
 	E_NOTIMPL                                                = 0x80004001,
-	S_FALSE                                                  = 1,
-	S_OK                                                     = 0,
 
 	// DXGI_ERROR_ACCESS_DENIED                = 0x887A002B,
 	// DXGI_ERROR_ACCESS_LOST                  = 0x887A0026,
