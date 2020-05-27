@@ -6,43 +6,56 @@ import "core:sys/win32"
 foreign import "system:d3d11.lib"
 foreign d3d11 {
 	D3D11CreateDevice :: proc "std" (
-						  pAdapter           : ^IDXGIAdapter, 
-						  DriverType         : UINT, 
-						  Software           : HMODULE, 
-						  Flags              : UINT, 
-						  pFeatureLevels     : ^D3D_FEATURE_LEVEL, 
-						  FeatureLevels      : u32, 
-						  SDKVersion         : u32, 
-						  ppDevice			 : ID3D11Device, 
-						  pFeatureLevel     : ^D3D_FEATURE_LEVEL, 
+						  pAdapter           : ^IDXGIAdapter,
+						  DriverType         : UINT,
+						  Software           : HMODULE,
+						  Flags              : UINT,
+						  pFeatureLevels     : ^D3D_FEATURE_LEVEL,
+						  FeatureLevels      : u32,
+						  SDKVersion         : u32,
+						  ppDevice			 : ID3D11Device,
+						  pFeatureLevel      : ^D3D_FEATURE_LEVEL,
 						  ppImmediateContext : ID3D11DeviceContext) -> HRESULT ---;
 
 	D3D11CreateDeviceAndSwapChain :: proc "std" (
-						  pAdapter           : ^IDXGIAdapter, 
-						  DriverType         : UINT, 
-						  Software           : HMODULE, 
-						  Flags              : UINT, 
-						  pFeatureLevels     : ^D3D_FEATURE_LEVEL, 
-						  FeatureLevels      : u32, 
-						  SDKVersion         : u32, 
+						  pAdapter           : ^IDXGIAdapter,
+						  DriverType         : UINT,
+						  Software           : HMODULE,
+						  Flags              : UINT,
+						  pFeatureLevels     : ^D3D_FEATURE_LEVEL,
+						  FeatureLevels      : u32,
+						  SDKVersion         : u32,
 						  pSwapChainDesc     : ^DXGI_SWAP_CHAIN_DESC,
 						  ppSwapChain        : ^^IDXGISwapChain,
-						  ppDevice           : ^^ID3D11Device, 
-						  pFeatureLevel      : ^D3D_FEATURE_LEVEL, 
+						  ppDevice           : ^^ID3D11Device,
+						  pFeatureLevel      : ^D3D_FEATURE_LEVEL,
 						  ppImmediateContext : ^^ID3D11DeviceContext) -> HRESULT ---;
 }
 foreign import "system:d3dcompiler.lib"
 foreign d3dcompiler {
 	D3DCompileFromFile :: proc "std" (
-	             pFileName: win32.Wstring,
-				 pDefines: rawptr,//^D3D_SHADER_MACRO,
-				 pInclude: rawptr,//^ID3DInclude,
-				 pEntrypoint: cstring,
-				 pTarget: cstring,
-				 Flags1: UINT,
-				 Flags2: UINT,
-				 ppCode: ^^ID3D10Blob,
-				 ppErrorMsgs: ^^ID3D10Blob) -> HRESULT ---;
+	             pFileName   : win32.Wstring,
+				 pDefines    : rawptr,//^D3D_SHADER_MACRO,
+				 pInclude    : ^ID3DInclude,
+				 pEntrypoint : cstring,
+				 pTarget     : cstring,
+				 Flags1      : UINT,
+				 Flags2      : UINT,
+				 ppCode      : ^^ID3D10Blob,
+				 ppErrorMsgs : ^^ID3D10Blob) -> HRESULT ---;
+
+    D3DCompile :: proc "std" (
+                pSrcData    : cstring,
+                SrcDataSize : uint,
+                pSourceName : cstring,
+                pDefines    : rawptr,
+                pInclude    : ^ID3DInclude,
+                pEntrypoint : cstring,
+                pTarget     : cstring,
+                Flags1      : UINT,
+                Flags2      : UINT,
+                ppCode      : ^^ID3D10Blob,
+                ppErrorMsgs : ^^ID3D10Blob) -> HRESULT ---;
 }
 
 D3D11_SDK_VERSION :: 7;
@@ -172,6 +185,41 @@ DXGI_ERROR_UNSUPPORTED                  :: 0x887A0004;
 DXGI_ERROR_WAIT_TIMEOUT                 :: 0x887A0027;
 DXGI_ERROR_WAS_STILL_DRAWING            :: 0x887A000A;
 
+ID3DInclude :: struct {
+    close: proc"std"(data: rawptr) -> win32.Hresult,
+    open:  proc"std"(include_type: D3DIncludeType, file_name: cstring, parent_data: rawptr, out_data: ^rawptr, out_bytes: ^u32) -> win32.Hresult,
+}
+
+D3DIncludeType :: enum i32 {
+    Local,
+    System,
+    D3D10_Local,
+    D3D10_System,
+    Force_Dword,
+}
+
+D3DCOMPILE_DEBUG                              : u32 : 1 << 0;
+D3DCOMPILE_SKIP_VALIDATION                    : u32 : 1 << 1;
+D3DCOMPILE_SKIP_OPTIMIZATION                  : u32 : 1 << 2;
+D3DCOMPILE_PACK_MATRIX_ROW_MAJOR              : u32 : 1 << 3;
+D3DCOMPILE_PACK_MATRIX_COLUMN_MAJOR           : u32 : 1 << 4;
+D3DCOMPILE_PARTIAL_PRECISION                  : u32 : 1 << 5;
+D3DCOMPILE_FORCE_VS_SOFTWARE_NO_OPT           : u32 : 1 << 6;
+D3DCOMPILE_FORCE_PS_SOFTWARE_NO_OPT           : u32 : 1 << 7;
+D3DCOMPILE_NO_PRESHADER                       : u32 : 1 << 8;
+D3DCOMPILE_AVOID_FLOW_CONTROL                 : u32 : 1 << 9;
+D3DCOMPILE_PREFER_FLOW_CONTROL                : u32 : 1 << 10;
+D3DCOMPILE_ENABLE_STRICTNESS                  : u32 : 1 << 11;
+D3DCOMPILE_ENABLE_BACKWARDS_COMPATIBILITY     : u32 : 1 << 12;
+D3DCOMPILE_IEEE_STRICTNESS                    : u32 : 1 << 13;
+D3DCOMPILE_OPTIMIZATION_LEVEL0                : u32 : 1 << 14;
+D3DCOMPILE_OPTIMIZATION_LEVEL1                : u32 : 0;
+D3DCOMPILE_OPTIMIZATION_LEVEL2                : u32 : (1 << 14) | (1 << 15);
+D3DCOMPILE_OPTIMIZATION_LEVEL3                : u32 : 1 << 15;
+D3DCOMPILE_WARNINGS_ARE_ERRORS                : u32 : 1 << 18;
+D3DCOMPILE_RESOURCES_MAY_ALIAS                : u32 : 1 << 19;
+D3DCOMPILE_ENABLE_UNBOUNDED_DESCRIPTOR_TABLES : u32 : 1 << 20;
+D3DCOMPILE_ALL_RESOURCES_BOUND                : u32 : 1 << 21;
 
 SECURITY_ATTRIBUTES :: struct {
   nLength: u32,
