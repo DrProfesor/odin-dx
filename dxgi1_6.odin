@@ -14,9 +14,11 @@ DXGI_ADAPTER_DESC3 :: struct {
     GraphicsPreemptionGranularity: DXGI_GRAPHICS_PREEMPTION_GRANULARITY,
     ComputePreemptionGranularity: DXGI_COMPUTE_PREEMPTION_GRANULARITY,
 }
+
 IDXGIAdapter4 :: struct {
-    using vtbl: ^IDXGIAdapter4Vtbl
+    using vtbl: ^IDXGIAdapter4Vtbl,
 }
+
 IDXGIAdapter4Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIAdapter4, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIAdapter4) -> ULONG,
@@ -38,6 +40,7 @@ IDXGIAdapter4Vtbl :: struct {
     UnregisterVideoMemoryBudgetChangeNotification : proc(This: ^IDXGIAdapter4, dwCookie: DWORD),
     GetDesc3 : proc(This: ^IDXGIAdapter4, pDesc: ^DXGI_ADAPTER_DESC3) -> HRESULT,
 }
+
 DXGI_OUTPUT_DESC1 :: struct {
     DeviceName: [32]WCHAR,
     DesktopCoordinates: RECT,
@@ -54,9 +57,11 @@ DXGI_OUTPUT_DESC1 :: struct {
     MaxLuminance: FLOAT,
     MaxFullFrameLuminance: FLOAT,
 }
+
 IDXGIOutput6 :: struct {
-    using vtbl: ^IDXGIOutput6Vtbl
+    using vtbl: ^IDXGIOutput6Vtbl,
 }
+
 IDXGIOutput6Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIOutput6, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIOutput6) -> ULONG,
@@ -88,15 +93,15 @@ IDXGIOutput6Vtbl :: struct {
     GetDesc1 : proc(This: ^IDXGIOutput6, pDesc: ^DXGI_OUTPUT_DESC1) -> HRESULT,
     CheckHardwareCompositionSupport : proc(This: ^IDXGIOutput6, pFlags: ^UINT) -> HRESULT,
 }
+
 //DXGI_ADAPTER_FLAG3
 DXGI_ADAPTER_FLAG3_NONE : u32 :  0;
 DXGI_ADAPTER_FLAG3_REMOTE : u32 :  1;
 DXGI_ADAPTER_FLAG3_SOFTWARE : u32 :  2;
 DXGI_ADAPTER_FLAG3_ACG_COMPATIBLE : u32 :  4;
-DXGI_ADAPTER_FLAG3_FORCE_DWORD : u32 :  0xffffffff
-    ;
+DXGI_ADAPTER_FLAG3_FORCE_DWORD : u32 :  0xffffffff;
+
 //DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS
 DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_FULLSCREEN : u32 :  1;
 DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_WINDOWED : u32 :  2;
-DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_CURSOR_STRETCHED : u32 :  4
-    ;
+DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_CURSOR_STRETCHED : u32 :  4;

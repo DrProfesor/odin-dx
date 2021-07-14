@@ -1,8 +1,9 @@
 package dx
 
 IDXGIDevice3 :: struct {
-    using vtbl: ^IDXGIDevice3Vtbl
+    using vtbl: ^IDXGIDevice3Vtbl,
 }
+
 IDXGIDevice3Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIDevice3, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIDevice3) -> ULONG,
@@ -23,6 +24,7 @@ IDXGIDevice3Vtbl :: struct {
     EnqueueSetEvent : proc(This: ^IDXGIDevice3, hEvent: HANDLE) -> HRESULT,
     Trim : proc(This: ^IDXGIDevice3),
 }
+
 DXGI_MATRIX_3X2_F :: struct {
     _11: FLOAT,
     _12: FLOAT,
@@ -31,9 +33,11 @@ DXGI_MATRIX_3X2_F :: struct {
     _31: FLOAT,
     _32: FLOAT,
 }
+
 IDXGISwapChain2 :: struct {
-    using vtbl: ^IDXGISwapChain2Vtbl
+    using vtbl: ^IDXGISwapChain2Vtbl,
 }
+
 IDXGISwapChain2Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGISwapChain2, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGISwapChain2) -> ULONG,
@@ -72,9 +76,11 @@ IDXGISwapChain2Vtbl :: struct {
     SetMatrixTransform : proc(This: ^IDXGISwapChain2, pMatrix: ^DXGI_MATRIX_3X2_F) -> HRESULT,
     GetMatrixTransform : proc(This: ^IDXGISwapChain2, pMatrix: ^DXGI_MATRIX_3X2_F) -> HRESULT,
 }
+
 IDXGIOutput2 :: struct {
-    using vtbl: ^IDXGIOutput2Vtbl
+    using vtbl: ^IDXGIOutput2Vtbl,
 }
+
 IDXGIOutput2Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIOutput2, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIOutput2) -> ULONG,
@@ -101,9 +107,11 @@ IDXGIOutput2Vtbl :: struct {
     DuplicateOutput : proc(This: ^IDXGIOutput2, pDevice: ^IUnknown, ppOutputDuplication: ^^IDXGIOutputDuplication) -> HRESULT,
     SupportsOverlays : proc(This: ^IDXGIOutput2) -> BOOL,
 }
+
 IDXGIFactory3 :: struct {
-    using vtbl: ^IDXGIFactory3Vtbl
+    using vtbl: ^IDXGIFactory3Vtbl,
 }
+
 IDXGIFactory3Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIFactory3, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIFactory3) -> ULONG,
@@ -132,12 +140,15 @@ IDXGIFactory3Vtbl :: struct {
     CreateSwapChainForComposition : proc(This: ^IDXGIFactory3, pDevice: ^IUnknown, pDesc: ^DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ^IDXGIOutput, ppSwapChain: ^^IDXGISwapChain1) -> HRESULT,
     GetCreationFlags : proc(This: ^IDXGIFactory3) -> UINT,
 }
+
 DXGI_DECODE_SWAP_CHAIN_DESC :: struct {
     Flags: UINT,
 }
+
 IDXGIDecodeSwapChain :: struct {
-    using vtbl: ^IDXGIDecodeSwapChainVtbl
+    using vtbl: ^IDXGIDecodeSwapChainVtbl,
 }
+
 IDXGIDecodeSwapChainVtbl :: struct {
     QueryInterface : proc(This: ^IDXGIDecodeSwapChain, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIDecodeSwapChain) -> ULONG,
@@ -152,9 +163,11 @@ IDXGIDecodeSwapChainVtbl :: struct {
     SetColorSpace : proc(This: ^IDXGIDecodeSwapChain, ColorSpace: UINT) -> HRESULT,
     GetColorSpace : proc(This: ^IDXGIDecodeSwapChain) -> DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS,
 }
+
 IDXGIFactoryMedia :: struct {
-    using vtbl: ^IDXGIFactoryMediaVtbl
+    using vtbl: ^IDXGIFactoryMediaVtbl,
 }
+
 IDXGIFactoryMediaVtbl :: struct {
     QueryInterface : proc(This: ^IDXGIFactoryMedia, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIFactoryMedia) -> ULONG,
@@ -162,6 +175,7 @@ IDXGIFactoryMediaVtbl :: struct {
     CreateSwapChainForCompositionSurfaceHandle : proc(This: ^IDXGIFactoryMedia, pDevice: ^IUnknown, hSurface: HANDLE, pDesc: ^DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ^IDXGIOutput, ppSwapChain: ^^IDXGISwapChain1) -> HRESULT,
     CreateDecodeSwapChainForCompositionSurfaceHandle : proc(This: ^IDXGIFactoryMedia, pDevice: ^IUnknown, hSurface: HANDLE, pDesc: ^DXGI_DECODE_SWAP_CHAIN_DESC, pYuvDecodeBuffers: ^IDXGIResource, pRestrictToOutput: ^IDXGIOutput, ppSwapChain: ^^IDXGIDecodeSwapChain) -> HRESULT,
 }
+
 DXGI_FRAME_STATISTICS_MEDIA :: struct {
     PresentCount: UINT,
     PresentRefreshCount: UINT,
@@ -171,9 +185,11 @@ DXGI_FRAME_STATISTICS_MEDIA :: struct {
     CompositionMode: UINT,
     ApprovedPresentDuration: UINT,
 }
+
 IDXGISwapChainMedia :: struct {
-    using vtbl: ^IDXGISwapChainMediaVtbl
+    using vtbl: ^IDXGISwapChainMediaVtbl,
 }
+
 IDXGISwapChainMediaVtbl :: struct {
     QueryInterface : proc(This: ^IDXGISwapChainMedia, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGISwapChainMedia) -> ULONG,
@@ -182,9 +198,11 @@ IDXGISwapChainMediaVtbl :: struct {
     SetPresentDuration : proc(This: ^IDXGISwapChainMedia, Duration: UINT) -> HRESULT,
     CheckPresentDurationSupport : proc(This: ^IDXGISwapChainMedia, DesiredPresentDuration: UINT, pClosestSmallerPresentDuration: ^UINT, pClosestLargerPresentDuration: ^UINT) -> HRESULT,
 }
+
 IDXGIOutput3 :: struct {
-    using vtbl: ^IDXGIOutput3Vtbl
+    using vtbl: ^IDXGIOutput3Vtbl,
 }
+
 IDXGIOutput3Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIOutput3, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIOutput3) -> ULONG,
@@ -212,18 +230,18 @@ IDXGIOutput3Vtbl :: struct {
     SupportsOverlays : proc(This: ^IDXGIOutput3) -> BOOL,
     CheckOverlaySupport : proc(This: ^IDXGIOutput3, EnumFormat: DXGI_FORMAT, pConcernedDevice: ^IUnknown, pFlags: ^UINT) -> HRESULT,
 }
+
 //DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS
 DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_NOMINAL_RANGE : u32 :  0x1;
 DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_BT709 : u32 :  0x2;
-DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_xvYCC : u32 :  0x4
-    ;
+DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_xvYCC : u32 :  0x4;
+
 //DXGI_FRAME_PRESENTATION_MODE
 DXGI_FRAME_PRESENTATION_MODE_COMPOSED : u32 :  0;
 DXGI_FRAME_PRESENTATION_MODE_OVERLAY : u32 :  1;
 DXGI_FRAME_PRESENTATION_MODE_NONE : u32 :  2;
-DXGI_FRAME_PRESENTATION_MODE_COMPOSITION_FAILURE : u32 :  3
-    ;
+DXGI_FRAME_PRESENTATION_MODE_COMPOSITION_FAILURE : u32 :  3;
+
 //DXGI_OVERLAY_SUPPORT_FLAG
 DXGI_OVERLAY_SUPPORT_FLAG_DIRECT : u32 :  0x1;
-DXGI_OVERLAY_SUPPORT_FLAG_SCALING : u32 :  0x2
-    ;
+DXGI_OVERLAY_SUPPORT_FLAG_SCALING : u32 :  0x2;

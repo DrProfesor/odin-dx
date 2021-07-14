@@ -12,14 +12,17 @@ D3D11_RENDER_TARGET_BLEND_DESC1 :: struct {
     LogicOp: UINT,
     RenderTargetWriteMask: UINT8,
 }
+
 D3D11_BLEND_DESC1 :: struct {
     AlphaToCoverageEnable: BOOL,
     IndependentBlendEnable: BOOL,
     RenderTarget: [8]D3D11_RENDER_TARGET_BLEND_DESC1,
 }
+
 ID3D11BlendState1 :: struct {
-    using vtbl: ^ID3D11BlendState1Vtbl
+    using vtbl: ^ID3D11BlendState1Vtbl,
 }
+
 ID3D11BlendState1Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11BlendState1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11BlendState1) -> ULONG,
@@ -31,6 +34,7 @@ ID3D11BlendState1Vtbl :: struct {
     GetDesc : proc(This: ^ID3D11BlendState1, pDesc: ^D3D11_BLEND_DESC),
     GetDesc1 : proc(This: ^ID3D11BlendState1, pDesc: ^D3D11_BLEND_DESC1),
 }
+
 D3D11_RASTERIZER_DESC1 :: struct {
     FillMode: D3D11_FILL_MODE,
     CullMode: D3D11_CULL_MODE,
@@ -44,9 +48,11 @@ D3D11_RASTERIZER_DESC1 :: struct {
     AntialiasedLineEnable: BOOL,
     ForcedSampleCount: UINT,
 }
+
 ID3D11RasterizerState1 :: struct {
-    using vtbl: ^ID3D11RasterizerState1Vtbl
+    using vtbl: ^ID3D11RasterizerState1Vtbl,
 }
+
 ID3D11RasterizerState1Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11RasterizerState1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11RasterizerState1) -> ULONG,
@@ -58,9 +64,11 @@ ID3D11RasterizerState1Vtbl :: struct {
     GetDesc : proc(This: ^ID3D11RasterizerState1, pDesc: ^D3D11_RASTERIZER_DESC),
     GetDesc1 : proc(This: ^ID3D11RasterizerState1, pDesc: ^D3D11_RASTERIZER_DESC1),
 }
+
 ID3DDeviceContextState :: struct {
-    using vtbl: ^ID3DDeviceContextStateVtbl
+    using vtbl: ^ID3DDeviceContextStateVtbl,
 }
+
 ID3DDeviceContextStateVtbl :: struct {
     QueryInterface : proc(This: ^ID3DDeviceContextState, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3DDeviceContextState) -> ULONG,
@@ -70,9 +78,11 @@ ID3DDeviceContextStateVtbl :: struct {
     SetPrivateData : proc(This: ^ID3DDeviceContextState, guid: REFGUID, DataSize: UINT, pData: rawptr) -> HRESULT,
     SetPrivateDataInterface : proc(This: ^ID3DDeviceContextState, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
 }
+
 ID3D11DeviceContext1 :: struct {
-    using vtbl: ^ID3D11DeviceContext1Vtbl
+    using vtbl: ^ID3D11DeviceContext1Vtbl,
 }
+
 ID3D11DeviceContext1Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11DeviceContext1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11DeviceContext1) -> ULONG,
@@ -209,10 +219,12 @@ ID3D11DeviceContext1Vtbl :: struct {
     ClearView : proc(This: ^ID3D11DeviceContext1, pView: ^ID3D11View, Color: [4]FLOAT, pRect: ^D3D11_RECT, NumRects: UINT),
     DiscardView1 : proc(This: ^ID3D11DeviceContext1, pResourceView: ^ID3D11View, pRects: ^D3D11_RECT, NumRects: UINT),
 }
+
 D3D11_VIDEO_DECODER_SUB_SAMPLE_MAPPING_BLOCK :: struct {
     ClearSize: UINT,
     EncryptedSize: UINT,
 }
+
 D3D11_VIDEO_DECODER_BUFFER_DESC1 :: struct {
     BufferType: D3D11_VIDEO_DECODER_BUFFER_TYPE,
     DataOffset: UINT,
@@ -222,6 +234,7 @@ D3D11_VIDEO_DECODER_BUFFER_DESC1 :: struct {
     pSubSampleMappingBlock: ^D3D11_VIDEO_DECODER_SUB_SAMPLE_MAPPING_BLOCK,
     SubSampleMappingCount: UINT,
 }
+
 D3D11_VIDEO_DECODER_BEGIN_FRAME_CRYPTO_SESSION :: struct {
     pCryptoSession: ^ID3D11CryptoSession,
     BlobSize: UINT,
@@ -230,17 +243,20 @@ D3D11_VIDEO_DECODER_BEGIN_FRAME_CRYPTO_SESSION :: struct {
     PrivateDataSize: UINT,
     pPrivateData: rawptr,
 }
+
 D3D11_VIDEO_PROCESSOR_STREAM_BEHAVIOR_HINT :: struct {
     Enable: BOOL,
     Width: UINT,
     Height: UINT,
     Format: DXGI_FORMAT,
 }
+
 D3D11_KEY_EXCHANGE_HW_PROTECTION_INPUT_DATA :: struct {
     PrivateDataSize: UINT,
     HWProtectionDataSize: UINT,
     pbInput: [4]BYTE,
 }
+
 D3D11_KEY_EXCHANGE_HW_PROTECTION_OUTPUT_DATA :: struct {
     PrivateDataSize: UINT,
     MaxHWProtectionDataSize: UINT,
@@ -249,21 +265,25 @@ D3D11_KEY_EXCHANGE_HW_PROTECTION_OUTPUT_DATA :: struct {
     ExecutionTime: UINT64,
     pbOutput: [4]BYTE,
 }
+
 D3D11_KEY_EXCHANGE_HW_PROTECTION_DATA :: struct {
     HWProtectionFunctionID: UINT,
     pInputData: ^D3D11_KEY_EXCHANGE_HW_PROTECTION_INPUT_DATA,
     pOutputData: ^D3D11_KEY_EXCHANGE_HW_PROTECTION_OUTPUT_DATA,
     Status: HRESULT,
 }
+
 D3D11_VIDEO_SAMPLE_DESC :: struct {
     Width: UINT,
     Height: UINT,
     Format: DXGI_FORMAT,
     ColorSpace: DXGI_COLOR_SPACE_TYPE,
 }
+
 ID3D11VideoContext1 :: struct {
-    using vtbl: ^ID3D11VideoContext1Vtbl
+    using vtbl: ^ID3D11VideoContext1Vtbl,
 }
+
 ID3D11VideoContext1Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoContext1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11VideoContext1) -> ULONG,
@@ -345,9 +365,11 @@ ID3D11VideoContext1Vtbl :: struct {
     VideoProcessorGetStreamMirror : proc(This: ^ID3D11VideoContext1, pVideoProcessor: ^ID3D11VideoProcessor, StreamIndex: UINT, pEnable: ^BOOL, pFlipHorizontal: ^BOOL, pFlipVertical: ^BOOL),
     VideoProcessorGetBehaviorHints : proc(This: ^ID3D11VideoContext1, pVideoProcessor: ^ID3D11VideoProcessor, OutputWidth: UINT, OutputHeight: UINT, OutputFormat: DXGI_FORMAT, StreamCount: UINT, pStreams: ^D3D11_VIDEO_PROCESSOR_STREAM_BEHAVIOR_HINT, pBehaviorHints: ^UINT) -> HRESULT,
 }
+
 ID3D11VideoDevice1 :: struct {
-    using vtbl: ^ID3D11VideoDevice1Vtbl
+    using vtbl: ^ID3D11VideoDevice1Vtbl,
 }
+
 ID3D11VideoDevice1Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoDevice1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11VideoDevice1) -> ULONG,
@@ -374,9 +396,11 @@ ID3D11VideoDevice1Vtbl :: struct {
     CheckVideoDecoderDownsampling : proc(This: ^ID3D11VideoDevice1, pInputDesc: ^D3D11_VIDEO_DECODER_DESC, InputColorSpace: DXGI_COLOR_SPACE_TYPE, pInputConfig: ^D3D11_VIDEO_DECODER_CONFIG, pFrameRate: ^DXGI_RATIONAL, pOutputDesc: ^D3D11_VIDEO_SAMPLE_DESC, pSupported: ^BOOL, pRealTimeHint: ^BOOL) -> HRESULT,
     RecommendVideoDecoderDownsampleParameters : proc(This: ^ID3D11VideoDevice1, pInputDesc: ^D3D11_VIDEO_DECODER_DESC, InputColorSpace: DXGI_COLOR_SPACE_TYPE, pInputConfig: ^D3D11_VIDEO_DECODER_CONFIG, pFrameRate: ^DXGI_RATIONAL, pRecommendedOutputDesc: ^D3D11_VIDEO_SAMPLE_DESC) -> HRESULT,
 }
+
 ID3D11VideoProcessorEnumerator1 :: struct {
-    using vtbl: ^ID3D11VideoProcessorEnumerator1Vtbl
+    using vtbl: ^ID3D11VideoProcessorEnumerator1Vtbl,
 }
+
 ID3D11VideoProcessorEnumerator1Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoProcessorEnumerator1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11VideoProcessorEnumerator1) -> ULONG,
@@ -393,9 +417,11 @@ ID3D11VideoProcessorEnumerator1Vtbl :: struct {
     GetVideoProcessorFilterRange : proc(This: ^ID3D11VideoProcessorEnumerator1, Filter: D3D11_VIDEO_PROCESSOR_FILTER, pRange: ^D3D11_VIDEO_PROCESSOR_FILTER_RANGE) -> HRESULT,
     CheckVideoProcessorFormatConversion : proc(This: ^ID3D11VideoProcessorEnumerator1, InputFormat: DXGI_FORMAT, InputColorSpace: DXGI_COLOR_SPACE_TYPE, OutputFormat: DXGI_FORMAT, OutputColorSpace: DXGI_COLOR_SPACE_TYPE, pSupported: ^BOOL) -> HRESULT,
 }
+
 ID3D11Device1 :: struct {
-    using vtbl: ^ID3D11Device1Vtbl
+    using vtbl: ^ID3D11Device1Vtbl,
 }
+
 ID3D11Device1Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Device1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Device1) -> ULONG,
@@ -448,9 +474,11 @@ ID3D11Device1Vtbl :: struct {
     OpenSharedResource1 : proc(This: ^ID3D11Device1, hResource: HANDLE, returnedInterface: REFIID, ppResource: ^rawptr) -> HRESULT,
     OpenSharedResourceByName : proc(This: ^ID3D11Device1, lpName: LPCWSTR, dwDesiredAccess: DWORD, returnedInterface: REFIID, ppResource: ^rawptr) -> HRESULT,
 }
+
 ID3DUserDefinedAnnotation :: struct {
-    using vtbl: ^ID3DUserDefinedAnnotationVtbl
+    using vtbl: ^ID3DUserDefinedAnnotationVtbl,
 }
+
 ID3DUserDefinedAnnotationVtbl :: struct {
     QueryInterface : proc(This: ^ID3DUserDefinedAnnotation, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3DUserDefinedAnnotation) -> ULONG,
@@ -460,10 +488,11 @@ ID3DUserDefinedAnnotationVtbl :: struct {
     SetMarker : proc(This: ^ID3DUserDefinedAnnotation, Name: LPCWSTR),
     GetStatus : proc(This: ^ID3DUserDefinedAnnotation) -> BOOL,
 }
+
 //D3D11_COPY_FLAGS
 D3D11_COPY_NO_OVERWRITE : u32 :  0x1;
-D3D11_COPY_DISCARD : u32 :  0x2
-    ;
+D3D11_COPY_DISCARD : u32 :  0x2;
+
 //D3D11_LOGIC_OP
 D3D11_LOGIC_OP_CLEAR : u32 :  0;
 D3D11_LOGIC_OP_SET : u32 :  ( D3D11_LOGIC_OP_CLEAR + 1 ) ;
@@ -480,26 +509,25 @@ D3D11_LOGIC_OP_EQUIV : u32 :  ( D3D11_LOGIC_OP_XOR + 1 ) ;
 D3D11_LOGIC_OP_AND_REVERSE : u32 :  ( D3D11_LOGIC_OP_EQUIV + 1 ) ;
 D3D11_LOGIC_OP_AND_INVERTED : u32 :  ( D3D11_LOGIC_OP_AND_REVERSE + 1 ) ;
 D3D11_LOGIC_OP_OR_REVERSE : u32 :  ( D3D11_LOGIC_OP_AND_INVERTED + 1 ) ;
-D3D11_LOGIC_OP_OR_INVERTED : u32 :  ( D3D11_LOGIC_OP_OR_REVERSE + 1 )
-    ;
+D3D11_LOGIC_OP_OR_INVERTED : u32 :  ( D3D11_LOGIC_OP_OR_REVERSE + 1 );
+
 //D3D11_1_CREATE_DEVICE_CONTEXT_STATE_FLAG
-D3D11_1_CREATE_DEVICE_CONTEXT_STATE_SINGLETHREADED : u32 :  0x1
-    ;
+D3D11_1_CREATE_DEVICE_CONTEXT_STATE_SINGLETHREADED : u32 :  0x1;
+
 //D3D11_VIDEO_DECODER_CAPS
 D3D11_VIDEO_DECODER_CAPS_DOWNSAMPLE : u32 :  0x1;
 D3D11_VIDEO_DECODER_CAPS_NON_REAL_TIME : u32 :  0x2;
 D3D11_VIDEO_DECODER_CAPS_DOWNSAMPLE_DYNAMIC : u32 :  0x4;
 D3D11_VIDEO_DECODER_CAPS_DOWNSAMPLE_REQUIRED : u32 :  0x8;
-D3D11_VIDEO_DECODER_CAPS_UNSUPPORTED : u32 :  0x10
-    ;
+D3D11_VIDEO_DECODER_CAPS_UNSUPPORTED : u32 :  0x10;
+
 //D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINTS
 D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINT_MULTIPLANE_OVERLAY_ROTATION : u32 :  0x1;
 D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINT_MULTIPLANE_OVERLAY_RESIZE : u32 :  0x2;
 D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINT_MULTIPLANE_OVERLAY_COLOR_SPACE_CONVERSION : u32 :  0x4;
-D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINT_TRIPLE_BUFFER_OUTPUT : u32 :  0x8
-    ;
+D3D11_VIDEO_PROCESSOR_BEHAVIOR_HINT_TRIPLE_BUFFER_OUTPUT : u32 :  0x8;
+
 //D3D11_CRYPTO_SESSION_STATUS
 D3D11_CRYPTO_SESSION_STATUS_OK : u32 :  0;
 D3D11_CRYPTO_SESSION_STATUS_KEY_LOST : u32 :  1;
-D3D11_CRYPTO_SESSION_STATUS_KEY_AND_CONTENT_LOST : u32 :  2
-    ;
+D3D11_CRYPTO_SESSION_STATUS_KEY_AND_CONTENT_LOST : u32 :  2;

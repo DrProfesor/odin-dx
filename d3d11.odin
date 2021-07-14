@@ -380,6 +380,7 @@ D3D11_INPUT_ELEMENT_DESC :: struct {
     InputSlotClass: UINT,
     InstanceDataStepRate: UINT,
 }
+
 D3D11_SO_DECLARATION_ENTRY :: struct {
     Stream: UINT,
     SemanticName: LPCSTR,
@@ -388,6 +389,7 @@ D3D11_SO_DECLARATION_ENTRY :: struct {
     ComponentCount: BYTE,
     OutputSlot: BYTE,
 }
+
 D3D11_VIEWPORT :: struct {
     TopLeftX: FLOAT,
     TopLeftY: FLOAT,
@@ -396,12 +398,14 @@ D3D11_VIEWPORT :: struct {
     MinDepth: FLOAT,
     MaxDepth: FLOAT,
 }
+
 D3D11_DRAW_INSTANCED_INDIRECT_ARGS :: struct {
     VertexCountPerInstance: UINT,
     InstanceCount: UINT,
     StartVertexLocation: UINT,
     StartInstanceLocation: UINT,
 }
+
 D3D11_DRAW_INDEXED_INSTANCED_INDIRECT_ARGS :: struct {
     IndexCountPerInstance: UINT,
     InstanceCount: UINT,
@@ -409,6 +413,7 @@ D3D11_DRAW_INDEXED_INSTANCED_INDIRECT_ARGS :: struct {
     BaseVertexLocation: INT,
     StartInstanceLocation: UINT,
 }
+
 D3D11_BOX :: struct {
     left: UINT,
     top: UINT,
@@ -417,9 +422,11 @@ D3D11_BOX :: struct {
     bottom: UINT,
     back: UINT,
 }
+
 ID3D11DeviceChild :: struct {
-    using vtbl: ^ID3D11DeviceChildVtbl
+    using vtbl: ^ID3D11DeviceChildVtbl,
 }
+
 ID3D11DeviceChildVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11DeviceChild, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11DeviceChild) -> ULONG,
@@ -429,12 +436,14 @@ ID3D11DeviceChildVtbl :: struct {
     SetPrivateData : proc(This: ^ID3D11DeviceChild, guid: REFGUID, DataSize: UINT, pData: rawptr) -> HRESULT,
     SetPrivateDataInterface : proc(This: ^ID3D11DeviceChild, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
 }
+
 D3D11_DEPTH_STENCILOP_DESC :: struct {
     StencilFailOp: UINT,
     StencilDepthFailOp: UINT,
     StencilPassOp: UINT,
     StencilFunc: UINT,
 }
+
 D3D11_DEPTH_STENCIL_DESC :: struct {
     DepthEnable: BOOL,
     DepthWriteMask: UINT,
@@ -445,9 +454,11 @@ D3D11_DEPTH_STENCIL_DESC :: struct {
     FrontFace: D3D11_DEPTH_STENCILOP_DESC,
     BackFace: D3D11_DEPTH_STENCILOP_DESC,
 }
+
 ID3D11DepthStencilState :: struct {
-    using vtbl: ^ID3D11DepthStencilStateVtbl
+    using vtbl: ^ID3D11DepthStencilStateVtbl,
 }
+
 ID3D11DepthStencilStateVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11DepthStencilState, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11DepthStencilState) -> ULONG,
@@ -458,6 +469,7 @@ ID3D11DepthStencilStateVtbl :: struct {
     SetPrivateDataInterface : proc(This: ^ID3D11DepthStencilState, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
     GetDesc : proc(This: ^ID3D11DepthStencilState, pDesc: ^D3D11_DEPTH_STENCIL_DESC),
 }
+
 D3D11_RENDER_TARGET_BLEND_DESC :: struct {
     BlendEnable: BOOL,
     SrcBlend: UINT,
@@ -468,14 +480,17 @@ D3D11_RENDER_TARGET_BLEND_DESC :: struct {
     BlendOpAlpha: UINT,
     RenderTargetWriteMask: UINT8,
 }
+
 D3D11_BLEND_DESC :: struct {
     AlphaToCoverageEnable: BOOL,
     IndependentBlendEnable: BOOL,
     RenderTarget: [8]D3D11_RENDER_TARGET_BLEND_DESC,
 }
+
 ID3D11BlendState :: struct {
-    using vtbl: ^ID3D11BlendStateVtbl
+    using vtbl: ^ID3D11BlendStateVtbl,
 }
+
 ID3D11BlendStateVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11BlendState, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11BlendState) -> ULONG,
@@ -486,6 +501,7 @@ ID3D11BlendStateVtbl :: struct {
     SetPrivateDataInterface : proc(This: ^ID3D11BlendState, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
     GetDesc : proc(This: ^ID3D11BlendState, pDesc: ^D3D11_BLEND_DESC),
 }
+
 D3D11_RASTERIZER_DESC :: struct {
     FillMode: UINT,
     CullMode: UINT,
@@ -498,9 +514,11 @@ D3D11_RASTERIZER_DESC :: struct {
     MultisampleEnable: BOOL,
     AntialiasedLineEnable: BOOL,
 }
+
 ID3D11RasterizerState :: struct {
-    using vtbl: ^ID3D11RasterizerStateVtbl
+    using vtbl: ^ID3D11RasterizerStateVtbl,
 }
+
 ID3D11RasterizerStateVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11RasterizerState, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11RasterizerState) -> ULONG,
@@ -511,19 +529,23 @@ ID3D11RasterizerStateVtbl :: struct {
     SetPrivateDataInterface : proc(This: ^ID3D11RasterizerState, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
     GetDesc : proc(This: ^ID3D11RasterizerState, pDesc: ^D3D11_RASTERIZER_DESC),
 }
+
 D3D11_SUBRESOURCE_DATA :: struct {
     pSysMem: rawptr,
     SysMemPitch: UINT,
     SysMemSlicePitch: UINT,
 }
+
 D3D11_MAPPED_SUBRESOURCE :: struct {
     pData: rawptr,
     RowPitch: UINT,
     DepthPitch: UINT,
 }
+
 ID3D11Resource :: struct {
-    using vtbl: ^ID3D11ResourceVtbl
+    using vtbl: ^ID3D11ResourceVtbl,
 }
+
 ID3D11ResourceVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Resource, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Resource) -> ULONG,
@@ -536,6 +558,7 @@ ID3D11ResourceVtbl :: struct {
     SetEvictionPriority : proc(This: ^ID3D11Resource, EvictionPriority: UINT),
     GetEvictionPriority : proc(This: ^ID3D11Resource) -> UINT,
 }
+
 D3D11_BUFFER_DESC :: struct {
     ByteWidth: UINT,
     Usage: UINT,
@@ -544,9 +567,11 @@ D3D11_BUFFER_DESC :: struct {
     MiscFlags: UINT,
     StructureByteStride: UINT,
 }
+
 ID3D11Buffer :: struct {
-    using vtbl: ^ID3D11BufferVtbl
+    using vtbl: ^ID3D11BufferVtbl,
 }
+
 ID3D11BufferVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Buffer, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Buffer) -> ULONG,
@@ -560,6 +585,7 @@ ID3D11BufferVtbl :: struct {
     GetEvictionPriority : proc(This: ^ID3D11Buffer) -> UINT,
     GetDesc : proc(This: ^ID3D11Buffer, pDesc: ^D3D11_BUFFER_DESC),
 }
+
 D3D11_TEXTURE1D_DESC :: struct {
     Width: UINT,
     MipLevels: UINT,
@@ -570,9 +596,11 @@ D3D11_TEXTURE1D_DESC :: struct {
     CPUAccessFlags: UINT,
     MiscFlags: UINT,
 }
+
 ID3D11Texture1D :: struct {
-    using vtbl: ^ID3D11Texture1DVtbl
+    using vtbl: ^ID3D11Texture1DVtbl,
 }
+
 ID3D11Texture1DVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Texture1D, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Texture1D) -> ULONG,
@@ -586,6 +614,7 @@ ID3D11Texture1DVtbl :: struct {
     GetEvictionPriority : proc(This: ^ID3D11Texture1D) -> UINT,
     GetDesc : proc(This: ^ID3D11Texture1D, pDesc: ^D3D11_TEXTURE1D_DESC),
 }
+
 D3D11_TEXTURE2D_DESC :: struct {
     Width: UINT,
     Height: UINT,
@@ -598,9 +627,11 @@ D3D11_TEXTURE2D_DESC :: struct {
     CPUAccessFlags: UINT,
     MiscFlags: UINT,
 }
+
 ID3D11Texture2D :: struct {
-    using vtbl: ^ID3D11Texture2DVtbl
+    using vtbl: ^ID3D11Texture2DVtbl,
 }
+
 ID3D11Texture2DVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Texture2D, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Texture2D) -> ULONG,
@@ -614,6 +645,7 @@ ID3D11Texture2DVtbl :: struct {
     GetEvictionPriority : proc(This: ^ID3D11Texture2D) -> UINT,
     GetDesc : proc(This: ^ID3D11Texture2D, pDesc: ^D3D11_TEXTURE2D_DESC),
 }
+
 D3D11_TEXTURE3D_DESC :: struct {
     Width: UINT,
     Height: UINT,
@@ -625,9 +657,11 @@ D3D11_TEXTURE3D_DESC :: struct {
     CPUAccessFlags: UINT,
     MiscFlags: UINT,
 }
+
 ID3D11Texture3D :: struct {
-    using vtbl: ^ID3D11Texture3DVtbl
+    using vtbl: ^ID3D11Texture3DVtbl,
 }
+
 ID3D11Texture3DVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Texture3D, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Texture3D) -> ULONG,
@@ -641,9 +675,11 @@ ID3D11Texture3DVtbl :: struct {
     GetEvictionPriority : proc(This: ^ID3D11Texture3D) -> UINT,
     GetDesc : proc(This: ^ID3D11Texture3D, pDesc: ^D3D11_TEXTURE3D_DESC),
 }
+
 ID3D11View :: struct {
-    using vtbl: ^ID3D11ViewVtbl
+    using vtbl: ^ID3D11ViewVtbl,
 }
+
 ID3D11ViewVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11View, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11View) -> ULONG,
@@ -654,11 +690,13 @@ ID3D11ViewVtbl :: struct {
     SetPrivateDataInterface : proc(This: ^ID3D11View, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
     GetResource : proc(This: ^ID3D11View, ppResource: ^^ID3D11Resource),
 }
+
 D3D11_BUFFER_SRV :: struct {
     using _0: struct #raw_union {
         FirstElement: UINT,
         ElementOffset: UINT,
     },
+
     using _1: struct #raw_union {
         NumElements: UINT,
         ElementWidth: UINT,
@@ -669,47 +707,57 @@ D3D11_BUFFEREX_SRV :: struct {
     NumElements: UINT,
     Flags: UINT,
 }
+
 D3D11_TEX1D_SRV :: struct {
     MostDetailedMip: UINT,
     MipLevels: UINT,
 }
+
 D3D11_TEX1D_ARRAY_SRV :: struct {
     MostDetailedMip: UINT,
     MipLevels: UINT,
     FirstArraySlice: UINT,
     ArraySize: UINT,
 }
+
 D3D11_TEX2D_SRV :: struct {
     MostDetailedMip: UINT,
     MipLevels: UINT,
 }
+
 D3D11_TEX2D_ARRAY_SRV :: struct {
     MostDetailedMip: UINT,
     MipLevels: UINT,
     FirstArraySlice: UINT,
     ArraySize: UINT,
 }
+
 D3D11_TEX3D_SRV :: struct {
     MostDetailedMip: UINT,
     MipLevels: UINT,
 }
+
 D3D11_TEXCUBE_SRV :: struct {
     MostDetailedMip: UINT,
     MipLevels: UINT,
 }
+
 D3D11_TEXCUBE_ARRAY_SRV :: struct {
     MostDetailedMip: UINT,
     MipLevels: UINT,
     First2DArrayFace: UINT,
     NumCubes: UINT,
 }
+
 D3D11_TEX2DMS_SRV :: struct {
     UnusedField_NothingToDefine: UINT,
 }
+
 D3D11_TEX2DMS_ARRAY_SRV :: struct {
     FirstArraySlice: UINT,
     ArraySize: UINT,
 }
+
 D3D11_SHADER_RESOURCE_VIEW_DESC :: struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_SRV_DIMENSION,
@@ -727,9 +775,11 @@ D3D11_SHADER_RESOURCE_VIEW_DESC :: struct {
         BufferEx: D3D11_BUFFEREX_SRV,
     },
 }
+
 ID3D11ShaderResourceView :: struct {
-    using vtbl: ^ID3D11ShaderResourceViewVtbl
+    using vtbl: ^ID3D11ShaderResourceViewVtbl,
 }
+
 ID3D11ShaderResourceViewVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11ShaderResourceView, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11ShaderResourceView) -> ULONG,
@@ -741,6 +791,7 @@ ID3D11ShaderResourceViewVtbl :: struct {
     GetResource : proc(This: ^ID3D11ShaderResourceView, ppResource: ^^ID3D11Resource),
     GetDesc : proc(This: ^ID3D11ShaderResourceView, pDesc: ^D3D11_SHADER_RESOURCE_VIEW_DESC),
 }
+
 D3D11_BUFFER_RTV :: struct {
     using _0: struct #raw_union {
         FirstElement: UINT,
@@ -751,34 +802,42 @@ D3D11_BUFFER_RTV :: struct {
         ElementWidth: UINT,
     },
 }
+
 D3D11_TEX1D_RTV :: struct {
     MipSlice: UINT,
 }
+
 D3D11_TEX1D_ARRAY_RTV :: struct {
     MipSlice: UINT,
     FirstArraySlice: UINT,
     ArraySize: UINT,
 }
+
 D3D11_TEX2D_RTV :: struct {
     MipSlice: UINT,
 }
+
 D3D11_TEX2DMS_RTV :: struct {
     UnusedField_NothingToDefine: UINT,
 }
+
 D3D11_TEX2D_ARRAY_RTV :: struct {
     MipSlice: UINT,
     FirstArraySlice: UINT,
     ArraySize: UINT,
 }
+
 D3D11_TEX2DMS_ARRAY_RTV :: struct {
     FirstArraySlice: UINT,
     ArraySize: UINT,
 }
+
 D3D11_TEX3D_RTV :: struct {
     MipSlice: UINT,
     FirstWSlice: UINT,
     WSize: UINT,
 }
+
 D3D11_RENDER_TARGET_VIEW_DESC :: struct {
     Format: DXGI_FORMAT,
     ViewDimension: UINT,
@@ -793,9 +852,11 @@ D3D11_RENDER_TARGET_VIEW_DESC :: struct {
         Texture3D: D3D11_TEX3D_RTV,
     },
 }
+
 ID3D11RenderTargetView :: struct {
-    using vtbl: ^ID3D11RenderTargetViewVtbl
+    using vtbl: ^ID3D11RenderTargetViewVtbl,
 }
+
 ID3D11RenderTargetViewVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11RenderTargetView, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11RenderTargetView) -> ULONG,
@@ -807,29 +868,36 @@ ID3D11RenderTargetViewVtbl :: struct {
     GetResource : proc(This: ^ID3D11RenderTargetView, ppResource: ^^ID3D11Resource),
     GetDesc : proc(This: ^ID3D11RenderTargetView, pDesc: ^D3D11_RENDER_TARGET_VIEW_DESC),
 }
+
 D3D11_TEX1D_DSV :: struct {
     MipSlice: UINT,
 }
+
 D3D11_TEX1D_ARRAY_DSV :: struct {
     MipSlice: UINT,
     FirstArraySlice: UINT,
     ArraySize: UINT,
 }
+
 D3D11_TEX2D_DSV :: struct {
     MipSlice: UINT,
 }
+
 D3D11_TEX2D_ARRAY_DSV :: struct {
     MipSlice: UINT,
     FirstArraySlice: UINT,
     ArraySize: UINT,
 }
+
 D3D11_TEX2DMS_DSV :: struct {
     UnusedField_NothingToDefine: UINT,
 }
+
 D3D11_TEX2DMS_ARRAY_DSV :: struct {
     FirstArraySlice: UINT,
     ArraySize: UINT,
 }
+
 D3D11_DEPTH_STENCIL_VIEW_DESC :: struct {
     Format: DXGI_FORMAT,
     ViewDimension: UINT,
@@ -843,9 +911,11 @@ D3D11_DEPTH_STENCIL_VIEW_DESC :: struct {
         Texture2DMSArray: D3D11_TEX2DMS_ARRAY_DSV,
     },
 }
+
 ID3D11DepthStencilView :: struct {
-    using vtbl: ^ID3D11DepthStencilViewVtbl
+    using vtbl: ^ID3D11DepthStencilViewVtbl,
 }
+
 ID3D11DepthStencilViewVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11DepthStencilView, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11DepthStencilView) -> ULONG,
@@ -857,32 +927,39 @@ ID3D11DepthStencilViewVtbl :: struct {
     GetResource : proc(This: ^ID3D11DepthStencilView, ppResource: ^^ID3D11Resource),
     GetDesc : proc(This: ^ID3D11DepthStencilView, pDesc: ^D3D11_DEPTH_STENCIL_VIEW_DESC),
 }
+
 D3D11_BUFFER_UAV :: struct {
     FirstElement: UINT,
     NumElements: UINT,
     Flags: UINT,
 }
+
 D3D11_TEX1D_UAV :: struct {
     MipSlice: UINT,
 }
+
 D3D11_TEX1D_ARRAY_UAV :: struct {
     MipSlice: UINT,
     FirstArraySlice: UINT,
     ArraySize: UINT,
 }
+
 D3D11_TEX2D_UAV :: struct {
     MipSlice: UINT,
 }
+
 D3D11_TEX2D_ARRAY_UAV :: struct {
     MipSlice: UINT,
     FirstArraySlice: UINT,
     ArraySize: UINT,
 }
+
 D3D11_TEX3D_UAV :: struct {
     MipSlice: UINT,
     FirstWSlice: UINT,
     WSize: UINT,
 }
+
 D3D11_UNORDERED_ACCESS_VIEW_DESC :: struct {
     Format: DXGI_FORMAT,
     ViewDimension: UINT,
@@ -895,9 +972,11 @@ D3D11_UNORDERED_ACCESS_VIEW_DESC :: struct {
         Texture3D: D3D11_TEX3D_UAV,
     },
 }
+
 ID3D11UnorderedAccessView :: struct {
-    using vtbl: ^ID3D11UnorderedAccessViewVtbl
+    using vtbl: ^ID3D11UnorderedAccessViewVtbl,
 }
+
 ID3D11UnorderedAccessViewVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11UnorderedAccessView, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11UnorderedAccessView) -> ULONG,
@@ -910,7 +989,7 @@ ID3D11UnorderedAccessViewVtbl :: struct {
     GetDesc : proc(This: ^ID3D11UnorderedAccessView, pDesc: ^D3D11_UNORDERED_ACCESS_VIEW_DESC),
 }
 ID3D11VertexShader :: struct {
-    using vtbl: ^ID3D11VertexShaderVtbl
+    using vtbl: ^ID3D11VertexShaderVtbl,
 }
 ID3D11VertexShaderVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VertexShader, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -922,7 +1001,7 @@ ID3D11VertexShaderVtbl :: struct {
     SetPrivateDataInterface : proc(This: ^ID3D11VertexShader, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
 }
 ID3D11HullShader :: struct {
-    using vtbl: ^ID3D11HullShaderVtbl
+    using vtbl: ^ID3D11HullShaderVtbl,
 }
 ID3D11HullShaderVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11HullShader, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -934,7 +1013,7 @@ ID3D11HullShaderVtbl :: struct {
     SetPrivateDataInterface : proc(This: ^ID3D11HullShader, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
 }
 ID3D11DomainShader :: struct {
-    using vtbl: ^ID3D11DomainShaderVtbl
+    using vtbl: ^ID3D11DomainShaderVtbl,
 }
 ID3D11DomainShaderVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11DomainShader, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -946,7 +1025,7 @@ ID3D11DomainShaderVtbl :: struct {
     SetPrivateDataInterface : proc(This: ^ID3D11DomainShader, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
 }
 ID3D11GeometryShader :: struct {
-    using vtbl: ^ID3D11GeometryShaderVtbl
+    using vtbl: ^ID3D11GeometryShaderVtbl,
 }
 ID3D11GeometryShaderVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11GeometryShader, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -958,7 +1037,7 @@ ID3D11GeometryShaderVtbl :: struct {
     SetPrivateDataInterface : proc(This: ^ID3D11GeometryShader, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
 }
 ID3D11PixelShader :: struct {
-    using vtbl: ^ID3D11PixelShaderVtbl
+    using vtbl: ^ID3D11PixelShaderVtbl,
 }
 ID3D11PixelShaderVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11PixelShader, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -970,7 +1049,7 @@ ID3D11PixelShaderVtbl :: struct {
     SetPrivateDataInterface : proc(This: ^ID3D11PixelShader, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
 }
 ID3D11ComputeShader :: struct {
-    using vtbl: ^ID3D11ComputeShaderVtbl
+    using vtbl: ^ID3D11ComputeShaderVtbl,
 }
 ID3D11ComputeShaderVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11ComputeShader, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -982,7 +1061,7 @@ ID3D11ComputeShaderVtbl :: struct {
     SetPrivateDataInterface : proc(This: ^ID3D11ComputeShader, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
 }
 ID3D11InputLayout :: struct {
-    using vtbl: ^ID3D11InputLayoutVtbl
+    using vtbl: ^ID3D11InputLayoutVtbl,
 }
 ID3D11InputLayoutVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11InputLayout, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1006,7 +1085,7 @@ D3D11_SAMPLER_DESC :: struct {
     MaxLOD: FLOAT,
 }
 ID3D11SamplerState :: struct {
-    using vtbl: ^ID3D11SamplerStateVtbl
+    using vtbl: ^ID3D11SamplerStateVtbl,
 }
 ID3D11SamplerStateVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11SamplerState, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1019,7 +1098,7 @@ ID3D11SamplerStateVtbl :: struct {
     GetDesc : proc(This: ^ID3D11SamplerState, pDesc: ^D3D11_SAMPLER_DESC),
 }
 ID3D11Asynchronous :: struct {
-    using vtbl: ^ID3D11AsynchronousVtbl
+    using vtbl: ^ID3D11AsynchronousVtbl,
 }
 ID3D11AsynchronousVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Asynchronous, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1036,7 +1115,7 @@ D3D11_QUERY_DESC :: struct {
     MiscFlags: UINT,
 }
 ID3D11Query :: struct {
-    using vtbl: ^ID3D11QueryVtbl
+    using vtbl: ^ID3D11QueryVtbl,
 }
 ID3D11QueryVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Query, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1050,7 +1129,7 @@ ID3D11QueryVtbl :: struct {
     GetDesc : proc(This: ^ID3D11Query, pDesc: ^D3D11_QUERY_DESC),
 }
 ID3D11Predicate :: struct {
-    using vtbl: ^ID3D11PredicateVtbl
+    using vtbl: ^ID3D11PredicateVtbl,
 }
 ID3D11PredicateVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Predicate, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1094,7 +1173,7 @@ D3D11_COUNTER_INFO :: struct {
     NumDetectableParallelUnits: UINT8,
 }
 ID3D11Counter :: struct {
-    using vtbl: ^ID3D11CounterVtbl
+    using vtbl: ^ID3D11CounterVtbl,
 }
 ID3D11CounterVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Counter, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1118,7 +1197,7 @@ D3D11_CLASS_INSTANCE_DESC :: struct {
     Created: BOOL,
 }
 ID3D11ClassInstance :: struct {
-    using vtbl: ^ID3D11ClassInstanceVtbl
+    using vtbl: ^ID3D11ClassInstanceVtbl,
 }
 ID3D11ClassInstanceVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11ClassInstance, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1134,7 +1213,7 @@ ID3D11ClassInstanceVtbl :: struct {
     GetTypeName : proc(This: ^ID3D11ClassInstance, pTypeName: LPSTR, pBufferLength: ^SIZE_T),
 }
 ID3D11ClassLinkage :: struct {
-    using vtbl: ^ID3D11ClassLinkageVtbl
+    using vtbl: ^ID3D11ClassLinkageVtbl,
 }
 ID3D11ClassLinkageVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11ClassLinkage, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1148,7 +1227,7 @@ ID3D11ClassLinkageVtbl :: struct {
     CreateClassInstance : proc(This: ^ID3D11ClassLinkage, pClassTypeName: LPCSTR, ConstantBufferOffset: UINT, ConstantVectorOffset: UINT, TextureOffset: UINT, SamplerOffset: UINT, ppInstance: ^^ID3D11ClassInstance) -> HRESULT,
 }
 ID3D11CommandList :: struct {
-    using vtbl: ^ID3D11CommandListVtbl
+    using vtbl: ^ID3D11CommandListVtbl,
 }
 ID3D11CommandListVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11CommandList, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1249,7 +1328,7 @@ D3D11_FEATURE_DATA_D3D11_OPTIONS5 :: struct {
     SharedResourceTier: UINT,
 }
 ID3D11DeviceContext :: struct {
-    using vtbl: ^ID3D11DeviceContextVtbl
+    using vtbl: ^ID3D11DeviceContextVtbl,
 }
 ID3D11DeviceContextVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11DeviceContext, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1428,7 +1507,7 @@ D3D11_VIDEO_DECODER_EXTENSION :: struct {
     ppResourceList: ^^ID3D11Resource,
 }
 ID3D11VideoDecoder :: struct {
-    using vtbl: ^ID3D11VideoDecoderVtbl
+    using vtbl: ^ID3D11VideoDecoderVtbl,
 }
 ID3D11VideoDecoderVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoDecoder, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1488,7 +1567,7 @@ D3D11_VIDEO_PROCESSOR_CONTENT_DESC :: struct {
     Usage: UINT,
 }
 ID3D11VideoProcessorEnumerator :: struct {
-    using vtbl: ^ID3D11VideoProcessorEnumeratorVtbl
+    using vtbl: ^ID3D11VideoProcessorEnumeratorVtbl,
 }
 ID3D11VideoProcessorEnumeratorVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoProcessorEnumerator, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1545,7 +1624,7 @@ D3D11_VIDEO_PROCESSOR_STREAM :: struct {
     ppFutureSurfacesRight: ^^ID3D11VideoProcessorInputView,
 }
 ID3D11VideoProcessor :: struct {
-    using vtbl: ^ID3D11VideoProcessorVtbl
+    using vtbl: ^ID3D11VideoProcessorVtbl,
 }
 ID3D11VideoProcessorVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoProcessor, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1562,7 +1641,7 @@ D3D11_OMAC :: struct {
     Omac: [16]BYTE,
 }
 ID3D11AuthenticatedChannel :: struct {
-    using vtbl: ^ID3D11AuthenticatedChannelVtbl
+    using vtbl: ^ID3D11AuthenticatedChannelVtbl,
 }
 ID3D11AuthenticatedChannelVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11AuthenticatedChannel, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1714,7 +1793,7 @@ D3D11_AUTHENTICATED_CONFIGURE_ACCESSIBLE_ENCRYPTION_INPUT :: struct {
     EncryptionGuid: GUID,
 }
 ID3D11CryptoSession :: struct {
-    using vtbl: ^ID3D11CryptoSessionVtbl
+    using vtbl: ^ID3D11CryptoSessionVtbl,
 }
 ID3D11CryptoSessionVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11CryptoSession, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1741,7 +1820,7 @@ D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC :: struct {
     },
 }
 ID3D11VideoDecoderOutputView :: struct {
-    using vtbl: ^ID3D11VideoDecoderOutputViewVtbl
+    using vtbl: ^ID3D11VideoDecoderOutputViewVtbl,
 }
 ID3D11VideoDecoderOutputViewVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoDecoderOutputView, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1766,7 +1845,7 @@ D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC :: struct {
     },
 }
 ID3D11VideoProcessorInputView :: struct {
-    using vtbl: ^ID3D11VideoProcessorInputViewVtbl
+    using vtbl: ^ID3D11VideoProcessorInputViewVtbl,
 }
 ID3D11VideoProcessorInputViewVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoProcessorInputView, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1795,7 +1874,7 @@ D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC :: struct {
     },
 }
 ID3D11VideoProcessorOutputView :: struct {
-    using vtbl: ^ID3D11VideoProcessorOutputViewVtbl
+    using vtbl: ^ID3D11VideoProcessorOutputViewVtbl,
 }
 ID3D11VideoProcessorOutputViewVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoProcessorOutputView, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1809,7 +1888,7 @@ ID3D11VideoProcessorOutputViewVtbl :: struct {
     GetDesc : proc(This: ^ID3D11VideoProcessorOutputView, pDesc: ^D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC),
 }
 ID3D11VideoContext :: struct {
-    using vtbl: ^ID3D11VideoContextVtbl
+    using vtbl: ^ID3D11VideoContextVtbl,
 }
 ID3D11VideoContextVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoContext, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1879,7 +1958,7 @@ ID3D11VideoContextVtbl :: struct {
     VideoProcessorGetStreamRotation : proc(This: ^ID3D11VideoContext, pVideoProcessor: ^ID3D11VideoProcessor, StreamIndex: UINT, pEnable: ^BOOL, pRotation: ^UINT),
 }
 ID3D11VideoDevice :: struct {
-    using vtbl: ^ID3D11VideoDeviceVtbl
+    using vtbl: ^ID3D11VideoDeviceVtbl,
 }
 ID3D11VideoDeviceVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoDevice, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1904,7 +1983,7 @@ ID3D11VideoDeviceVtbl :: struct {
     SetPrivateDataInterface : proc(This: ^ID3D11VideoDevice, guid: REFGUID, pData: ^IUnknown) -> HRESULT,
 }
 ID3D11Device :: struct {
-    using vtbl: ^ID3D11DeviceVtbl
+    using vtbl: ^ID3D11DeviceVtbl,
 }
 ID3D11DeviceVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Device, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
@@ -1953,24 +2032,24 @@ ID3D11DeviceVtbl :: struct {
 }
 //D3D11_INPUT_CLASSIFICATION
 D3D11_INPUT_PER_VERTEX_DATA : u32 :  0;
-D3D11_INPUT_PER_INSTANCE_DATA : u32 :  1
-    ;
+D3D11_INPUT_PER_INSTANCE_DATA : u32 :  1;
+
 //D3D11_FILL_MODE
 D3D11_FILL_WIREFRAME : u32 :  2;
-D3D11_FILL_SOLID : u32 :  3
-    ;
+D3D11_FILL_SOLID : u32 :  3;
+
 //D3D11_CULL_MODE
 D3D11_CULL_NONE : u32 :  1;
 D3D11_CULL_FRONT : u32 :  2;
-D3D11_CULL_BACK : u32 :  3
-    ;
+D3D11_CULL_BACK : u32 :  3;
+
 //D3D11_RESOURCE_DIMENSION
 D3D11_RESOURCE_DIMENSION_UNKNOWN : u32 :  0;
 D3D11_RESOURCE_DIMENSION_BUFFER : u32 :  1;
 D3D11_RESOURCE_DIMENSION_TEXTURE1D : u32 :  2;
 D3D11_RESOURCE_DIMENSION_TEXTURE2D : u32 :  3;
-D3D11_RESOURCE_DIMENSION_TEXTURE3D : u32 :  4
-    ;
+D3D11_RESOURCE_DIMENSION_TEXTURE3D : u32 :  4;
+
 //D3D11_DSV_DIMENSION
 D3D11_DSV_DIMENSION_UNKNOWN : u32 :  0;
 D3D11_DSV_DIMENSION_TEXTURE1D : u32 :  1;
@@ -1978,8 +2057,8 @@ D3D11_DSV_DIMENSION_TEXTURE1DARRAY : u32 :  2;
 D3D11_DSV_DIMENSION_TEXTURE2D : u32 :  3;
 D3D11_DSV_DIMENSION_TEXTURE2DARRAY : u32 :  4;
 D3D11_DSV_DIMENSION_TEXTURE2DMS : u32 :  5;
-D3D11_DSV_DIMENSION_TEXTURE2DMSARRAY : u32 :  6
-    ;
+D3D11_DSV_DIMENSION_TEXTURE2DMSARRAY : u32 :  6;
+
 //D3D11_RTV_DIMENSION
 D3D11_RTV_DIMENSION_UNKNOWN : u32 :  0;
 D3D11_RTV_DIMENSION_BUFFER : u32 :  1;
@@ -1989,8 +2068,8 @@ D3D11_RTV_DIMENSION_TEXTURE2D : u32 :  4;
 D3D11_RTV_DIMENSION_TEXTURE2DARRAY : u32 :  5;
 D3D11_RTV_DIMENSION_TEXTURE2DMS : u32 :  6;
 D3D11_RTV_DIMENSION_TEXTURE2DMSARRAY : u32 :  7;
-D3D11_RTV_DIMENSION_TEXTURE3D : u32 :  8
-    ;
+D3D11_RTV_DIMENSION_TEXTURE3D : u32 :  8;
+
 //D3D11_UAV_DIMENSION
 D3D11_UAV_DIMENSION_UNKNOWN : u32 :  0;
 D3D11_UAV_DIMENSION_BUFFER : u32 :  1;
@@ -1998,14 +2077,14 @@ D3D11_UAV_DIMENSION_TEXTURE1D : u32 :  2;
 D3D11_UAV_DIMENSION_TEXTURE1DARRAY : u32 :  3;
 D3D11_UAV_DIMENSION_TEXTURE2D : u32 :  4;
 D3D11_UAV_DIMENSION_TEXTURE2DARRAY : u32 :  5;
-D3D11_UAV_DIMENSION_TEXTURE3D : u32 :  8
-    ;
+D3D11_UAV_DIMENSION_TEXTURE3D : u32 :  8;
+
 //D3D11_USAGE
 D3D11_USAGE_DEFAULT : u32 :  0;
 D3D11_USAGE_IMMUTABLE : u32 :  1;
 D3D11_USAGE_DYNAMIC : u32 :  2;
-D3D11_USAGE_STAGING : u32 :  3
-    ;
+D3D11_USAGE_STAGING : u32 :  3;
+
 //D3D11_BIND_FLAG
 D3D11_BIND_VERTEX_BUFFER : u32 :  0x1;
 D3D11_BIND_INDEX_BUFFER : u32 :  0x2;
@@ -2016,12 +2095,12 @@ D3D11_BIND_RENDER_TARGET : u32 :  0x20;
 D3D11_BIND_DEPTH_STENCIL : u32 :  0x40;
 D3D11_BIND_UNORDERED_ACCESS : u32 :  0x80;
 D3D11_BIND_DECODER : u32 :  0x200;
-D3D11_BIND_VIDEO_ENCODER : u32 :  0x400
-    ;
+D3D11_BIND_VIDEO_ENCODER : u32 :  0x400;
+
 //D3D11_CPU_ACCESS_FLAG
 D3D11_CPU_ACCESS_WRITE : u32 :  0x10000;
-D3D11_CPU_ACCESS_READ : u32 :  0x20000
-    ;
+D3D11_CPU_ACCESS_READ : u32 :  0x20000;
+
 //D3D11_RESOURCE_MISC_FLAG
 D3D11_RESOURCE_MISC_GENERATE_MIPS : u32 :  0x1;
 D3D11_RESOURCE_MISC_SHARED : u32 :  0x2;
@@ -2039,25 +2118,25 @@ D3D11_RESOURCE_MISC_RESTRICT_SHARED_RESOURCE_DRIVER : u32 :  0x4000;
 D3D11_RESOURCE_MISC_GUARDED : u32 :  0x8000;
 D3D11_RESOURCE_MISC_TILE_POOL : u32 :  0x20000;
 D3D11_RESOURCE_MISC_TILED : u32 :  0x40000;
-D3D11_RESOURCE_MISC_HW_PROTECTED : u32 :  0x80000
-    ;
+D3D11_RESOURCE_MISC_HW_PROTECTED : u32 :  0x80000;
+
 //D3D11_MAP
 D3D11_MAP_READ : u32 :  1;
 D3D11_MAP_WRITE : u32 :  2;
 D3D11_MAP_READ_WRITE : u32 :  3;
 D3D11_MAP_WRITE_DISCARD : u32 :  4;
-D3D11_MAP_WRITE_NO_OVERWRITE : u32 :  5
-    ;
+D3D11_MAP_WRITE_NO_OVERWRITE : u32 :  5;
+
 //D3D11_MAP_FLAG
-D3D11_MAP_FLAG_DO_NOT_WAIT : u32 :  0x100000
-    ;
+D3D11_MAP_FLAG_DO_NOT_WAIT : u32 :  0x100000;
+
 //D3D11_RAISE_FLAG
-D3D11_RAISE_FLAG_DRIVER_INTERNAL_ERROR : u32 :  0x1
-    ;
+D3D11_RAISE_FLAG_DRIVER_INTERNAL_ERROR : u32 :  0x1;
+
 //D3D11_CLEAR_FLAG
 D3D11_CLEAR_DEPTH : u32 :  0x1;
-D3D11_CLEAR_STENCIL : u32 :  0x2
-    ;
+D3D11_CLEAR_STENCIL : u32 :  0x2;
+
 //D3D11_COMPARISON_FUNC
 D3D11_COMPARISON_NEVER : u32 :  1;
 D3D11_COMPARISON_LESS : u32 :  2;
@@ -2066,12 +2145,12 @@ D3D11_COMPARISON_LESS_EQUAL : u32 :  4;
 D3D11_COMPARISON_GREATER : u32 :  5;
 D3D11_COMPARISON_NOT_EQUAL : u32 :  6;
 D3D11_COMPARISON_GREATER_EQUAL : u32 :  7;
-D3D11_COMPARISON_ALWAYS : u32 :  8
-    ;
+D3D11_COMPARISON_ALWAYS : u32 :  8;
+
 //D3D11_DEPTH_WRITE_MASK
 D3D11_DEPTH_WRITE_MASK_ZERO : u32 :  0;
-D3D11_DEPTH_WRITE_MASK_ALL : u32 :  1
-    ;
+D3D11_DEPTH_WRITE_MASK_ALL : u32 :  1;
+
 //D3D11_STENCIL_OP
 D3D11_STENCIL_OP_KEEP : u32 :  1;
 D3D11_STENCIL_OP_ZERO : u32 :  2;
@@ -2080,8 +2159,8 @@ D3D11_STENCIL_OP_INCR_SAT : u32 :  4;
 D3D11_STENCIL_OP_DECR_SAT : u32 :  5;
 D3D11_STENCIL_OP_INVERT : u32 :  6;
 D3D11_STENCIL_OP_INCR : u32 :  7;
-D3D11_STENCIL_OP_DECR : u32 :  8
-    ;
+D3D11_STENCIL_OP_DECR : u32 :  8;
+
 //D3D11_BLEND
 D3D11_BLEND_ZERO : u32 :  1;
 D3D11_BLEND_ONE : u32 :  2;
@@ -2099,42 +2178,42 @@ D3D11_BLEND_INV_BLEND_FACTOR : u32 :  15;
 D3D11_BLEND_SRC1_COLOR : u32 :  16;
 D3D11_BLEND_INV_SRC1_COLOR : u32 :  17;
 D3D11_BLEND_SRC1_ALPHA : u32 :  18;
-D3D11_BLEND_INV_SRC1_ALPHA : u32 :  19
-    ;
+D3D11_BLEND_INV_SRC1_ALPHA : u32 :  19;
+
 //D3D11_BLEND_OP
 D3D11_BLEND_OP_ADD : u32 :  1;
 D3D11_BLEND_OP_SUBTRACT : u32 :  2;
 D3D11_BLEND_OP_REV_SUBTRACT : u32 :  3;
 D3D11_BLEND_OP_MIN : u32 :  4;
-D3D11_BLEND_OP_MAX : u32 :  5
-    ;
+D3D11_BLEND_OP_MAX : u32 :  5;
+
 //D3D11_COLOR_WRITE_ENABLE
 D3D11_COLOR_WRITE_ENABLE_RED : u32 :  1;
 D3D11_COLOR_WRITE_ENABLE_GREEN : u32 :  2;
 D3D11_COLOR_WRITE_ENABLE_BLUE : u32 :  4;
 D3D11_COLOR_WRITE_ENABLE_ALPHA : u32 :  8;
-D3D11_COLOR_WRITE_ENABLE_ALL : u32 :  ( ( ( D3D11_COLOR_WRITE_ENABLE_RED | D3D11_COLOR_WRITE_ENABLE_GREEN )  | D3D11_COLOR_WRITE_ENABLE_BLUE )  | D3D11_COLOR_WRITE_ENABLE_ALPHA )
-    ;
+D3D11_COLOR_WRITE_ENABLE_ALL : u32 :  ( ( ( D3D11_COLOR_WRITE_ENABLE_RED | D3D11_COLOR_WRITE_ENABLE_GREEN )  | D3D11_COLOR_WRITE_ENABLE_BLUE )  | D3D11_COLOR_WRITE_ENABLE_ALPHA );
+
 //D3D11_TEXTURECUBE_FACE
 D3D11_TEXTURECUBE_FACE_POSITIVE_X : u32 :  0;
 D3D11_TEXTURECUBE_FACE_NEGATIVE_X : u32 :  1;
 D3D11_TEXTURECUBE_FACE_POSITIVE_Y : u32 :  2;
 D3D11_TEXTURECUBE_FACE_NEGATIVE_Y : u32 :  3;
 D3D11_TEXTURECUBE_FACE_POSITIVE_Z : u32 :  4;
-D3D11_TEXTURECUBE_FACE_NEGATIVE_Z : u32 :  5
-    ;
+D3D11_TEXTURECUBE_FACE_NEGATIVE_Z : u32 :  5;
+
 //D3D11_BUFFEREX_SRV_FLAG
-D3D11_BUFFEREX_SRV_FLAG_RAW : u32 :  0x1
-    ;
+D3D11_BUFFEREX_SRV_FLAG_RAW : u32 :  0x1;
+
 //D3D11_DSV_FLAG
 D3D11_DSV_READ_ONLY_DEPTH : u32 :  0x1;
-D3D11_DSV_READ_ONLY_STENCIL : u32 :  0x2
-    ;
+D3D11_DSV_READ_ONLY_STENCIL : u32 :  0x2;
+
 //D3D11_BUFFER_UAV_FLAG
 D3D11_BUFFER_UAV_FLAG_RAW : u32 :  0x1;
 D3D11_BUFFER_UAV_FLAG_APPEND : u32 :  0x2;
-D3D11_BUFFER_UAV_FLAG_COUNTER : u32 :  0x4
-    ;
+D3D11_BUFFER_UAV_FLAG_COUNTER : u32 :  0x4;
+
 //D3D11_FILTER
 D3D11_FILTER_MIN_MAG_MIP_POINT : u32 :  0;
 D3D11_FILTER_MIN_MAG_POINT_MIP_LINEAR : u32 :  0x1;
@@ -2171,25 +2250,25 @@ D3D11_FILTER_MAXIMUM_MIN_LINEAR_MAG_MIP_POINT : u32 :  0x190;
 D3D11_FILTER_MAXIMUM_MIN_LINEAR_MAG_POINT_MIP_LINEAR : u32 :  0x191;
 D3D11_FILTER_MAXIMUM_MIN_MAG_LINEAR_MIP_POINT : u32 :  0x194;
 D3D11_FILTER_MAXIMUM_MIN_MAG_MIP_LINEAR : u32 :  0x195;
-D3D11_FILTER_MAXIMUM_ANISOTROPIC : u32 :  0x1d5
-    ;
+D3D11_FILTER_MAXIMUM_ANISOTROPIC : u32 :  0x1d5;
+
 //D3D11_FILTER_TYPE
 D3D11_FILTER_TYPE_POINT : u32 :  0;
-D3D11_FILTER_TYPE_LINEAR : u32 :  1
-    ;
+D3D11_FILTER_TYPE_LINEAR : u32 :  1;
+
 //D3D11_FILTER_REDUCTION_TYPE
 D3D11_FILTER_REDUCTION_TYPE_STANDARD : u32 :  0;
 D3D11_FILTER_REDUCTION_TYPE_COMPARISON : u32 :  1;
 D3D11_FILTER_REDUCTION_TYPE_MINIMUM : u32 :  2;
-D3D11_FILTER_REDUCTION_TYPE_MAXIMUM : u32 :  3
-    ;
+D3D11_FILTER_REDUCTION_TYPE_MAXIMUM : u32 :  3;
+
 //D3D11_TEXTURE_ADDRESS_MODE
 D3D11_TEXTURE_ADDRESS_WRAP : u32 :  1;
 D3D11_TEXTURE_ADDRESS_MIRROR : u32 :  2;
 D3D11_TEXTURE_ADDRESS_CLAMP : u32 :  3;
 D3D11_TEXTURE_ADDRESS_BORDER : u32 :  4;
-D3D11_TEXTURE_ADDRESS_MIRROR_ONCE : u32 :  5
-    ;
+D3D11_TEXTURE_ADDRESS_MIRROR_ONCE : u32 :  5;
+
 //D3D11_FORMAT_SUPPORT
 D3D11_FORMAT_SUPPORT_BUFFER : u32 :  0x1;
 D3D11_FORMAT_SUPPORT_IA_VERTEX_BUFFER : u32 :  0x2;
@@ -2221,8 +2300,8 @@ D3D11_FORMAT_SUPPORT_SHADER_GATHER_COMPARISON : u32 :  0x4000000;
 D3D11_FORMAT_SUPPORT_DECODER_OUTPUT : u32 :  0x8000000;
 D3D11_FORMAT_SUPPORT_VIDEO_PROCESSOR_OUTPUT : u32 :  0x10000000;
 D3D11_FORMAT_SUPPORT_VIDEO_PROCESSOR_INPUT : u32 :  0x20000000;
-D3D11_FORMAT_SUPPORT_VIDEO_ENCODER : u32 :  0x40000000
-    ;
+D3D11_FORMAT_SUPPORT_VIDEO_ENCODER : u32 :  0x40000000;
+
 //D3D11_FORMAT_SUPPORT2
 D3D11_FORMAT_SUPPORT2_UAV_ATOMIC_ADD : u32 :  0x1;
 D3D11_FORMAT_SUPPORT2_UAV_ATOMIC_BITWISE_OPS : u32 :  0x2;
@@ -2235,11 +2314,11 @@ D3D11_FORMAT_SUPPORT2_UAV_TYPED_STORE : u32 :  0x80;
 D3D11_FORMAT_SUPPORT2_OUTPUT_MERGER_LOGIC_OP : u32 :  0x100;
 D3D11_FORMAT_SUPPORT2_TILED : u32 :  0x200;
 D3D11_FORMAT_SUPPORT2_SHAREABLE : u32 :  0x400;
-D3D11_FORMAT_SUPPORT2_MULTIPLANE_OVERLAY : u32 :  0x4000
-    ;
+D3D11_FORMAT_SUPPORT2_MULTIPLANE_OVERLAY : u32 :  0x4000;
+
 //D3D11_ASYNC_GETDATA_FLAG
-D3D11_ASYNC_GETDATA_DONOTFLUSH : u32 :  0x1
-    ;
+D3D11_ASYNC_GETDATA_DONOTFLUSH : u32 :  0x1;
+
 //D3D11_QUERY
 D3D11_QUERY_EVENT : u32 :  0;
 D3D11_QUERY_OCCLUSION : u32 :  ( D3D11_QUERY_EVENT + 1 ) ;
@@ -2256,28 +2335,28 @@ D3D11_QUERY_SO_OVERFLOW_PREDICATE_STREAM1 : u32 :  ( D3D11_QUERY_SO_STATISTICS_S
 D3D11_QUERY_SO_STATISTICS_STREAM2 : u32 :  ( D3D11_QUERY_SO_OVERFLOW_PREDICATE_STREAM1 + 1 ) ;
 D3D11_QUERY_SO_OVERFLOW_PREDICATE_STREAM2 : u32 :  ( D3D11_QUERY_SO_STATISTICS_STREAM2 + 1 ) ;
 D3D11_QUERY_SO_STATISTICS_STREAM3 : u32 :  ( D3D11_QUERY_SO_OVERFLOW_PREDICATE_STREAM2 + 1 ) ;
-D3D11_QUERY_SO_OVERFLOW_PREDICATE_STREAM3 : u32 :  ( D3D11_QUERY_SO_STATISTICS_STREAM3 + 1 )
-    ;
+D3D11_QUERY_SO_OVERFLOW_PREDICATE_STREAM3 : u32 :  ( D3D11_QUERY_SO_STATISTICS_STREAM3 + 1 );
+
 //D3D11_QUERY_MISC_FLAG
-D3D11_QUERY_MISC_PREDICATEHINT : u32 :  0x1
-    ;
+D3D11_QUERY_MISC_PREDICATEHINT : u32 :  0x1;
+
 //D3D11_COUNTER
-D3D11_COUNTER_DEVICE_DEPENDENT_0 : u32 :  0x40000000
-    ;
+D3D11_COUNTER_DEVICE_DEPENDENT_0 : u32 :  0x40000000;
+
 //D3D11_COUNTER_TYPE
 D3D11_COUNTER_TYPE_FLOAT32 : u32 :  0;
 D3D11_COUNTER_TYPE_UINT16 : u32 :  ( D3D11_COUNTER_TYPE_FLOAT32 + 1 ) ;
 D3D11_COUNTER_TYPE_UINT32 : u32 :  ( D3D11_COUNTER_TYPE_UINT16 + 1 ) ;
-D3D11_COUNTER_TYPE_UINT64 : u32 :  ( D3D11_COUNTER_TYPE_UINT32 + 1 )
-    ;
+D3D11_COUNTER_TYPE_UINT64 : u32 :  ( D3D11_COUNTER_TYPE_UINT32 + 1 );
+
 //D3D11_STANDARD_MULTISAMPLE_QUALITY_LEVELS
 D3D11_STANDARD_MULTISAMPLE_PATTERN : u32 :  0xffffffff;
-D3D11_CENTER_MULTISAMPLE_PATTERN : u32 :  0xfffffffe
-    ;
+D3D11_CENTER_MULTISAMPLE_PATTERN : u32 :  0xfffffffe;
+
 //D3D11_DEVICE_CONTEXT_TYPE
 D3D11_DEVICE_CONTEXT_IMMEDIATE : u32 :  0;
-D3D11_DEVICE_CONTEXT_DEFERRED : u32 :  ( D3D11_DEVICE_CONTEXT_IMMEDIATE + 1 )
-    ;
+D3D11_DEVICE_CONTEXT_DEFERRED : u32 :  ( D3D11_DEVICE_CONTEXT_IMMEDIATE + 1 );
+
 //D3D11_FEATURE
 D3D11_FEATURE_THREADING : u32 :  0;
 D3D11_FEATURE_DOUBLES : u32 :  ( D3D11_FEATURE_THREADING + 1 ) ;
@@ -2298,34 +2377,34 @@ D3D11_FEATURE_D3D11_OPTIONS3 : u32 :  ( D3D11_FEATURE_D3D11_OPTIONS2 + 1 ) ;
 D3D11_FEATURE_GPU_VIRTUAL_ADDRESS_SUPPORT : u32 :  ( D3D11_FEATURE_D3D11_OPTIONS3 + 1 ) ;
 D3D11_FEATURE_D3D11_OPTIONS4 : u32 :  ( D3D11_FEATURE_GPU_VIRTUAL_ADDRESS_SUPPORT + 1 ) ;
 D3D11_FEATURE_SHADER_CACHE : u32 :  ( D3D11_FEATURE_D3D11_OPTIONS4 + 1 ) ;
-D3D11_FEATURE_D3D11_OPTIONS5 : u32 :  ( D3D11_FEATURE_SHADER_CACHE + 1 )
-    ;
+D3D11_FEATURE_D3D11_OPTIONS5 : u32 :  ( D3D11_FEATURE_SHADER_CACHE + 1 );
+
 //D3D11_SHADER_MIN_PRECISION_SUPPORT
 D3D11_SHADER_MIN_PRECISION_10_BIT : u32 :  0x1;
-D3D11_SHADER_MIN_PRECISION_16_BIT : u32 :  0x2
-    ;
+D3D11_SHADER_MIN_PRECISION_16_BIT : u32 :  0x2;
+
 //D3D11_TILED_RESOURCES_TIER
 D3D11_TILED_RESOURCES_NOT_SUPPORTED : u32 :  0;
 D3D11_TILED_RESOURCES_TIER_1 : u32 :  1;
 D3D11_TILED_RESOURCES_TIER_2 : u32 :  2;
-D3D11_TILED_RESOURCES_TIER_3 : u32 :  3
-    ;
+D3D11_TILED_RESOURCES_TIER_3 : u32 :  3;
+
 //D3D11_CONSERVATIVE_RASTERIZATION_TIER
 D3D11_CONSERVATIVE_RASTERIZATION_NOT_SUPPORTED : u32 :  0;
 D3D11_CONSERVATIVE_RASTERIZATION_TIER_1 : u32 :  1;
 D3D11_CONSERVATIVE_RASTERIZATION_TIER_2 : u32 :  2;
-D3D11_CONSERVATIVE_RASTERIZATION_TIER_3 : u32 :  3
-    ;
+D3D11_CONSERVATIVE_RASTERIZATION_TIER_3 : u32 :  3;
+
 //D3D11_SHADER_CACHE_SUPPORT_FLAGS
 D3D11_SHADER_CACHE_SUPPORT_NONE : u32 :  0;
 D3D11_SHADER_CACHE_SUPPORT_AUTOMATIC_INPROC_CACHE : u32 :  0x1;
-D3D11_SHADER_CACHE_SUPPORT_AUTOMATIC_DISK_CACHE : u32 :  0x2
-    ;
+D3D11_SHADER_CACHE_SUPPORT_AUTOMATIC_DISK_CACHE : u32 :  0x2;
+
 //D3D11_SHARED_RESOURCE_TIER
 D3D11_SHARED_RESOURCE_TIER_0 : u32 :  0;
 D3D11_SHARED_RESOURCE_TIER_1 : u32 :  ( D3D11_SHARED_RESOURCE_TIER_0 + 1 ) ;
-D3D11_SHARED_RESOURCE_TIER_2 : u32 :  ( D3D11_SHARED_RESOURCE_TIER_1 + 1 )
-    ;
+D3D11_SHARED_RESOURCE_TIER_2 : u32 :  ( D3D11_SHARED_RESOURCE_TIER_1 + 1 );
+
 //D3D11_VIDEO_DECODER_BUFFER_TYPE
 D3D11_VIDEO_DECODER_BUFFER_PICTURE_PARAMETERS : u32 :  0;
 D3D11_VIDEO_DECODER_BUFFER_MACROBLOCK_CONTROL : u32 :  1;
@@ -2335,19 +2414,19 @@ D3D11_VIDEO_DECODER_BUFFER_INVERSE_QUANTIZATION_MATRIX : u32 :  4;
 D3D11_VIDEO_DECODER_BUFFER_SLICE_CONTROL : u32 :  5;
 D3D11_VIDEO_DECODER_BUFFER_BITSTREAM : u32 :  6;
 D3D11_VIDEO_DECODER_BUFFER_MOTION_VECTOR : u32 :  7;
-D3D11_VIDEO_DECODER_BUFFER_FILM_GRAIN : u32 :  8
-    ;
+D3D11_VIDEO_DECODER_BUFFER_FILM_GRAIN : u32 :  8;
+
 //D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT
 D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT_INPUT : u32 :  0x1;
-D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT_OUTPUT : u32 :  0x2
-    ;
+D3D11_VIDEO_PROCESSOR_FORMAT_SUPPORT_OUTPUT : u32 :  0x2;
+
 //D3D11_VIDEO_PROCESSOR_DEVICE_CAPS
 D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_LINEAR_SPACE : u32 :  0x1;
 D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_xvYCC : u32 :  0x2;
 D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_RGB_RANGE_CONVERSION : u32 :  0x4;
 D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_YCbCr_MATRIX_CONVERSION : u32 :  0x8;
-D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_NOMINAL_RANGE : u32 :  0x10
-    ;
+D3D11_VIDEO_PROCESSOR_DEVICE_CAPS_NOMINAL_RANGE : u32 :  0x10;
+
 //D3D11_VIDEO_PROCESSOR_FEATURE_CAPS
 D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_FILL : u32 :  0x1;
 D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_CONSTRICTION : u32 :  0x2;
@@ -2360,8 +2439,8 @@ D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_ALPHA_STREAM : u32 :  0x80;
 D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_PIXEL_ASPECT_RATIO : u32 :  0x100;
 D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_MIRROR : u32 :  0x200;
 D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_SHADER_USAGE : u32 :  0x400;
-D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_METADATA_HDR10 : u32 :  0x800
-    ;
+D3D11_VIDEO_PROCESSOR_FEATURE_CAPS_METADATA_HDR10 : u32 :  0x800;
+
 //D3D11_VIDEO_PROCESSOR_FILTER_CAPS
 D3D11_VIDEO_PROCESSOR_FILTER_CAPS_BRIGHTNESS : u32 :  0x1;
 D3D11_VIDEO_PROCESSOR_FILTER_CAPS_CONTRAST : u32 :  0x2;
@@ -2370,14 +2449,14 @@ D3D11_VIDEO_PROCESSOR_FILTER_CAPS_SATURATION : u32 :  0x8;
 D3D11_VIDEO_PROCESSOR_FILTER_CAPS_NOISE_REDUCTION : u32 :  0x10;
 D3D11_VIDEO_PROCESSOR_FILTER_CAPS_EDGE_ENHANCEMENT : u32 :  0x20;
 D3D11_VIDEO_PROCESSOR_FILTER_CAPS_ANAMORPHIC_SCALING : u32 :  0x40;
-D3D11_VIDEO_PROCESSOR_FILTER_CAPS_STEREO_ADJUSTMENT : u32 :  0x80
-    ;
+D3D11_VIDEO_PROCESSOR_FILTER_CAPS_STEREO_ADJUSTMENT : u32 :  0x80;
+
 //D3D11_VIDEO_PROCESSOR_FORMAT_CAPS
 D3D11_VIDEO_PROCESSOR_FORMAT_CAPS_RGB_INTERLACED : u32 :  0x1;
 D3D11_VIDEO_PROCESSOR_FORMAT_CAPS_RGB_PROCAMP : u32 :  0x2;
 D3D11_VIDEO_PROCESSOR_FORMAT_CAPS_RGB_LUMA_KEY : u32 :  0x4;
-D3D11_VIDEO_PROCESSOR_FORMAT_CAPS_PALETTE_INTERLACED : u32 :  0x8
-    ;
+D3D11_VIDEO_PROCESSOR_FORMAT_CAPS_PALETTE_INTERLACED : u32 :  0x8;
+
 //D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS
 D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_DENOISE : u32 :  0x1;
 D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_DERINGING : u32 :  0x2;
@@ -2386,23 +2465,23 @@ D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_COLOR_CORRECTION : u32 :  0x8;
 D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_FLESH_TONE_MAPPING : u32 :  0x10;
 D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_IMAGE_STABILIZATION : u32 :  0x20;
 D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_SUPER_RESOLUTION : u32 :  0x40;
-D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_ANAMORPHIC_SCALING : u32 :  0x80
-    ;
+D3D11_VIDEO_PROCESSOR_AUTO_STREAM_CAPS_ANAMORPHIC_SCALING : u32 :  0x80;
+
 //D3D11_VIDEO_PROCESSOR_STEREO_CAPS
 D3D11_VIDEO_PROCESSOR_STEREO_CAPS_MONO_OFFSET : u32 :  0x1;
 D3D11_VIDEO_PROCESSOR_STEREO_CAPS_ROW_INTERLEAVED : u32 :  0x2;
 D3D11_VIDEO_PROCESSOR_STEREO_CAPS_COLUMN_INTERLEAVED : u32 :  0x4;
 D3D11_VIDEO_PROCESSOR_STEREO_CAPS_CHECKERBOARD : u32 :  0x8;
-D3D11_VIDEO_PROCESSOR_STEREO_CAPS_FLIP_MODE : u32 :  0x10
-    ;
+D3D11_VIDEO_PROCESSOR_STEREO_CAPS_FLIP_MODE : u32 :  0x10;
+
 //D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS
 D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_DEINTERLACE_BLEND : u32 :  0x1;
 D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_DEINTERLACE_BOB : u32 :  0x2;
 D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_DEINTERLACE_ADAPTIVE : u32 :  0x4;
 D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_DEINTERLACE_MOTION_COMPENSATION : u32 :  0x8;
 D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_INVERSE_TELECINE : u32 :  0x10;
-D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_FRAME_RATE_CONVERSION : u32 :  0x20
-    ;
+D3D11_VIDEO_PROCESSOR_PROCESSOR_CAPS_FRAME_RATE_CONVERSION : u32 :  0x20;
+
 //D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS
 D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_32 : u32 :  0x1;
 D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_22 : u32 :  0x2;
@@ -2413,8 +2492,8 @@ D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_55 : u32 :  0x20;
 D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_64 : u32 :  0x40;
 D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_87 : u32 :  0x80;
 D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_222222222223 : u32 :  0x100;
-D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_OTHER : u32 :  0x80000000
-    ;
+D3D11_VIDEO_PROCESSOR_ITELECINE_CAPS_OTHER : u32 :  0x80000000;
+
 //D3D11_CONTENT_PROTECTION_CAPS
 D3D11_CONTENT_PROTECTION_CAPS_SOFTWARE : u32 :  0x1;
 D3D11_CONTENT_PROTECTION_CAPS_HARDWARE : u32 :  0x2;
@@ -2431,8 +2510,8 @@ D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_PROTECT_UNCOMPRESSED : u32 :  0x800;
 D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_PROTECTED_MEMORY_PAGEABLE : u32 :  0x1000;
 D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_TEARDOWN : u32 :  0x2000;
 D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_DRM_COMMUNICATION : u32 :  0x4000;
-D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_DRM_COMMUNICATION_MULTI_THREADED : u32 :  0x8000
-    ;
+D3D11_CONTENT_PROTECTION_CAPS_HARDWARE_DRM_COMMUNICATION_MULTI_THREADED : u32 :  0x8000;
+
 //D3D11_VIDEO_PROCESSOR_FILTER
 D3D11_VIDEO_PROCESSOR_FILTER_BRIGHTNESS : u32 :  0;
 D3D11_VIDEO_PROCESSOR_FILTER_CONTRAST : u32 :  1;
@@ -2441,34 +2520,34 @@ D3D11_VIDEO_PROCESSOR_FILTER_SATURATION : u32 :  3;
 D3D11_VIDEO_PROCESSOR_FILTER_NOISE_REDUCTION : u32 :  4;
 D3D11_VIDEO_PROCESSOR_FILTER_EDGE_ENHANCEMENT : u32 :  5;
 D3D11_VIDEO_PROCESSOR_FILTER_ANAMORPHIC_SCALING : u32 :  6;
-D3D11_VIDEO_PROCESSOR_FILTER_STEREO_ADJUSTMENT : u32 :  7
-    ;
+D3D11_VIDEO_PROCESSOR_FILTER_STEREO_ADJUSTMENT : u32 :  7;
+
 //D3D11_VIDEO_FRAME_FORMAT
 D3D11_VIDEO_FRAME_FORMAT_PROGRESSIVE : u32 :  0;
 D3D11_VIDEO_FRAME_FORMAT_INTERLACED_TOP_FIELD_FIRST : u32 :  1;
-D3D11_VIDEO_FRAME_FORMAT_INTERLACED_BOTTOM_FIELD_FIRST : u32 :  2
-    ;
+D3D11_VIDEO_FRAME_FORMAT_INTERLACED_BOTTOM_FIELD_FIRST : u32 :  2;
+
 //D3D11_VIDEO_USAGE
 D3D11_VIDEO_USAGE_PLAYBACK_NORMAL : u32 :  0;
 D3D11_VIDEO_USAGE_OPTIMAL_SPEED : u32 :  1;
-D3D11_VIDEO_USAGE_OPTIMAL_QUALITY : u32 :  2
-    ;
+D3D11_VIDEO_USAGE_OPTIMAL_QUALITY : u32 :  2;
+
 //D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE
 D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE_UNDEFINED : u32 :  0;
 D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE_16_235 : u32 :  1;
-D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE_0_255 : u32 :  2
-    ;
+D3D11_VIDEO_PROCESSOR_NOMINAL_RANGE_0_255 : u32 :  2;
+
 //D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE
 D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE_OPAQUE : u32 :  0;
 D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE_BACKGROUND : u32 :  1;
 D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE_DESTINATION : u32 :  2;
-D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE_SOURCE_STREAM : u32 :  3
-    ;
+D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE_SOURCE_STREAM : u32 :  3;
+
 //D3D11_VIDEO_PROCESSOR_OUTPUT_RATE
 D3D11_VIDEO_PROCESSOR_OUTPUT_RATE_NORMAL : u32 :  0;
 D3D11_VIDEO_PROCESSOR_OUTPUT_RATE_HALF : u32 :  1;
-D3D11_VIDEO_PROCESSOR_OUTPUT_RATE_CUSTOM : u32 :  2
-    ;
+D3D11_VIDEO_PROCESSOR_OUTPUT_RATE_CUSTOM : u32 :  2;
+
 //D3D11_VIDEO_PROCESSOR_STEREO_FORMAT
 D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_MONO : u32 :  0;
 D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_HORIZONTAL : u32 :  1;
@@ -2477,29 +2556,29 @@ D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_SEPARATE : u32 :  3;
 D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_MONO_OFFSET : u32 :  4;
 D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_ROW_INTERLEAVED : u32 :  5;
 D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_COLUMN_INTERLEAVED : u32 :  6;
-D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_CHECKERBOARD : u32 :  7
-    ;
+D3D11_VIDEO_PROCESSOR_STEREO_FORMAT_CHECKERBOARD : u32 :  7;
+
 //D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE
 D3D11_VIDEO_PROCESSOR_STEREO_FLIP_NONE : u32 :  0;
 D3D11_VIDEO_PROCESSOR_STEREO_FLIP_FRAME0 : u32 :  1;
-D3D11_VIDEO_PROCESSOR_STEREO_FLIP_FRAME1 : u32 :  2
-    ;
+D3D11_VIDEO_PROCESSOR_STEREO_FLIP_FRAME1 : u32 :  2;
+
 //D3D11_VIDEO_PROCESSOR_ROTATION
 D3D11_VIDEO_PROCESSOR_ROTATION_IDENTITY : u32 :  0;
 D3D11_VIDEO_PROCESSOR_ROTATION_90 : u32 :  1;
 D3D11_VIDEO_PROCESSOR_ROTATION_180 : u32 :  2;
-D3D11_VIDEO_PROCESSOR_ROTATION_270 : u32 :  3
-    ;
+D3D11_VIDEO_PROCESSOR_ROTATION_270 : u32 :  3;
+
 //D3D11_AUTHENTICATED_CHANNEL_TYPE
 D3D11_AUTHENTICATED_CHANNEL_D3D11 : u32 :  1;
 D3D11_AUTHENTICATED_CHANNEL_DRIVER_SOFTWARE : u32 :  2;
-D3D11_AUTHENTICATED_CHANNEL_DRIVER_HARDWARE : u32 :  3
-    ;
+D3D11_AUTHENTICATED_CHANNEL_DRIVER_HARDWARE : u32 :  3;
+
 //D3D11_AUTHENTICATED_PROCESS_IDENTIFIER_TYPE
 D3D11_PROCESSIDTYPE_UNKNOWN : u32 :  0;
 D3D11_PROCESSIDTYPE_DWM : u32 :  1;
-D3D11_PROCESSIDTYPE_HANDLE : u32 :  2
-    ;
+D3D11_PROCESSIDTYPE_HANDLE : u32 :  2;
+
 //D3D11_BUS_TYPE
 D3D11_BUS_TYPE_OTHER : u32 :  0;
 D3D11_BUS_TYPE_PCI : u32 :  0x1;
@@ -2511,21 +2590,21 @@ D3D11_BUS_IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_CHIP : u32 :  0x20000;
 D3D11_BUS_IMPL_MODIFIER_TRACKS_ON_MOTHER_BOARD_TO_SOCKET : u32 :  0x30000;
 D3D11_BUS_IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR : u32 :  0x40000;
 D3D11_BUS_IMPL_MODIFIER_DAUGHTER_BOARD_CONNECTOR_INSIDE_OF_NUAE : u32 :  0x50000;
-D3D11_BUS_IMPL_MODIFIER_NON_STANDARD : u32 :  0x80000000
-    ;
+D3D11_BUS_IMPL_MODIFIER_NON_STANDARD : u32 :  0x80000000;
+
 //D3D11_VDOV_DIMENSION
 D3D11_VDOV_DIMENSION_UNKNOWN : u32 :  0;
-D3D11_VDOV_DIMENSION_TEXTURE2D : u32 :  1
-    ;
+D3D11_VDOV_DIMENSION_TEXTURE2D : u32 :  1;
+
 //D3D11_VPIV_DIMENSION
 D3D11_VPIV_DIMENSION_UNKNOWN : u32 :  0;
-D3D11_VPIV_DIMENSION_TEXTURE2D : u32 :  1
-    ;
+D3D11_VPIV_DIMENSION_TEXTURE2D : u32 :  1;
+
 //D3D11_VPOV_DIMENSION
 D3D11_VPOV_DIMENSION_UNKNOWN : u32 :  0;
 D3D11_VPOV_DIMENSION_TEXTURE2D : u32 :  1;
-D3D11_VPOV_DIMENSION_TEXTURE2DARRAY : u32 :  2
-    ;
+D3D11_VPOV_DIMENSION_TEXTURE2DARRAY : u32 :  2;
+
 //D3D11_CREATE_DEVICE_FLAG
 D3D11_CREATE_DEVICE_SINGLETHREADED : u32 :  0x1;
 D3D11_CREATE_DEVICE_DEBUG : u32 :  0x2;
@@ -2535,5 +2614,5 @@ D3D11_CREATE_DEVICE_BGRA_SUPPORT : u32 :  0x20;
 D3D11_CREATE_DEVICE_DEBUGGABLE : u32 :  0x40;
 D3D11_CREATE_DEVICE_PREVENT_ALTERING_LAYER_SETTINGS_FROM_REGISTRY : u32 :  0x80;
 D3D11_CREATE_DEVICE_DISABLE_GPU_TIMEOUT : u32 :  0x100;
-D3D11_CREATE_DEVICE_VIDEO_SUPPORT : u32 :  0x800
-    ;
+D3D11_CREATE_DEVICE_VIDEO_SUPPORT : u32 :  0x800;
+

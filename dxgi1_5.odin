@@ -1,8 +1,9 @@
 package dx
 
 IDXGIOutput5 :: struct {
-    using vtbl: ^IDXGIOutput5Vtbl
+    using vtbl: ^IDXGIOutput5Vtbl,
 }
+
 IDXGIOutput5Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIOutput5, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIOutput5) -> ULONG,
@@ -32,6 +33,7 @@ IDXGIOutput5Vtbl :: struct {
     CheckOverlayColorSpaceSupport : proc(This: ^IDXGIOutput5, Format: DXGI_FORMAT, ColorSpace: DXGI_COLOR_SPACE_TYPE, pConcernedDevice: ^IUnknown, pFlags: ^UINT) -> HRESULT,
     DuplicateOutput1 : proc(This: ^IDXGIOutput5, pDevice: ^IUnknown, Flags: UINT, SupportedFormatsCount: UINT, pSupportedFormats: ^DXGI_FORMAT, ppOutputDuplication: ^^IDXGIOutputDuplication) -> HRESULT,
 }
+
 DXGI_HDR_METADATA_HDR10 :: struct {
     RedPrimary: [2]UINT16,
     GreenPrimary: [2]UINT16,
@@ -42,9 +44,11 @@ DXGI_HDR_METADATA_HDR10 :: struct {
     MaxContentLightLevel: UINT16,
     MaxFrameAverageLightLevel: UINT16,
 }
+
 IDXGISwapChain4 :: struct {
-    using vtbl: ^IDXGISwapChain4Vtbl
+    using vtbl: ^IDXGISwapChain4Vtbl,
 }
+
 IDXGISwapChain4Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGISwapChain4, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGISwapChain4) -> ULONG,
@@ -88,9 +92,11 @@ IDXGISwapChain4Vtbl :: struct {
     ResizeBuffers1 : proc(This: ^IDXGISwapChain4, BufferCount: UINT, Width: UINT, Height: UINT, Format: DXGI_FORMAT, SwapChainFlags: UINT, pCreationNodeMask: ^UINT, ppPresentQueue: ^^IUnknown) -> HRESULT,
     SetHDRMetaData : proc(This: ^IDXGISwapChain4, Type: UINT, Size: UINT, pMetaData: rawptr) -> HRESULT,
 }
+
 IDXGIDevice4 :: struct {
-    using vtbl: ^IDXGIDevice4Vtbl
+    using vtbl: ^IDXGIDevice4Vtbl,
 }
+
 IDXGIDevice4Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIDevice4, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIDevice4) -> ULONG,
@@ -113,9 +119,11 @@ IDXGIDevice4Vtbl :: struct {
     OfferResources1 : proc(This: ^IDXGIDevice4, NumResources: UINT, ppResources: ^^IDXGIResource, Priority: DXGI_OFFER_RESOURCE_PRIORITY, Flags: UINT) -> HRESULT,
     ReclaimResources1 : proc(This: ^IDXGIDevice4, NumResources: UINT, ppResources: ^^IDXGIResource, pResults: ^DXGI_RECLAIM_RESOURCE_RESULTS) -> HRESULT,
 }
+
 IDXGIFactory5 :: struct {
-    using vtbl: ^IDXGIFactory5Vtbl
+    using vtbl: ^IDXGIFactory5Vtbl,
 }
+
 IDXGIFactory5Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIFactory5, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIFactory5) -> ULONG,
@@ -147,21 +155,21 @@ IDXGIFactory5Vtbl :: struct {
     EnumWarpAdapter : proc(This: ^IDXGIFactory5, riid: REFIID, ppvAdapter: ^rawptr) -> HRESULT,
     CheckFeatureSupport : proc(This: ^IDXGIFactory5, Feature: UINT, pFeatureSupportData: rawptr, FeatureSupportDataSize: UINT) -> HRESULT,
 }
+
 //DXGI_OUTDUPL_FLAG
-DXGI_OUTDUPL_COMPOSITED_UI_CAPTURE_ONLY : u32 :  1
-    ;
+DXGI_OUTDUPL_COMPOSITED_UI_CAPTURE_ONLY : u32 :  1;
+
 //DXGI_HDR_METADATA_TYPE
 DXGI_HDR_METADATA_TYPE_NONE : u32 :  0;
-DXGI_HDR_METADATA_TYPE_HDR10 : u32 :  1
-    ;
+DXGI_HDR_METADATA_TYPE_HDR10 : u32 :  1;
+
 //_DXGI_OFFER_RESOURCE_FLAGS
-DXGI_OFFER_RESOURCE_FLAG_ALLOW_DECOMMIT : u32 :  0x1
-    ;
+DXGI_OFFER_RESOURCE_FLAG_ALLOW_DECOMMIT : u32 :  0x1;
+
 //_DXGI_RECLAIM_RESOURCE_RESULTS
 DXGI_RECLAIM_RESOURCE_RESULT_OK : u32 :  0;
 DXGI_RECLAIM_RESOURCE_RESULT_DISCARDED : u32 :  1;
-DXGI_RECLAIM_RESOURCE_RESULT_NOT_COMMITTED : u32 :  2
-    ;
+DXGI_RECLAIM_RESOURCE_RESULT_NOT_COMMITTED : u32 :  2;
+
 //DXGI_FEATURE
-DXGI_FEATURE_PRESENT_ALLOW_TEARING : u32 :  0
-    ;
+DXGI_FEATURE_PRESENT_ALLOW_TEARING : u32 :  0;

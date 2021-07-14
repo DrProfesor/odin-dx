@@ -1,8 +1,9 @@
 package dx
 
 IDXGIDisplayControl :: struct {
-    using vtbl: ^IDXGIDisplayControlVtbl
+    using vtbl: ^IDXGIDisplayControlVtbl,
 }
+
 IDXGIDisplayControlVtbl :: struct {
     QueryInterface : proc(This: ^IDXGIDisplayControl, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIDisplayControl) -> ULONG,
@@ -10,19 +11,23 @@ IDXGIDisplayControlVtbl :: struct {
     IsStereoEnabled : proc(This: ^IDXGIDisplayControl) -> BOOL,
     SetStereoEnabled : proc(This: ^IDXGIDisplayControl, enabled: BOOL),
 }
+
 DXGI_OUTDUPL_MOVE_RECT :: struct {
     SourcePoint: POINT,
     DestinationRect: RECT,
 }
+
 DXGI_OUTDUPL_DESC :: struct {
     ModeDesc: DXGI_MODE_DESC,
     Rotation: DXGI_MODE_ROTATION,
     DesktopImageInSystemMemory: BOOL,
 }
+
 DXGI_OUTDUPL_POINTER_POSITION :: struct {
     Position: POINT,
     Visible: BOOL,
 }
+
 DXGI_OUTDUPL_POINTER_SHAPE_INFO :: struct {
     Type: UINT,
     Width: UINT,
@@ -30,6 +35,7 @@ DXGI_OUTDUPL_POINTER_SHAPE_INFO :: struct {
     Pitch: UINT,
     HotSpot: POINT,
 }
+
 DXGI_OUTDUPL_FRAME_INFO :: struct {
     LastPresentTime: LARGE_INTEGER,
     LastMouseUpdateTime: LARGE_INTEGER,
@@ -40,9 +46,11 @@ DXGI_OUTDUPL_FRAME_INFO :: struct {
     TotalMetadataBufferSize: UINT,
     PointerShapeBufferSize: UINT,
 }
+
 IDXGIOutputDuplication :: struct {
-    using vtbl: ^IDXGIOutputDuplicationVtbl
+    using vtbl: ^IDXGIOutputDuplicationVtbl,
 }
+
 IDXGIOutputDuplicationVtbl :: struct {
     QueryInterface : proc(This: ^IDXGIOutputDuplication, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIOutputDuplication) -> ULONG,
@@ -60,9 +68,11 @@ IDXGIOutputDuplicationVtbl :: struct {
     UnMapDesktopSurface : proc(This: ^IDXGIOutputDuplication) -> HRESULT,
     ReleaseFrame : proc(This: ^IDXGIOutputDuplication) -> HRESULT,
 }
+
 IDXGISurface2 :: struct {
-    using vtbl: ^IDXGISurface2Vtbl
+    using vtbl: ^IDXGISurface2Vtbl,
 }
+
 IDXGISurface2Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGISurface2, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGISurface2) -> ULONG,
@@ -79,9 +89,11 @@ IDXGISurface2Vtbl :: struct {
     ReleaseDC : proc(This: ^IDXGISurface2, pDirtyRect: ^RECT) -> HRESULT,
     GetResource : proc(This: ^IDXGISurface2, riid: REFIID, ppParentResource: ^rawptr, pSubresourceIndex: ^UINT) -> HRESULT,
 }
+
 IDXGIResource1 :: struct {
-    using vtbl: ^IDXGIResource1Vtbl
+    using vtbl: ^IDXGIResource1Vtbl,
 }
+
 IDXGIResource1Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIResource1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIResource1) -> ULONG,
@@ -98,9 +110,11 @@ IDXGIResource1Vtbl :: struct {
     CreateSubresourceSurface : proc(This: ^IDXGIResource1, index: UINT, ppSurface: ^^IDXGISurface2) -> HRESULT,
     CreateSharedHandle : proc(This: ^IDXGIResource1, pAttributes: ^SECURITY_ATTRIBUTES, dwAccess: DWORD, lpName: LPCWSTR, pHandle: ^HANDLE) -> HRESULT,
 }
+
 IDXGIDevice2 :: struct {
-    using vtbl: ^IDXGIDevice2Vtbl
+    using vtbl: ^IDXGIDevice2Vtbl,
 }
+
 IDXGIDevice2Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIDevice2, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIDevice2) -> ULONG,
@@ -120,6 +134,7 @@ IDXGIDevice2Vtbl :: struct {
     ReclaimResources : proc(This: ^IDXGIDevice2, NumResources: UINT, ppResources: ^IDXGIResource, pDiscarded: ^BOOL) -> HRESULT,
     EnqueueSetEvent : proc(This: ^IDXGIDevice2, hEvent: HANDLE) -> HRESULT,
 }
+
 DXGI_MODE_DESC1 :: struct {
     Width: UINT,
     Height: UINT,
@@ -129,6 +144,7 @@ DXGI_MODE_DESC1 :: struct {
     Scaling: DXGI_MODE_SCALING,
     Stereo: BOOL,
 }
+
 DXGI_SWAP_CHAIN_DESC1 :: struct {
     Width: UINT,
     Height: UINT,
@@ -142,21 +158,25 @@ DXGI_SWAP_CHAIN_DESC1 :: struct {
     AlphaMode: UINT,
     Flags: UINT,
 }
+
 DXGI_SWAP_CHAIN_FULLSCREEN_DESC :: struct {
     RefreshRate: DXGI_RATIONAL,
     ScanlineOrdering: DXGI_MODE_SCANLINE_ORDER,
     Scaling: DXGI_MODE_SCALING,
     Windowed: BOOL,
 }
+
 DXGI_PRESENT_PARAMETERS :: struct {
     DirtyRectsCount: UINT,
     pDirtyRects: ^RECT,
     pScrollRect: ^RECT,
     pScrollOffset: ^POINT,
 }
+
 IDXGISwapChain1 :: struct {
-    using vtbl: ^IDXGISwapChain1Vtbl
+    using vtbl: ^IDXGISwapChain1Vtbl,
 }
+
 IDXGISwapChain1Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGISwapChain1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGISwapChain1) -> ULONG,
@@ -188,9 +208,11 @@ IDXGISwapChain1Vtbl :: struct {
     SetRotation : proc(This: ^IDXGISwapChain1, Rotation: DXGI_MODE_ROTATION) -> HRESULT,
     GetRotation : proc(This: ^IDXGISwapChain1, pRotation: ^DXGI_MODE_ROTATION) -> HRESULT,
 }
+
 IDXGIFactory2 :: struct {
-    using vtbl: ^IDXGIFactory2Vtbl
+    using vtbl: ^IDXGIFactory2Vtbl,
 }
+
 IDXGIFactory2Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIFactory2, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIFactory2) -> ULONG,
@@ -218,6 +240,7 @@ IDXGIFactory2Vtbl :: struct {
     UnregisterOcclusionStatus : proc(This: ^IDXGIFactory2, dwCookie: DWORD),
     CreateSwapChainForComposition : proc(This: ^IDXGIFactory2, pDevice: ^IUnknown, pDesc: ^DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ^IDXGIOutput, ppSwapChain: ^^IDXGISwapChain1) -> HRESULT,
 }
+
 DXGI_ADAPTER_DESC2 :: struct {
     Description: [128]WCHAR,
     VendorId: UINT,
@@ -232,9 +255,11 @@ DXGI_ADAPTER_DESC2 :: struct {
     GraphicsPreemptionGranularity: UINT,
     ComputePreemptionGranularity: UINT,
 }
+
 IDXGIAdapter2 :: struct {
-    using vtbl: ^IDXGIAdapter2Vtbl
+    using vtbl: ^IDXGIAdapter2Vtbl,
 }
+
 IDXGIAdapter2Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIAdapter2, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIAdapter2) -> ULONG,
@@ -249,9 +274,11 @@ IDXGIAdapter2Vtbl :: struct {
     GetDesc1 : proc(This: ^IDXGIAdapter2, pDesc: ^DXGI_ADAPTER_DESC1) -> HRESULT,
     GetDesc2 : proc(This: ^IDXGIAdapter2, pDesc: ^DXGI_ADAPTER_DESC2) -> HRESULT,
 }
+
 IDXGIOutput1 :: struct {
-    using vtbl: ^IDXGIOutput1Vtbl
+    using vtbl: ^IDXGIOutput1Vtbl,
 }
+
 IDXGIOutput1Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIOutput1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIOutput1) -> ULONG,
@@ -277,39 +304,39 @@ IDXGIOutput1Vtbl :: struct {
     GetDisplaySurfaceData1 : proc(This: ^IDXGIOutput1, pDestination: ^IDXGIResource) -> HRESULT,
     DuplicateOutput : proc(This: ^IDXGIOutput1, pDevice: ^IUnknown, ppOutputDuplication: ^^IDXGIOutputDuplication) -> HRESULT,
 }
+
 //DXGI_OUTDUPL_POINTER_SHAPE_TYPE
 DXGI_OUTDUPL_POINTER_SHAPE_TYPE_MONOCHROME : u32 :  0x1;
 DXGI_OUTDUPL_POINTER_SHAPE_TYPE_COLOR : u32 :  0x2;
-DXGI_OUTDUPL_POINTER_SHAPE_TYPE_MASKED_COLOR : u32 :  0x4
-    ;
+DXGI_OUTDUPL_POINTER_SHAPE_TYPE_MASKED_COLOR : u32 :  0x4;
+
 //DXGI_ALPHA_MODE
 DXGI_ALPHA_MODE_UNSPECIFIED : u32 :  0;
 DXGI_ALPHA_MODE_PREMULTIPLIED : u32 :  1;
 DXGI_ALPHA_MODE_STRAIGHT : u32 :  2;
 DXGI_ALPHA_MODE_IGNORE : u32 :  3;
-DXGI_ALPHA_MODE_FORCE_DWORD : u32 :  0xffffffff
-    ;
+DXGI_ALPHA_MODE_FORCE_DWORD : u32 :  0xffffffff;
+
 //_DXGI_OFFER_RESOURCE_PRIORITY
 DXGI_OFFER_RESOURCE_PRIORITY_LOW : u32 :  1;
 DXGI_OFFER_RESOURCE_PRIORITY_NORMAL : u32 :  ( DXGI_OFFER_RESOURCE_PRIORITY_LOW + 1 ) ;
-DXGI_OFFER_RESOURCE_PRIORITY_HIGH : u32 :  ( DXGI_OFFER_RESOURCE_PRIORITY_NORMAL + 1 )
-    ;
+DXGI_OFFER_RESOURCE_PRIORITY_HIGH : u32 :  ( DXGI_OFFER_RESOURCE_PRIORITY_NORMAL + 1 );
+
 //DXGI_SCALING
 DXGI_SCALING_STRETCH : u32 :  0;
 DXGI_SCALING_NONE : u32 :  1;
-DXGI_SCALING_ASPECT_RATIO_STRETCH : u32 :  2
-    ;
+DXGI_SCALING_ASPECT_RATIO_STRETCH : u32 :  2;
+
 //DXGI_GRAPHICS_PREEMPTION_GRANULARITY
 DXGI_GRAPHICS_PREEMPTION_DMA_BUFFER_BOUNDARY : u32 :  0;
 DXGI_GRAPHICS_PREEMPTION_PRIMITIVE_BOUNDARY : u32 :  1;
 DXGI_GRAPHICS_PREEMPTION_TRIANGLE_BOUNDARY : u32 :  2;
 DXGI_GRAPHICS_PREEMPTION_PIXEL_BOUNDARY : u32 :  3;
-DXGI_GRAPHICS_PREEMPTION_INSTRUCTION_BOUNDARY : u32 :  4
-    ;
+DXGI_GRAPHICS_PREEMPTION_INSTRUCTION_BOUNDARY : u32 :  4;
+
 //DXGI_COMPUTE_PREEMPTION_GRANULARITY
 DXGI_COMPUTE_PREEMPTION_DMA_BUFFER_BOUNDARY : u32 :  0;
 DXGI_COMPUTE_PREEMPTION_DISPATCH_BOUNDARY : u32 :  1;
 DXGI_COMPUTE_PREEMPTION_THREAD_GROUP_BOUNDARY : u32 :  2;
 DXGI_COMPUTE_PREEMPTION_THREAD_BOUNDARY : u32 :  3;
-DXGI_COMPUTE_PREEMPTION_INSTRUCTION_BOUNDARY : u32 :  4
-    ;
+DXGI_COMPUTE_PREEMPTION_INSTRUCTION_BOUNDARY : u32 :  4;

@@ -13,9 +13,11 @@ D3D11_TEXTURE2D_DESC1 :: struct {
     MiscFlags: UINT,
     TextureLayout: UINT,
 }
+
 ID3D11Texture2D1 :: struct {
-    using vtbl: ^ID3D11Texture2D1Vtbl
+    using vtbl: ^ID3D11Texture2D1Vtbl,
 }
+
 ID3D11Texture2D1Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Texture2D1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Texture2D1) -> ULONG,
@@ -30,6 +32,7 @@ ID3D11Texture2D1Vtbl :: struct {
     GetDesc : proc(This: ^ID3D11Texture2D1, pDesc: ^D3D11_TEXTURE2D_DESC),
     GetDesc1 : proc(This: ^ID3D11Texture2D1, pDesc: ^D3D11_TEXTURE2D_DESC1),
 }
+
 D3D11_TEXTURE3D_DESC1 :: struct {
     Width: UINT,
     Height: UINT,
@@ -42,9 +45,11 @@ D3D11_TEXTURE3D_DESC1 :: struct {
     MiscFlags: UINT,
     TextureLayout: UINT,
 }
+
 ID3D11Texture3D1 :: struct {
-    using vtbl: ^ID3D11Texture3D1Vtbl
+    using vtbl: ^ID3D11Texture3D1Vtbl,
 }
+
 ID3D11Texture3D1Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Texture3D1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Texture3D1) -> ULONG,
@@ -59,6 +64,7 @@ ID3D11Texture3D1Vtbl :: struct {
     GetDesc : proc(This: ^ID3D11Texture3D1, pDesc: ^D3D11_TEXTURE3D_DESC),
     GetDesc1 : proc(This: ^ID3D11Texture3D1, pDesc: ^D3D11_TEXTURE3D_DESC1),
 }
+
 D3D11_RASTERIZER_DESC2 :: struct {
     FillMode: D3D11_FILL_MODE,
     CullMode: D3D11_CULL_MODE,
@@ -73,9 +79,11 @@ D3D11_RASTERIZER_DESC2 :: struct {
     ForcedSampleCount: UINT,
     ConservativeRaster: UINT,
 }
+
 ID3D11RasterizerState2 :: struct {
-    using vtbl: ^ID3D11RasterizerState2Vtbl
+    using vtbl: ^ID3D11RasterizerState2Vtbl,
 }
+
 ID3D11RasterizerState2Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11RasterizerState2, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11RasterizerState2) -> ULONG,
@@ -88,11 +96,13 @@ ID3D11RasterizerState2Vtbl :: struct {
     GetDesc1 : proc(This: ^ID3D11RasterizerState2, pDesc: ^D3D11_RASTERIZER_DESC1),
     GetDesc2 : proc(This: ^ID3D11RasterizerState2, pDesc: ^D3D11_RASTERIZER_DESC2),
 }
+
 D3D11_TEX2D_SRV1 :: struct {
     MostDetailedMip: UINT,
     MipLevels: UINT,
     PlaneSlice: UINT,
 }
+
 D3D11_TEX2D_ARRAY_SRV1 :: struct {
     MostDetailedMip: UINT,
     MipLevels: UINT,
@@ -100,6 +110,7 @@ D3D11_TEX2D_ARRAY_SRV1 :: struct {
     ArraySize: UINT,
     PlaneSlice: UINT,
 }
+
 D3D11_SHADER_RESOURCE_VIEW_DESC1 :: struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_SRV_DIMENSION,
@@ -117,9 +128,11 @@ D3D11_SHADER_RESOURCE_VIEW_DESC1 :: struct {
         BufferEx: D3D11_BUFFEREX_SRV,
     },
 }
+
 ID3D11ShaderResourceView1 :: struct {
-    using vtbl: ^ID3D11ShaderResourceView1Vtbl
+    using vtbl: ^ID3D11ShaderResourceView1Vtbl,
 }
+
 ID3D11ShaderResourceView1Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11ShaderResourceView1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11ShaderResourceView1) -> ULONG,
@@ -132,16 +145,19 @@ ID3D11ShaderResourceView1Vtbl :: struct {
     GetDesc : proc(This: ^ID3D11ShaderResourceView1, pDesc: ^D3D11_SHADER_RESOURCE_VIEW_DESC),
     GetDesc1 : proc(This: ^ID3D11ShaderResourceView1, pDesc1: ^D3D11_SHADER_RESOURCE_VIEW_DESC1),
 }
+
 D3D11_TEX2D_RTV1 :: struct {
     MipSlice: UINT,
     PlaneSlice: UINT,
 }
+
 D3D11_TEX2D_ARRAY_RTV1 :: struct {
     MipSlice: UINT,
     FirstArraySlice: UINT,
     ArraySize: UINT,
     PlaneSlice: UINT,
 }
+
 D3D11_RENDER_TARGET_VIEW_DESC1 :: struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_RTV_DIMENSION,
@@ -156,9 +172,11 @@ D3D11_RENDER_TARGET_VIEW_DESC1 :: struct {
         Texture3D: D3D11_TEX3D_RTV,
     },
 }
+
 ID3D11RenderTargetView1 :: struct {
-    using vtbl: ^ID3D11RenderTargetView1Vtbl
+    using vtbl: ^ID3D11RenderTargetView1Vtbl,
 }
+
 ID3D11RenderTargetView1Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11RenderTargetView1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11RenderTargetView1) -> ULONG,
@@ -171,16 +189,19 @@ ID3D11RenderTargetView1Vtbl :: struct {
     GetDesc : proc(This: ^ID3D11RenderTargetView1, pDesc: ^D3D11_RENDER_TARGET_VIEW_DESC),
     GetDesc1 : proc(This: ^ID3D11RenderTargetView1, pDesc1: ^D3D11_RENDER_TARGET_VIEW_DESC1),
 }
+
 D3D11_TEX2D_UAV1 :: struct {
     MipSlice: UINT,
     PlaneSlice: UINT,
 }
+
 D3D11_TEX2D_ARRAY_UAV1 :: struct {
     MipSlice: UINT,
     FirstArraySlice: UINT,
     ArraySize: UINT,
     PlaneSlice: UINT,
 }
+
 D3D11_UNORDERED_ACCESS_VIEW_DESC1 :: struct {
     Format: DXGI_FORMAT,
     ViewDimension: D3D11_UAV_DIMENSION,
@@ -193,9 +214,11 @@ D3D11_UNORDERED_ACCESS_VIEW_DESC1 :: struct {
         Texture3D: D3D11_TEX3D_UAV,
     },
 }
+
 ID3D11UnorderedAccessView1 :: struct {
-    using vtbl: ^ID3D11UnorderedAccessView1Vtbl
+    using vtbl: ^ID3D11UnorderedAccessView1Vtbl,
 }
+
 ID3D11UnorderedAccessView1Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11UnorderedAccessView1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11UnorderedAccessView1) -> ULONG,
@@ -208,14 +231,17 @@ ID3D11UnorderedAccessView1Vtbl :: struct {
     GetDesc : proc(This: ^ID3D11UnorderedAccessView1, pDesc: ^D3D11_UNORDERED_ACCESS_VIEW_DESC),
     GetDesc1 : proc(This: ^ID3D11UnorderedAccessView1, pDesc1: ^D3D11_UNORDERED_ACCESS_VIEW_DESC1),
 }
+
 D3D11_QUERY_DESC1 :: struct {
     Query: D3D11_QUERY,
     MiscFlags: UINT,
     ContextType: UINT,
 }
+
 ID3D11Query1 :: struct {
-    using vtbl: ^ID3D11Query1Vtbl
+    using vtbl: ^ID3D11Query1Vtbl,
 }
+
 ID3D11Query1Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Query1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Query1) -> ULONG,
@@ -228,9 +254,11 @@ ID3D11Query1Vtbl :: struct {
     GetDesc : proc(This: ^ID3D11Query1, pDesc: ^D3D11_QUERY_DESC),
     GetDesc1 : proc(This: ^ID3D11Query1, pDesc1: ^D3D11_QUERY_DESC1),
 }
+
 ID3D11DeviceContext3 :: struct {
-    using vtbl: ^ID3D11DeviceContext3Vtbl
+    using vtbl: ^ID3D11DeviceContext3Vtbl,
 }
+
 ID3D11DeviceContext3Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11DeviceContext3, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11DeviceContext3) -> ULONG,
@@ -380,9 +408,11 @@ ID3D11DeviceContext3Vtbl :: struct {
     SetHardwareProtectionState : proc(This: ^ID3D11DeviceContext3, HwProtectionEnable: BOOL),
     GetHardwareProtectionState : proc(This: ^ID3D11DeviceContext3, pHwProtectionEnable: ^BOOL),
 }
+
 ID3D11Fence :: struct {
-    using vtbl: ^ID3D11FenceVtbl
+    using vtbl: ^ID3D11FenceVtbl,
 }
+
 ID3D11FenceVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Fence, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Fence) -> ULONG,
@@ -395,9 +425,11 @@ ID3D11FenceVtbl :: struct {
     GetCompletedValue : proc(This: ^ID3D11Fence) -> UINT64,
     SetEventOnCompletion : proc(This: ^ID3D11Fence, Value: UINT64, hEvent: HANDLE) -> HRESULT,
 }
+
 ID3D11DeviceContext4 :: struct {
-    using vtbl: ^ID3D11DeviceContext4Vtbl
+    using vtbl: ^ID3D11DeviceContext4Vtbl,
 }
+
 ID3D11DeviceContext4Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11DeviceContext4, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11DeviceContext4) -> ULONG,
@@ -549,9 +581,11 @@ ID3D11DeviceContext4Vtbl :: struct {
     Signal : proc(This: ^ID3D11DeviceContext4, pFence: ^ID3D11Fence, Value: UINT64) -> HRESULT,
     Wait : proc(This: ^ID3D11DeviceContext4, pFence: ^ID3D11Fence, Value: UINT64) -> HRESULT,
 }
+
 ID3D11Device3 :: struct {
-    using vtbl: ^ID3D11Device3Vtbl
+    using vtbl: ^ID3D11Device3Vtbl,
 }
+
 ID3D11Device3Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Device3, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Device3) -> ULONG,
@@ -619,25 +653,25 @@ ID3D11Device3Vtbl :: struct {
     WriteToSubresource : proc(This: ^ID3D11Device3, pDstResource: ^ID3D11Resource, DstSubresource: UINT, pDstBox: ^D3D11_BOX, pSrcData: rawptr, SrcRowPitch: UINT, SrcDepthPitch: UINT),
     ReadFromSubresource : proc(This: ^ID3D11Device3, pDstData: rawptr, DstRowPitch: UINT, DstDepthPitch: UINT, pSrcResource: ^ID3D11Resource, SrcSubresource: UINT, pSrcBox: ^D3D11_BOX),
 }
+
 //D3D11_CONTEXT_TYPE
 D3D11_CONTEXT_TYPE_ALL : u32 :  0;
 D3D11_CONTEXT_TYPE_3D : u32 :  1;
 D3D11_CONTEXT_TYPE_COMPUTE : u32 :  2;
 D3D11_CONTEXT_TYPE_COPY : u32 :  3;
-D3D11_CONTEXT_TYPE_VIDEO : u32 :  4
-    ;
+D3D11_CONTEXT_TYPE_VIDEO : u32 :  4;
+
 //D3D11_TEXTURE_LAYOUT
 D3D11_TEXTURE_LAYOUT_UNDEFINED : u32 :  0;
 D3D11_TEXTURE_LAYOUT_ROW_MAJOR : u32 :  1;
-D3D11_TEXTURE_LAYOUT_64K_STANDARD_SWIZZLE : u32 :  2
-    ;
+D3D11_TEXTURE_LAYOUT_64K_STANDARD_SWIZZLE : u32 :  2;
+
 //D3D11_CONSERVATIVE_RASTERIZATION_MODE
 D3D11_CONSERVATIVE_RASTERIZATION_MODE_OFF : u32 :  0;
-D3D11_CONSERVATIVE_RASTERIZATION_MODE_ON : u32 :  1
-    ;
+D3D11_CONSERVATIVE_RASTERIZATION_MODE_ON : u32 :  1;
+
 //D3D11_FENCE_FLAG
 D3D11_FENCE_FLAG_NONE : u32 :  0;
 D3D11_FENCE_FLAG_SHARED : u32 :  0x2;
 D3D11_FENCE_FLAG_SHARED_CROSS_ADAPTER : u32 :  0x4;
-D3D11_FENCE_FLAG_NON_MONITORED : u32 :  0x8
-    ;
+D3D11_FENCE_FLAG_NON_MONITORED : u32 :  0x8;
