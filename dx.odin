@@ -5,44 +5,44 @@ import "core:sys/win32"
 
 foreign import "system:d3d11.lib"
 foreign d3d11 {
-	D3D11CreateDevice :: proc "std" (
-						  pAdapter           : ^IDXGIAdapter,
-						  DriverType         : UINT,
-						  Software           : HMODULE,
-						  Flags              : UINT,
-						  pFeatureLevels     : ^D3D_FEATURE_LEVEL,
-						  FeatureLevels      : u32,
-						  SDKVersion         : u32,
-						  ppDevice			 : ID3D11Device,
-						  pFeatureLevel      : ^D3D_FEATURE_LEVEL,
-						  ppImmediateContext : ID3D11DeviceContext) -> HRESULT ---;
+    D3D11CreateDevice :: proc "std" (
+                          pAdapter           : ^IDXGIAdapter,
+                          DriverType         : UINT,
+                          Software           : HMODULE,
+                          Flags              : UINT,
+                          pFeatureLevels     : ^D3D_FEATURE_LEVEL,
+                          FeatureLevels      : u32,
+                          SDKVersion         : u32,
+                          ppDevice           : ID3D11Device,
+                          pFeatureLevel      : ^D3D_FEATURE_LEVEL,
+                          ppImmediateContext : ID3D11DeviceContext) -> HRESULT ---;
 
-	D3D11CreateDeviceAndSwapChain :: proc "std" (
-						  pAdapter           : ^IDXGIAdapter,
-						  DriverType         : UINT,
-						  Software           : HMODULE,
-						  Flags              : UINT,
-						  pFeatureLevels     : ^D3D_FEATURE_LEVEL,
-						  FeatureLevels      : u32,
-						  SDKVersion         : u32,
-						  pSwapChainDesc     : ^DXGI_SWAP_CHAIN_DESC,
-						  ppSwapChain        : ^^IDXGISwapChain,
-						  ppDevice           : ^^ID3D11Device,
-						  pFeatureLevel      : ^D3D_FEATURE_LEVEL,
-						  ppImmediateContext : ^^ID3D11DeviceContext) -> HRESULT ---;
+    D3D11CreateDeviceAndSwapChain :: proc "std" (
+                          pAdapter           : ^IDXGIAdapter,
+                          DriverType         : UINT,
+                          Software           : HMODULE,
+                          Flags              : UINT,
+                          pFeatureLevels     : ^D3D_FEATURE_LEVEL,
+                          FeatureLevels      : u32,
+                          SDKVersion         : u32,
+                          pSwapChainDesc     : ^DXGI_SWAP_CHAIN_DESC,
+                          ppSwapChain        : ^^IDXGISwapChain,
+                          ppDevice           : ^^ID3D11Device,
+                          pFeatureLevel      : ^D3D_FEATURE_LEVEL,
+                          ppImmediateContext : ^^ID3D11DeviceContext) -> HRESULT ---;
 }
 foreign import "system:d3dcompiler.lib"
 foreign d3dcompiler {
-	D3DCompileFromFile :: proc "std" (
-	             pFileName   : win32.Wstring,
-				 pDefines    : rawptr,//^D3D_SHADER_MACRO,
-				 pInclude    : ^ID3DInclude,
-				 pEntrypoint : cstring,
-				 pTarget     : cstring,
-				 Flags1      : UINT,
-				 Flags2      : UINT,
-				 ppCode      : ^^ID3D10Blob,
-				 ppErrorMsgs : ^^ID3D10Blob) -> HRESULT ---;
+    D3DCompileFromFile :: proc "std" (
+                 pFileName   : win32.Wstring,
+                 pDefines    : rawptr,//^D3D_SHADER_MACRO,
+                 pInclude    : ^ID3DInclude,
+                 pEntrypoint : cstring,
+                 pTarget     : cstring,
+                 Flags1      : UINT,
+                 Flags2      : UINT,
+                 ppCode      : ^^ID3D10Blob,
+                 ppErrorMsgs : ^^ID3D10Blob) -> HRESULT ---;
 
     D3DCompile :: proc "std" (
                 pSrcData    : cstring,
@@ -58,96 +58,96 @@ foreign d3dcompiler {
                 ppErrorMsgs : ^^ID3D10Blob) -> HRESULT ---;
 }
 
-D3D11_SDK_VERSION :: 7;
+D3D11_SDK_VERSION  :: 7;
 
-LPCSTR        :: cstring;
-LPSTR         :: cstring;
-LPCWSTR       :: ^u16;
-POINT         :: Point;
-INT           :: i32;
-UINT          :: u32;
-UINT8         :: u8;
-UINT16        :: u16;
-UINT64        :: u64;
-USHORT        :: u16;
-LONG          :: i32;
-ULONG         :: u32;
-ULONGLONG     :: u64;
-LARGE_INTEGER :: i64;
-FLOAT         :: f32;
-float         :: f32;
-BYTE          :: byte;
-char          :: u8;
-BOOL          :: b32;
-REFIID        :: GUID;
-REFGUID       :: GUID;
-SIZE_T        :: u32;
-WCHAR         :: i32;
-DWORD         :: i32;
-LUID          :: _LUID;
-HRESULT :: win32.Hresult;
-HMODULE :: win32.Hmodule;
-HMONITOR :: win32.Hmonitor;
-HWND :: win32.Hwnd;
-RECT :: win32.Rect;
-D3D11_RECT :: RECT;
-HANDLE :: win32.Handle;
-HDC :: win32.Handle;
-LPVOID :: rawptr;
-Point :: win32.Point;
-D3D_FEATURE_LEVEL :: UINT;
-D3DCOLORVALUE :: _D3DCOLORVALUE;
-DXGI_RGBA :: D3DCOLORVALUE;
+LPCSTR             :: cstring;
+LPSTR              :: cstring;
+LPCWSTR            :: ^u16;
+POINT              :: Point;
+INT                :: i32;
+UINT               :: u32;
+UINT8              :: u8;
+UINT16             :: u16;
+UINT64             :: u64;
+USHORT             :: u16;
+LONG               :: i32;
+ULONG              :: u32;
+ULONGLONG          :: u64;
+LARGE_INTEGER      :: i64;
+FLOAT              :: f32;
+float              :: f32;
+BYTE               :: byte;
+char               :: u8;
+BOOL               :: b32;
+REFIID             :: GUID;
+REFGUID            :: GUID;
+SIZE_T             :: u32;
+WCHAR              :: i32;
+DWORD              :: i32;
+LUID               :: _LUID;
+HRESULT            :: win32.Hresult;
+HMODULE            :: win32.Hmodule;
+HMONITOR           :: win32.Hmonitor;
+HWND               :: win32.Hwnd;
+RECT               :: win32.Rect;
+D3D11_RECT         :: RECT;
+HANDLE             :: win32.Handle;
+HDC                :: win32.Handle;
+LPVOID             :: rawptr;
+Point              :: win32.Point;
+D3D_FEATURE_LEVEL  :: UINT;
+D3DCOLORVALUE      :: _D3DCOLORVALUE;
+DXGI_RGBA          :: D3DCOLORVALUE;
 
-DXGI_FORMAT :: UINT;
-D3D11_PRIMITIVE_TOPOLOGY :: UINT;
-D3D11_DEVICE_CONTEXT_TYPE :: UINT;
-D3D11_BLEND :: UINT;
-D3D11_BLEND_OP :: UINT;
-D3D11_FILL_MODE :: UINT;
-D3D11_VIDEO_DECODER_BUFFER_TYPE :: UINT;
-D3D11_CULL_MODE :: UINT;
-D3D11_COUNTER_TYPE :: UINT;
-D3D11_USAGE :: UINT;
-D3D11_RESOURCE_DIMENSION :: UINT;
-D3D11_SRV_DIMENSION :: UINT;
-D3D11_UAV_DIMENSION :: UINT;
-D3D11_RTV_DIMENSION :: UINT;
-D3D11_QUERY :: UINT;
-D3D11_MAP :: UINT;
-D3D11_FEATURE :: UINT;
-D3D11_FENCE_FLAG :: UINT;
-D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE :: UINT;
-DXGI_COLOR_SPACE_TYPE :: UINT;
-D3D11_VIDEO_FRAME_FORMAT :: UINT;
-D3D11_VIDEO_PROCESSOR_OUTPUT_RATE :: UINT;
-D3D11_VIDEO_PROCESSOR_STEREO_FORMAT :: UINT;
+DXGI_FORMAT                            :: UINT;
+D3D11_PRIMITIVE_TOPOLOGY               :: UINT;
+D3D11_DEVICE_CONTEXT_TYPE              :: UINT;
+D3D11_BLEND                            :: UINT;
+D3D11_BLEND_OP                         :: UINT;
+D3D11_FILL_MODE                        :: UINT;
+D3D11_VIDEO_DECODER_BUFFER_TYPE        :: UINT;
+D3D11_CULL_MODE                        :: UINT;
+D3D11_COUNTER_TYPE                     :: UINT;
+D3D11_USAGE                            :: UINT;
+D3D11_RESOURCE_DIMENSION               :: UINT;
+D3D11_SRV_DIMENSION                    :: UINT;
+D3D11_UAV_DIMENSION                    :: UINT;
+D3D11_RTV_DIMENSION                    :: UINT;
+D3D11_QUERY                            :: UINT;
+D3D11_MAP                              :: UINT;
+D3D11_FEATURE                          :: UINT;
+D3D11_FENCE_FLAG                       :: UINT;
+D3D11_VIDEO_PROCESSOR_ALPHA_FILL_MODE  :: UINT;
+DXGI_COLOR_SPACE_TYPE                  :: UINT;
+D3D11_VIDEO_FRAME_FORMAT               :: UINT;
+D3D11_VIDEO_PROCESSOR_OUTPUT_RATE      :: UINT;
+D3D11_VIDEO_PROCESSOR_STEREO_FORMAT    :: UINT;
 D3D11_VIDEO_PROCESSOR_STEREO_FLIP_MODE :: UINT;
-D3D11_VIDEO_PROCESSOR_FILTER :: UINT;
-D3D11_VIDEO_PROCESSOR_ROTATION :: UINT;
-D3D11_CRYPTO_SESSION_STATUS :: UINT;
-DXGI_HDR_METADATA_TYPE :: UINT;
-D3D11_AUTHENTICATED_CHANNEL_TYPE :: UINT;
-DXGI_MODE_ROTATION :: UINT;
-DXGI_SWAP_EFFECT :: UINT;
-DXGI_MODE_SCANLINE_ORDER :: UINT;
-DXGI_MODE_SCALING :: UINT;
-DXGI_RESIDENCY :: UINT;
-DXGI_OFFER_RESOURCE_PRIORITY :: UINT;
-DXGI_GRAPHICS_PREEMPTION_GRANULARITY :: UINT;
-DXGI_COMPUTE_PREEMPTION_GRANULARITY :: UINT;
-DXGI_MEMORY_SEGMENT_GROUP :: UINT;
-DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS :: UINT;
-DXGI_DEBUG_ID :: UINT;
-DXGI_RECLAIM_RESOURCE_RESULTS :: UINT;
+D3D11_VIDEO_PROCESSOR_FILTER           :: UINT;
+D3D11_VIDEO_PROCESSOR_ROTATION         :: UINT;
+D3D11_CRYPTO_SESSION_STATUS            :: UINT;
+DXGI_HDR_METADATA_TYPE                 :: UINT;
+D3D11_AUTHENTICATED_CHANNEL_TYPE       :: UINT;
+DXGI_MODE_ROTATION                     :: UINT;
+DXGI_SWAP_EFFECT                       :: UINT;
+DXGI_MODE_SCANLINE_ORDER               :: UINT;
+DXGI_MODE_SCALING                      :: UINT;
+DXGI_RESIDENCY                         :: UINT;
+DXGI_OFFER_RESOURCE_PRIORITY           :: UINT;
+DXGI_GRAPHICS_PREEMPTION_GRANULARITY   :: UINT;
+DXGI_COMPUTE_PREEMPTION_GRANULARITY    :: UINT;
+DXGI_MEMORY_SEGMENT_GROUP              :: UINT;
+DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS    :: UINT;
+DXGI_DEBUG_ID                          :: UINT;
+DXGI_RECLAIM_RESOURCE_RESULTS          :: UINT;
 
-PFN_DESTRUCTION_CALLBACK :: proc(pData: rawptr);
-DXGI_INFO_QUEUE_MESSAGE_ID :: i32;
+PFN_DESTRUCTION_CALLBACK             :: proc(pData: rawptr);
+DXGI_INFO_QUEUE_MESSAGE_ID           :: i32;
 D3D11_AUTHENTICATED_PROTECTION_FLAGS :: u32;
-APP_DEPRECATED_HRESULT :: HRESULT;
+APP_DEPRECATED_HRESULT               :: HRESULT;
 
 S_FALSE :: 1;
-S_OK :: 0;
+S_OK    :: 0;
 
 D3D11_ERROR_FILE_NOT_FOUND                               :: 0x887C002;
 D3D11_ERROR_TOO_MANY_UNIQUE_STATE_OBJECTS                :: 0x887C0001;
@@ -228,30 +228,30 @@ SECURITY_ATTRIBUTES :: struct {
 }
 
 DXGI_USAGE :: enum i32 {
-	DXGI_USAGE_SHADER_INPUT         = 0x00000010,
-	DXGI_USAGE_RENDER_TARGET_OUTPUT = 0x00000020,
-	DXGI_USAGE_BACK_BUFFER          = 0x00000040,
-	DXGI_USAGE_SHARED               = 0x00000080,
-	DXGI_USAGE_READ_ONLY            = 0x00000100,
-	DXGI_USAGE_DISCARD_ON_PRESENT   = 0x00000200,
-	DXGI_USAGE_UNORDERED_ACCESS     = 0x00000400,
+    DXGI_USAGE_SHADER_INPUT         = 0x00000010,
+    DXGI_USAGE_RENDER_TARGET_OUTPUT = 0x00000020,
+    DXGI_USAGE_BACK_BUFFER          = 0x00000040,
+    DXGI_USAGE_SHARED               = 0x00000080,
+    DXGI_USAGE_READ_ONLY            = 0x00000100,
+    DXGI_USAGE_DISCARD_ON_PRESENT   = 0x00000200,
+    DXGI_USAGE_UNORDERED_ACCESS     = 0x00000400,
 }
 
 IUnknown             :: struct {
-	using vtbl: ^IUnknown_vtbl(IUnknown),
+    using vtbl: ^IUnknown_vtbl(IUnknown),
 }
 
 IUnknown_vtbl :: struct(T: typeid) {
-	query_interface: proc(^T, ^rawptr) -> HRESULT,
-	add_ref:         proc(^T) -> u32,
-	release:         proc(^T) -> u32,
+    query_interface: proc(^T, ^rawptr) -> HRESULT,
+    add_ref:         proc(^T) -> u32,
+    release:         proc(^T) -> u32,
 }
 
 GUID :: struct {
-	data1: u32,
-	data2: u16,
-	data3: u16,
-	data4: [8]u8,
+    data1: u32,
+    data2: u16,
+    data3: u16,
+    data4: [8]u8,
 }
 
 SIZE :: struct {

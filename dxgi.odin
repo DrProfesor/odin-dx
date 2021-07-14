@@ -7,14 +7,17 @@ DXGI_FRAME_STATISTICS :: struct {
     SyncQPCTime: LARGE_INTEGER,
     SyncGPUTime: LARGE_INTEGER,
 }
+
 DXGI_MAPPED_RECT :: struct {
     Pitch: INT,
     pBits: ^BYTE,
 }
+
 _LUID :: struct {
     LowPart: DWORD,
     HighPart: LONG,
 }
+
 DXGI_ADAPTER_DESC :: struct {
     Description: [128]WCHAR,
     VendorId: UINT,
@@ -26,6 +29,7 @@ DXGI_ADAPTER_DESC :: struct {
     SharedSystemMemory: SIZE_T,
     AdapterLuid: LUID,
 }
+
 DXGI_OUTPUT_DESC :: struct {
     DeviceName: [32]WCHAR,
     DesktopCoordinates: RECT,
@@ -33,15 +37,18 @@ DXGI_OUTPUT_DESC :: struct {
     Rotation: DXGI_MODE_ROTATION,
     Monitor: HMONITOR,
 }
+
 DXGI_SHARED_RESOURCE :: struct {
     Handle: HANDLE,
 }
+
 DXGI_SURFACE_DESC :: struct {
     Width: UINT,
     Height: UINT,
     Format: DXGI_FORMAT,
     SampleDesc: DXGI_SAMPLE_DESC,
 }
+
 DXGI_SWAP_CHAIN_DESC :: struct {
     BufferDesc: DXGI_MODE_DESC,
     SampleDesc: DXGI_SAMPLE_DESC,
@@ -52,9 +59,11 @@ DXGI_SWAP_CHAIN_DESC :: struct {
     SwapEffect: UINT,
     Flags: UINT,
 }
+
 IDXGIObject :: struct {
-    using vtbl: ^IDXGIObjectVtbl
+    using vtbl: ^IDXGIObjectVtbl,
 }
+
 IDXGIObjectVtbl :: struct {
     QueryInterface : proc(This: ^IDXGIObject, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIObject) -> ULONG,
@@ -64,9 +73,11 @@ IDXGIObjectVtbl :: struct {
     GetPrivateData : proc(This: ^IDXGIObject, Name: REFGUID, pDataSize: ^UINT, pData: rawptr) -> HRESULT,
     GetParent : proc(This: ^IDXGIObject, riid: REFIID, ppParent: ^rawptr) -> HRESULT,
 }
+
 IDXGIDeviceSubObject :: struct {
-    using vtbl: ^IDXGIDeviceSubObjectVtbl
+    using vtbl: ^IDXGIDeviceSubObjectVtbl,
 }
+
 IDXGIDeviceSubObjectVtbl :: struct {
     QueryInterface : proc(This: ^IDXGIDeviceSubObject, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIDeviceSubObject) -> ULONG,
@@ -77,9 +88,11 @@ IDXGIDeviceSubObjectVtbl :: struct {
     GetParent : proc(This: ^IDXGIDeviceSubObject, riid: REFIID, ppParent: ^rawptr) -> HRESULT,
     GetDevice : proc(This: ^IDXGIDeviceSubObject, riid: REFIID, ppDevice: ^rawptr) -> HRESULT,
 }
+
 IDXGIResource :: struct {
-    using vtbl: ^IDXGIResourceVtbl
+    using vtbl: ^IDXGIResourceVtbl,
 }
+
 IDXGIResourceVtbl :: struct {
     QueryInterface : proc(This: ^IDXGIResource, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIResource) -> ULONG,
@@ -94,9 +107,11 @@ IDXGIResourceVtbl :: struct {
     SetEvictionPriority : proc(This: ^IDXGIResource, EvictionPriority: UINT) -> HRESULT,
     GetEvictionPriority : proc(This: ^IDXGIResource, pEvictionPriority: ^UINT) -> HRESULT,
 }
+
 IDXGIKeyedMutex :: struct {
-    using vtbl: ^IDXGIKeyedMutexVtbl
+    using vtbl: ^IDXGIKeyedMutexVtbl,
 }
+
 IDXGIKeyedMutexVtbl :: struct {
     QueryInterface : proc(This: ^IDXGIKeyedMutex, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIKeyedMutex) -> ULONG,
@@ -109,9 +124,11 @@ IDXGIKeyedMutexVtbl :: struct {
     AcquireSync : proc(This: ^IDXGIKeyedMutex, Key: UINT64, dwMilliseconds: DWORD) -> HRESULT,
     ReleaseSync : proc(This: ^IDXGIKeyedMutex, Key: UINT64) -> HRESULT,
 }
+
 IDXGISurface :: struct {
-    using vtbl: ^IDXGISurfaceVtbl
+    using vtbl: ^IDXGISurfaceVtbl,
 }
+
 IDXGISurfaceVtbl :: struct {
     QueryInterface : proc(This: ^IDXGISurface, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGISurface) -> ULONG,
@@ -125,9 +142,11 @@ IDXGISurfaceVtbl :: struct {
     Map : proc(This: ^IDXGISurface, pLockedRect: ^DXGI_MAPPED_RECT, MapFlags: UINT) -> HRESULT,
     Unmap : proc(This: ^IDXGISurface) -> HRESULT,
 }
+
 IDXGISurface1 :: struct {
-    using vtbl: ^IDXGISurface1Vtbl
+    using vtbl: ^IDXGISurface1Vtbl,
 }
+
 IDXGISurface1Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGISurface1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGISurface1) -> ULONG,
@@ -143,9 +162,11 @@ IDXGISurface1Vtbl :: struct {
     GetDC : proc(This: ^IDXGISurface1, Discard: BOOL, phdc: ^HDC) -> HRESULT,
     ReleaseDC : proc(This: ^IDXGISurface1, pDirtyRect: ^RECT) -> HRESULT,
 }
+
 IDXGIAdapter :: struct {
-    using vtbl: ^IDXGIAdapterVtbl
+    using vtbl: ^IDXGIAdapterVtbl,
 }
+
 IDXGIAdapterVtbl :: struct {
     QueryInterface : proc(This: ^IDXGIAdapter, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIAdapter) -> ULONG,
@@ -158,9 +179,11 @@ IDXGIAdapterVtbl :: struct {
     GetDesc : proc(This: ^IDXGIAdapter, pDesc: ^DXGI_ADAPTER_DESC) -> HRESULT,
     CheckInterfaceSupport : proc(This: ^IDXGIAdapter, InterfaceName: REFGUID, pUMDVersion: ^LARGE_INTEGER) -> HRESULT,
 }
+
 IDXGIOutput :: struct {
-    using vtbl: ^IDXGIOutputVtbl
+    using vtbl: ^IDXGIOutputVtbl,
 }
+
 IDXGIOutputVtbl :: struct {
     QueryInterface : proc(This: ^IDXGIOutput, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIOutput) -> ULONG,
@@ -182,9 +205,11 @@ IDXGIOutputVtbl :: struct {
     GetDisplaySurfaceData : proc(This: ^IDXGIOutput, pDestination: ^IDXGISurface) -> HRESULT,
     GetFrameStatistics : proc(This: ^IDXGIOutput, pStats: ^DXGI_FRAME_STATISTICS) -> HRESULT,
 }
+
 IDXGISwapChain :: struct {
-    using vtbl: ^IDXGISwapChainVtbl
+    using vtbl: ^IDXGISwapChainVtbl,
 }
+
 IDXGISwapChainVtbl :: struct {
     QueryInterface : proc(This: ^IDXGISwapChain, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGISwapChain) -> ULONG,
@@ -205,9 +230,11 @@ IDXGISwapChainVtbl :: struct {
     GetFrameStatistics : proc(This: ^IDXGISwapChain, pStats: ^DXGI_FRAME_STATISTICS) -> HRESULT,
     GetLastPresentCount : proc(This: ^IDXGISwapChain, pLastPresentCount: ^UINT) -> HRESULT,
 }
+
 IDXGIFactory :: struct {
-    using vtbl: ^IDXGIFactoryVtbl
+    using vtbl: ^IDXGIFactoryVtbl,
 }
+
 IDXGIFactoryVtbl :: struct {
     QueryInterface : proc(This: ^IDXGIFactory, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIFactory) -> ULONG,
@@ -222,9 +249,11 @@ IDXGIFactoryVtbl :: struct {
     CreateSwapChain : proc(This: ^IDXGIFactory, pDevice: ^IUnknown, pDesc: ^DXGI_SWAP_CHAIN_DESC, ppSwapChain: ^^IDXGISwapChain) -> HRESULT,
     CreateSoftwareAdapter : proc(This: ^IDXGIFactory, Module: HMODULE, ppAdapter: ^^IDXGIAdapter) -> HRESULT,
 }
+
 IDXGIDevice :: struct {
-    using vtbl: ^IDXGIDeviceVtbl
+    using vtbl: ^IDXGIDeviceVtbl,
 }
+
 IDXGIDeviceVtbl :: struct {
     QueryInterface : proc(This: ^IDXGIDevice, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIDevice) -> ULONG,
@@ -239,6 +268,7 @@ IDXGIDeviceVtbl :: struct {
     SetGPUThreadPriority : proc(This: ^IDXGIDevice, Priority: INT) -> HRESULT,
     GetGPUThreadPriority : proc(This: ^IDXGIDevice, pPriority: ^INT) -> HRESULT,
 }
+
 DXGI_ADAPTER_DESC1 :: struct {
     Description: [128]WCHAR,
     VendorId: UINT,
@@ -251,13 +281,16 @@ DXGI_ADAPTER_DESC1 :: struct {
     AdapterLuid: LUID,
     Flags: UINT,
 }
+
 DXGI_DISPLAY_COLOR_SPACE :: struct {
     PrimaryCoordinates: [8][2]FLOAT,
     WhitePoints: [16][2]FLOAT,
 }
+
 IDXGIFactory1 :: struct {
-    using vtbl: ^IDXGIFactory1Vtbl
+    using vtbl: ^IDXGIFactory1Vtbl,
 }
+
 IDXGIFactory1Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIFactory1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIFactory1) -> ULONG,
@@ -274,9 +307,11 @@ IDXGIFactory1Vtbl :: struct {
     EnumAdapters1 : proc(This: ^IDXGIFactory1, Adapter: UINT, ppAdapter: ^^IDXGIAdapter1) -> HRESULT,
     IsCurrent : proc(This: ^IDXGIFactory1) -> BOOL,
 }
+
 IDXGIAdapter1 :: struct {
-    using vtbl: ^IDXGIAdapter1Vtbl
+    using vtbl: ^IDXGIAdapter1Vtbl,
 }
+
 IDXGIAdapter1Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIAdapter1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIAdapter1) -> ULONG,
@@ -290,9 +325,11 @@ IDXGIAdapter1Vtbl :: struct {
     CheckInterfaceSupport : proc(This: ^IDXGIAdapter1, InterfaceName: REFGUID, pUMDVersion: ^LARGE_INTEGER) -> HRESULT,
     GetDesc1 : proc(This: ^IDXGIAdapter1, pDesc: ^DXGI_ADAPTER_DESC1) -> HRESULT,
 }
+
 IDXGIDevice1 :: struct {
-    using vtbl: ^IDXGIDevice1Vtbl
+    using vtbl: ^IDXGIDevice1Vtbl,
 }
+
 IDXGIDevice1Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIDevice1, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIDevice1) -> ULONG,
@@ -309,17 +346,18 @@ IDXGIDevice1Vtbl :: struct {
     SetMaximumFrameLatency : proc(This: ^IDXGIDevice1, MaxLatency: UINT) -> HRESULT,
     GetMaximumFrameLatency : proc(This: ^IDXGIDevice1, pMaxLatency: ^UINT) -> HRESULT,
 }
+
 //DXGI_RESIDENCY
 DXGI_RESIDENCY_FULLY_RESIDENT : u32 :  1;
 DXGI_RESIDENCY_RESIDENT_IN_SHARED_MEMORY : u32 :  2;
-DXGI_RESIDENCY_EVICTED_TO_DISK : u32 :  3
-    ;
+DXGI_RESIDENCY_EVICTED_TO_DISK : u32 :  3;
+
 //DXGI_SWAP_EFFECT
 DXGI_SWAP_EFFECT_DISCARD : u32 :  0;
 DXGI_SWAP_EFFECT_SEQUENTIAL : u32 :  1;
 DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL : u32 :  3;
-DXGI_SWAP_EFFECT_FLIP_DISCARD : u32 :  4
-    ;
+DXGI_SWAP_EFFECT_FLIP_DISCARD : u32 :  4;
+
 //DXGI_SWAP_CHAIN_FLAG
 DXGI_SWAP_CHAIN_FLAG_NONPREROTATED : u32 :  1;
 DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH : u32 :  2;
@@ -333,11 +371,10 @@ DXGI_SWAP_CHAIN_FLAG_FULLSCREEN_VIDEO : u32 :  256;
 DXGI_SWAP_CHAIN_FLAG_YUV_VIDEO : u32 :  512;
 DXGI_SWAP_CHAIN_FLAG_HW_PROTECTED : u32 :  1024;
 DXGI_SWAP_CHAIN_FLAG_ALLOW_TEARING : u32 :  2048;
-DXGI_SWAP_CHAIN_FLAG_RESTRICTED_TO_ALL_HOLOGRAPHIC_DISPLAYS : u32 :  4096
-    ;
+DXGI_SWAP_CHAIN_FLAG_RESTRICTED_TO_ALL_HOLOGRAPHIC_DISPLAYS : u32 :  4096;
+
 //DXGI_ADAPTER_FLAG
 DXGI_ADAPTER_FLAG_NONE : u32 :  0;
 DXGI_ADAPTER_FLAG_REMOTE : u32 :  1;
 DXGI_ADAPTER_FLAG_SOFTWARE : u32 :  2;
-DXGI_ADAPTER_FLAG_FORCE_DWORD : u32 :  0xffffffff
-    ;
+DXGI_ADAPTER_FLAG_FORCE_DWORD : u32 :  0xffffffff;

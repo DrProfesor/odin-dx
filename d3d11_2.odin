@@ -6,6 +6,7 @@ D3D11_TILED_RESOURCE_COORDINATE :: struct {
     Z: UINT,
     Subresource: UINT,
 }
+
 D3D11_TILE_REGION_SIZE :: struct {
     NumTiles: UINT,
     bUseBox: BOOL,
@@ -13,26 +14,31 @@ D3D11_TILE_REGION_SIZE :: struct {
     Height: UINT16,
     Depth: UINT16,
 }
+
 D3D11_SUBRESOURCE_TILING :: struct {
     WidthInTiles: UINT,
     HeightInTiles: UINT16,
     DepthInTiles: UINT16,
     StartTileIndexInOverallResource: UINT,
 }
+
 D3D11_TILE_SHAPE :: struct {
     WidthInTexels: UINT,
     HeightInTexels: UINT,
     DepthInTexels: UINT,
 }
+
 D3D11_PACKED_MIP_DESC :: struct {
     NumStandardMips: UINT8,
     NumPackedMips: UINT8,
     NumTilesForPackedMips: UINT,
     StartTileIndexInOverallResource: UINT,
 }
+
 ID3D11DeviceContext2 :: struct {
-    using vtbl: ^ID3D11DeviceContext2Vtbl
+    using vtbl: ^ID3D11DeviceContext2Vtbl,
 }
+
 ID3D11DeviceContext2Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11DeviceContext2, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11DeviceContext2) -> ULONG,
@@ -179,9 +185,11 @@ ID3D11DeviceContext2Vtbl :: struct {
     BeginEventInt : proc(This: ^ID3D11DeviceContext2, pLabel: LPCWSTR, Data: INT),
     EndEvent : proc(This: ^ID3D11DeviceContext2),
 }
+
 ID3D11Device2 :: struct {
-    using vtbl: ^ID3D11Device2Vtbl
+    using vtbl: ^ID3D11Device2Vtbl,
 }
+
 ID3D11Device2Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Device2, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Device2) -> ULONG,
@@ -238,19 +246,19 @@ ID3D11Device2Vtbl :: struct {
     GetResourceTiling : proc(This: ^ID3D11Device2, pTiledResource: ^ID3D11Resource, pNumTilesForEntireResource: ^UINT, pPackedMipDesc: ^D3D11_PACKED_MIP_DESC, pStandardTileShapeForNonPackedMips: ^D3D11_TILE_SHAPE, pNumSubresourceTilings: ^UINT, FirstSubresourceTilingToGet: UINT, pSubresourceTilingsForNonPackedMips: ^D3D11_SUBRESOURCE_TILING),
     CheckMultisampleQualityLevels1 : proc(This: ^ID3D11Device2, Format: DXGI_FORMAT, SampleCount: UINT, Flags: UINT, pNumQualityLevels: ^UINT) -> HRESULT,
 }
+
 //D3D11_TILE_MAPPING_FLAG
-D3D11_TILE_MAPPING_NO_OVERWRITE : u32 :  0x1
-    ;
+D3D11_TILE_MAPPING_NO_OVERWRITE : u32 :  0x1;
+
 //D3D11_TILE_RANGE_FLAG
 D3D11_TILE_RANGE_NULL : u32 :  0x1;
 D3D11_TILE_RANGE_SKIP : u32 :  0x2;
-D3D11_TILE_RANGE_REUSE_SINGLE_TILE : u32 :  0x4
-    ;
+D3D11_TILE_RANGE_REUSE_SINGLE_TILE : u32 :  0x4;
+
 //D3D11_CHECK_MULTISAMPLE_QUALITY_LEVELS_FLAG
-D3D11_CHECK_MULTISAMPLE_QUALITY_LEVELS_TILED_RESOURCE : u32 :  0x1
-    ;
+D3D11_CHECK_MULTISAMPLE_QUALITY_LEVELS_TILED_RESOURCE : u32 :  0x1;
+
 //D3D11_TILE_COPY_FLAG
 D3D11_TILE_COPY_NO_OVERWRITE : u32 :  0x1;
 D3D11_TILE_COPY_LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE : u32 :  0x2;
-D3D11_TILE_COPY_SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER : u32 :  0x4
-    ;
+D3D11_TILE_COPY_SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER : u32 :  0x4;

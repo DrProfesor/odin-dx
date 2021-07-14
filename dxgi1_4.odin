@@ -1,8 +1,9 @@
 package dx
 
 IDXGISwapChain3 :: struct {
-    using vtbl: ^IDXGISwapChain3Vtbl
+    using vtbl: ^IDXGISwapChain3Vtbl,
 }
+
 IDXGISwapChain3Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGISwapChain3, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGISwapChain3) -> ULONG,
@@ -45,9 +46,11 @@ IDXGISwapChain3Vtbl :: struct {
     SetColorSpace1 : proc(This: ^IDXGISwapChain3, ColorSpace: DXGI_COLOR_SPACE_TYPE) -> HRESULT,
     ResizeBuffers1 : proc(This: ^IDXGISwapChain3, BufferCount: UINT, Width: UINT, Height: UINT, Format: DXGI_FORMAT, SwapChainFlags: UINT, pCreationNodeMask: ^UINT, ppPresentQueue: ^^IUnknown) -> HRESULT,
 }
+
 IDXGIOutput4 :: struct {
-    using vtbl: ^IDXGIOutput4Vtbl
+    using vtbl: ^IDXGIOutput4Vtbl,
 }
+
 IDXGIOutput4Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIOutput4, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIOutput4) -> ULONG,
@@ -76,9 +79,11 @@ IDXGIOutput4Vtbl :: struct {
     CheckOverlaySupport : proc(This: ^IDXGIOutput4, EnumFormat: DXGI_FORMAT, pConcernedDevice: ^IUnknown, pFlags: ^UINT) -> HRESULT,
     CheckOverlayColorSpaceSupport : proc(This: ^IDXGIOutput4, Format: DXGI_FORMAT, ColorSpace: DXGI_COLOR_SPACE_TYPE, pConcernedDevice: ^IUnknown, pFlags: ^UINT) -> HRESULT,
 }
+
 IDXGIFactory4 :: struct {
-    using vtbl: ^IDXGIFactory4Vtbl
+    using vtbl: ^IDXGIFactory4Vtbl,
 }
+
 IDXGIFactory4Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIFactory4, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIFactory4) -> ULONG,
@@ -109,15 +114,18 @@ IDXGIFactory4Vtbl :: struct {
     EnumAdapterByLuid : proc(This: ^IDXGIFactory4, AdapterLuid: LUID, riid: REFIID, ppvAdapter: ^rawptr) -> HRESULT,
     EnumWarpAdapter : proc(This: ^IDXGIFactory4, riid: REFIID, ppvAdapter: ^rawptr) -> HRESULT,
 }
+
 DXGI_QUERY_VIDEO_MEMORY_INFO :: struct {
     Budget: UINT64,
     CurrentUsage: UINT64,
     AvailableForReservation: UINT64,
     CurrentReservation: UINT64,
 }
+
 IDXGIAdapter3 :: struct {
-    using vtbl: ^IDXGIAdapter3Vtbl
+    using vtbl: ^IDXGIAdapter3Vtbl,
 }
+
 IDXGIAdapter3Vtbl :: struct {
     QueryInterface : proc(This: ^IDXGIAdapter3, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^IDXGIAdapter3) -> ULONG,
@@ -138,14 +146,15 @@ IDXGIAdapter3Vtbl :: struct {
     RegisterVideoMemoryBudgetChangeNotificationEvent : proc(This: ^IDXGIAdapter3, hEvent: HANDLE, pdwCookie: ^DWORD) -> HRESULT,
     UnregisterVideoMemoryBudgetChangeNotification : proc(This: ^IDXGIAdapter3, dwCookie: DWORD),
 }
+
 //DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG
 DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_PRESENT : u32 :  0x1;
-DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_OVERLAY_PRESENT : u32 :  0x2
-    ;
+DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_OVERLAY_PRESENT : u32 :  0x2;
+
 //DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG
-DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG_PRESENT : u32 :  0x1
-    ;
+DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG_PRESENT : u32 :  0x1;
+
 //DXGI_MEMORY_SEGMENT_GROUP
 DXGI_MEMORY_SEGMENT_GROUP_LOCAL : u32 :  0;
-DXGI_MEMORY_SEGMENT_GROUP_NON_LOCAL : u32 :  1
-    ;
+DXGI_MEMORY_SEGMENT_GROUP_NON_LOCAL : u32 :  1;
+

@@ -1,8 +1,9 @@
 package dx
 
 ID3D11Device4 :: struct {
-    using vtbl: ^ID3D11Device4Vtbl
+    using vtbl: ^ID3D11Device4Vtbl,
 }
+
 ID3D11Device4Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Device4, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Device4) -> ULONG,
@@ -72,9 +73,11 @@ ID3D11Device4Vtbl :: struct {
     RegisterDeviceRemovedEvent : proc(This: ^ID3D11Device4, hEvent: HANDLE, pdwCookie: ^DWORD) -> HRESULT,
     UnregisterDeviceRemoved : proc(This: ^ID3D11Device4, dwCookie: DWORD),
 }
+
 ID3D11Device5 :: struct {
-    using vtbl: ^ID3D11Device5Vtbl
+    using vtbl: ^ID3D11Device5Vtbl,
 }
+
 ID3D11Device5Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Device5, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Device5) -> ULONG,
@@ -146,9 +149,11 @@ ID3D11Device5Vtbl :: struct {
     OpenSharedFence : proc(This: ^ID3D11Device5, hFence: HANDLE, ReturnedInterface: REFIID, ppFence: ^rawptr) -> HRESULT,
     CreateFence : proc(This: ^ID3D11Device5, InitialValue: UINT64, Flags: D3D11_FENCE_FLAG, ReturnedInterface: REFIID, ppFence: ^rawptr) -> HRESULT,
 }
+
 ID3D11Multithread :: struct {
-    using vtbl: ^ID3D11MultithreadVtbl
+    using vtbl: ^ID3D11MultithreadVtbl,
 }
+
 ID3D11MultithreadVtbl :: struct {
     QueryInterface : proc(This: ^ID3D11Multithread, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11Multithread) -> ULONG,
@@ -158,9 +163,11 @@ ID3D11MultithreadVtbl :: struct {
     SetMultithreadProtected : proc(This: ^ID3D11Multithread, bMTProtect: BOOL) -> BOOL,
     GetMultithreadProtected : proc(This: ^ID3D11Multithread) -> BOOL,
 }
+
 ID3D11VideoContext2 :: struct {
-    using vtbl: ^ID3D11VideoContext2Vtbl
+    using vtbl: ^ID3D11VideoContext2Vtbl,
 }
+
 ID3D11VideoContext2Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoContext2, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11VideoContext2) -> ULONG,
@@ -246,15 +253,18 @@ ID3D11VideoContext2Vtbl :: struct {
     VideoProcessorSetStreamHDRMetaData : proc(This: ^ID3D11VideoContext2, pVideoProcessor: ^ID3D11VideoProcessor, StreamIndex: UINT, Type: DXGI_HDR_METADATA_TYPE, Size: UINT, pHDRMetaData: rawptr),
     VideoProcessorGetStreamHDRMetaData : proc(This: ^ID3D11VideoContext2, pVideoProcessor: ^ID3D11VideoProcessor, StreamIndex: UINT, pType: ^DXGI_HDR_METADATA_TYPE, Size: UINT, pMetaData: rawptr),
 }
+
 D3D11_FEATURE_DATA_VIDEO_DECODER_HISTOGRAM :: struct {
     DecoderDesc: D3D11_VIDEO_DECODER_DESC,
     Components: UINT,
     BinCount: UINT,
     CounterBitDepth: UINT,
 }
+
 ID3D11VideoDevice2 :: struct {
-    using vtbl: ^ID3D11VideoDevice2Vtbl
+    using vtbl: ^ID3D11VideoDevice2Vtbl,
 }
+
 ID3D11VideoDevice2Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoDevice2, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11VideoDevice2) -> ULONG,
@@ -283,6 +293,7 @@ ID3D11VideoDevice2Vtbl :: struct {
     CheckFeatureSupport : proc(This: ^ID3D11VideoDevice2, Feature: UINT, pFeatureSupportData: rawptr, FeatureSupportDataSize: UINT) -> HRESULT,
     NegotiateCryptoSessionKeyExchangeMT : proc(This: ^ID3D11VideoDevice2, pCryptoSession: ^ID3D11CryptoSession, flags: UINT, DataSize: UINT, pData: rawptr) -> HRESULT,
 }
+
 D3D11_VIDEO_DECODER_BUFFER_DESC2 :: struct {
     BufferType: D3D11_VIDEO_DECODER_BUFFER_TYPE,
     DataOffset: UINT,
@@ -294,9 +305,11 @@ D3D11_VIDEO_DECODER_BUFFER_DESC2 :: struct {
     cBlocksStripeEncrypted: UINT,
     cBlocksStripeClear: UINT,
 }
+
 ID3D11VideoContext3 :: struct {
-    using vtbl: ^ID3D11VideoContext3Vtbl
+    using vtbl: ^ID3D11VideoContext3Vtbl,
 }
+
 ID3D11VideoContext3Vtbl :: struct {
     QueryInterface : proc(This: ^ID3D11VideoContext3, riid: REFIID, ppvObject: ^rawptr) -> HRESULT,
     AddRef : proc(This: ^ID3D11VideoContext3) -> ULONG,
@@ -384,12 +397,14 @@ ID3D11VideoContext3Vtbl :: struct {
     DecoderBeginFrame1 : proc(This: ^ID3D11VideoContext3, pDecoder: ^ID3D11VideoDecoder, pView: ^ID3D11VideoDecoderOutputView, ContentKeySize: UINT, pContentKey: rawptr, NumComponentHistograms: UINT, pHistogramOffsets: ^UINT, ppHistogramBuffers: ^^ID3D11Buffer) -> HRESULT,
     SubmitDecoderBuffers2 : proc(This: ^ID3D11VideoContext3, pDecoder: ^ID3D11VideoDecoder, NumBuffers: UINT, pBufferDesc: ^D3D11_VIDEO_DECODER_BUFFER_DESC2) -> HRESULT,
 }
+
 D3D11_FEATURE_DATA_D3D11_OPTIONS4 :: struct {
     ExtendedNV12SharedTextureSupported: BOOL,
 }
+
 //D3D11_FEATURE_VIDEO
-D3D11_FEATURE_VIDEO_DECODER_HISTOGRAM : u32 :  0
-    ;
+D3D11_FEATURE_VIDEO_DECODER_HISTOGRAM : u32 :  0;
+
 //D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT
 D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_Y : u32 :  0;
 D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_U : u32 :  1;
@@ -397,8 +412,8 @@ D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_V : u32 :  2;
 D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_R : u32 :  0;
 D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_G : u32 :  1;
 D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_B : u32 :  2;
-D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_A : u32 :  3
-    ;
+D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_A : u32 :  3;
+
 //D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAGS
 D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAG_NONE : u32 :  0;
 D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAG_Y : u32 :  ( 1 << D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_Y ) ;
@@ -407,8 +422,7 @@ D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAG_V : u32 :  ( 1 << D3D11_VIDEO_DECOD
 D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAG_R : u32 :  ( 1 << D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_R ) ;
 D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAG_G : u32 :  ( 1 << D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_G ) ;
 D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAG_B : u32 :  ( 1 << D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_B ) ;
-D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAG_A : u32 :  ( 1 << D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_A )
-    ;
+D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_FLAG_A : u32 :  ( 1 << D3D11_VIDEO_DECODER_HISTOGRAM_COMPONENT_A ) ;
+
 //D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS
-D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAG_NONE : u32 :  0
-    ;
+D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAG_NONE : u32 :  0;
